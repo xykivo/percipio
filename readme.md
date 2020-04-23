@@ -29,4 +29,5 @@ It contains notes, code snippets and code experiments on vairous subjects.
 
 # Developer Guide
 
+* General: see [developer guide](developer_guide.md)
 * Code style: see [code style](code_style.md)
