@@ -26,3 +26,7 @@ root directory that holds license information.
 
 Repository for learning and expreriments various topics.
 It contains notes, code snippets and code experiments on vairous subjects.
+
+# Developer Guide
+
+* Code style: see [code style](code_style.md)
