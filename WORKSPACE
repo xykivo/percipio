@@ -63,3 +63,9 @@ maven_install(
         "https://jcenter.bintray.com",
     ],
 )
+
+# C++ lint and code style tools
+register_toolchains(
+    "//bazel/cc_lint:clang-tidy-toolchain",
+    "//bazel/cc_code_style_check:clang-format-toolchain",
+)
