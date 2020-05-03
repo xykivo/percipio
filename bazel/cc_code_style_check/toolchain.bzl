@@ -34,7 +34,7 @@ cc_code_style_check_toolchain = rule(
             doc = "Path to the code style checker tool executable",
             executable = True,
             mandatory = True,
-            cfg = "target",
+            cfg = "host",
         ),
         "code_style_config_files": attr.label_list(
             doc = "List of code style tool configuration files",

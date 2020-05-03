@@ -19,8 +19,8 @@
 
 load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library", "cc_test")
 load("//bazel:version.bzl", "version_code")
-load("//bazel/cc_lint:rules.bzl", "cc_lint")
 load("//bazel/cc_code_style_check:rules.bzl", "cc_code_style_check")
+load("//bazel/cc_lint:rules.bzl", "cc_lint")
 
 def _add_common_cc_options(version, **kwargs):
     """Add common C++ defines, compiler and linker options.

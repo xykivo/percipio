@@ -35,7 +35,7 @@ cc_lint_toolchain = rule(
             doc = "Path to the lint tool executable",
             executable = True,
             mandatory = True,
-            cfg = "target",
+            cfg = "host",
         ),
         "linter_config_files": attr.label_list(
             doc = "List of lint tool configuration files",
