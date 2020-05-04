@@ -16,6 +16,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 """Sample that show Bazel host configuration runfiles bug
+
+Github issue: [bazelbuild/bazel#11169](https://github.com/bazelbuild/bazel/issues/11169)
 """
 
 load("//bazel:cc.bzl", "xkv_cc_binary")
