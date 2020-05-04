@@ -38,7 +38,9 @@ def _cc_code_style_check_impl(ctx):
     args.add_joined(ctx.files.srcs, join_with = ",")
     ctx.actions.run(
         outputs = [ctx.outputs.code_style_check_success],
-        inputs = ctx.files.srcs + toolchain.code_style_config_files,
+        inputs =
+            ctx.files.srcs +
+            toolchain.code_style_config_files,
         executable = toolchain.code_style_checker,
         arguments = [args],
         use_default_shell_env = True,
