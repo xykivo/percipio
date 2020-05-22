@@ -1,4 +1,6 @@
-# License
+#######
+License
+#######
 
 Copyright (C) 2020 Dror Smolarsky
 
@@ -12,22 +14,26 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
-You should have received a [copy](license.md) of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+You should have received a :doc:`gpl-3.0.md` of the GNU General Public License
+along with this program.  If not, see `<http://www.gnu.org/licenses/>`_.
 
-# Third Party Licenses
+####################
+Third Party Licenses
+####################
 
 Third party source code (under the third_party/ directory) is released under
 various licenses.
 Each third party package has a license file (e.g. license.txt) at the package
 root directory that holds license information.
 
-# Percipio
+########
+Percipio
+########
 
 Repository for learning and expreriments various topics.
 It contains notes, code snippets and code experiments on vairous subjects.
 
 # Developer Guide
 
-* General: see [developer guide](developer_guide.md)
-* Code style: see [code style](code_style.md)
+* General: see :doc:`developer_guide`
+* Code style: see :doc:`<code_style`
