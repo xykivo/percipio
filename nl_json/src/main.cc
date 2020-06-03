@@ -15,6 +15,8 @@
 
 #include <iostream>
 
+#include "nlohmann/json.hpp"
+
 int main() {
   std::cout << "Hello Niels Lohmann JSON\n";
   std::cout << "Sample code on how to use Niels Lohmann JSON library.\n\n";

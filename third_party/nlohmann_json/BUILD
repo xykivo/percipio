@@ -15,24 +15,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-load("@rules_cc//cc:defs.bzl", "cc_binary")
+"""Niels Lohmann JSON C++ library version 3.7.3.
 
-"""Code sample on how to use Niels Lohmann JSON library
-
-Niels Lohmann JSON source code can be found at https://github.com/nlohmann/json
+This 3rd party library is exported as a single header under the MIT license.
+The original library code is available at: https://github.com/nlohmann/json
 """
 
-cc_binary(
-    name = "hellojson",
-    srcs = glob([
-        "src/*.cc",
-        "src/*.h",
-    ]),
-    copts = [
-        "-Ithird_party/nlohmann_json/include/",
-    ],
-    visibility = ["//visibility:private"],
-    deps = [
-        "//third_party/nlohmann_json",
-    ],
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "nlohmann_json",
+    hdrs = ["include/nlohmann/json.hpp"],
+    includes = ["include"],
+    visibility = ["//visibility:public"],
 )
