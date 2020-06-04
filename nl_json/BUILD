@@ -29,6 +29,7 @@ cc_binary(
         "src/*.h",
     ]),
     copts = [
+        "-std=c++17",
         "-Ithird_party/nlohmann_json/include/",
     ],
     visibility = ["//visibility:private"],
