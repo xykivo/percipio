@@ -15,7 +15,9 @@
 
 #include <array>
 #include <iostream>
+#include <string>
 #include <utility>
+#include <variant>
 
 #include "nlohmann/json.hpp"
 
@@ -24,28 +26,59 @@ void CreateSimpleJson() {
   json["integer"] = 17;
   json["float"] = 17.0F;
   json["string"] = "seventeen";
-  std::cout << "simple json\n" << json << "\n\n";
+  static constexpr int kJsonDumpIndent{2};
+  std::cout << "simple json\n" << json.dump(kJsonDumpIndent) << "\n\n";
 }
 
 void CreateJsonArray() {
   nlohmann::json json;
+  json["int_array"][7] = 8;
   for (int i = 0; 3 > i; ++i) {
     json["int_array"][i] = i;
   }
-  std::cout << "json array\n" << json << "\n\n";
+  static constexpr int kJsonDumpIndent{2};
+  std::cout << "json array\n" << json.dump(kJsonDumpIndent) << "\n\n";
 }
 
 void CreateJsonMap() {
-  nlohmann::json json;
   static constexpr std::array<std::pair<const char*, int>, 3> kMap{
       std::make_pair("integer_0", 0),
       std::make_pair("integer_1", 1),
       std::make_pair("integer_2", 2),
   };
+  nlohmann::json json;
   for (const auto& [key, value] : kMap) {
     json["int_map"][key] = value;
   }
-  std::cout << "json map\n" << json << "\n\n";
+  static constexpr int kJsonDumpIndent{2};
+  std::cout << "json map\n" << json.dump(kJsonDumpIndent) << "\n\n";
+}
+
+void CreateMultiLevelJsonFromJsonPath() {
+  static const std::array<std::variant<int, std::string>, 4> kJsonPath{
+      std::variant<int, std::string>{"map_key_0"},
+      std::variant<int, std::string>{1},
+      std::variant<int, std::string>{"map_key_1"},
+      std::variant<int, std::string>{2},
+  };
+
+  nlohmann::json json{};
+  nlohmann::json* json_path_end = &json;
+  int path_index = 0;
+
+  for (const auto& path_end : kJsonPath) {
+    if (std::holds_alternative<int>(path_end)) {
+      (*json_path_end) = nlohmann::json::array();
+      json_path_end = &((*json_path_end)[std::get<int>(path_end)]);
+    } else {
+      (*json_path_end) = nlohmann::json::object();
+      json_path_end = &((*json_path_end)[std::get<std::string>(path_end)]);
+    }
+    ++path_index;
+  }
+  (*json_path_end) = "value";
+  static constexpr int kJsonDumpIndent{2};
+  std::cout << "json from path\n" << json.dump(kJsonDumpIndent) << "\n\n";
 }
 
 int main() {
@@ -54,4 +87,5 @@ int main() {
   CreateSimpleJson();
   CreateJsonArray();
   CreateJsonMap();
+  CreateMultiLevelJsonFromJsonPath();
 }
