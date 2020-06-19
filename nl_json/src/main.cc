@@ -63,22 +63,55 @@ void CreateMultiLevelJsonFromJsonPath() {
   };
 
   nlohmann::json json{};
-  nlohmann::json* json_path_end = &json;
+  nlohmann::json* json_path_component = &json;
   int path_index = 0;
 
-  for (const auto& path_end : kJsonPath) {
-    if (std::holds_alternative<int>(path_end)) {
-      (*json_path_end) = nlohmann::json::array();
-      json_path_end = &((*json_path_end)[std::get<int>(path_end)]);
+  for (const auto& path_component : kJsonPath) {
+    if (std::holds_alternative<int>(path_component)) {
+      (*json_path_component) = nlohmann::json::array();
+      json_path_component =
+          &((*json_path_component)[std::get<int>(path_component)]);
     } else {
-      (*json_path_end) = nlohmann::json::object();
-      json_path_end = &((*json_path_end)[std::get<std::string>(path_end)]);
+      (*json_path_component) = nlohmann::json::object();
+      json_path_component =
+          &((*json_path_component)[std::get<std::string>(path_component)]);
     }
     ++path_index;
   }
-  (*json_path_end) = "value";
+  (*json_path_component) = "value";
   static constexpr int kJsonDumpIndent{2};
-  std::cout << "json from path\n" << json.dump(kJsonDumpIndent) << "\n\n";
+  std::cout << "json from path\n" << json.dump(kJsonDumpIndent) << "\n";
+
+  std::cout << "access json path";
+  json_path_component = &json;
+  for (const auto& path_component : kJsonPath) {
+    switch (json_path_component->type()) {
+      case nlohmann::json::value_t::object:
+        if (!std::holds_alternative<std::string>(path_component)) {
+          std::cerr << "Invalid map key " << std::get<int>(path_component)
+                    << '\n';
+          return;
+        } else if (!json_path_component->contains(
+                       std::get<std::string>(path_component))) {
+          std::cerr << "Map key not found "
+                    << std::get<std::string>(path_component) << '\n';
+          return;
+        }
+        json_path_component =
+            &((*json_path_component)[std::get<std::string>(path_component)]);
+        break;
+      case nlohmann::json::value_t::array:
+        json_path_component =
+            &((*json_path_component)[std::get<int>(path_component)]);
+        break;
+      default:
+        std::cerr << "Invalid json path component\n";
+        return;
+    }
+  }
+  // Becaues of the way the path is set, it is known the value is a string
+  std::cout << "json path value = " << json_path_component->get<std::string>()
+            << "\n\n";
 }
 
 int main() {
