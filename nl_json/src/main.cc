@@ -82,18 +82,18 @@ void CreateMultiLevelJsonFromJsonPath() {
   static constexpr int kJsonDumpIndent{2};
   std::cout << "json from path\n" << json.dump(kJsonDumpIndent) << "\n";
 
-  std::cout << "access json path";
+  std::cout << "Access json path - ";
   json_path_component = &json;
   for (const auto& path_component : kJsonPath) {
     switch (json_path_component->type()) {
       case nlohmann::json::value_t::object:
         if (!std::holds_alternative<std::string>(path_component)) {
-          std::cerr << "Invalid map key " << std::get<int>(path_component)
+          std::cerr << "invalid map key " << std::get<int>(path_component)
                     << '\n';
           return;
         } else if (!json_path_component->contains(
                        std::get<std::string>(path_component))) {
-          std::cerr << "Map key not found "
+          std::cerr << "map key not found "
                     << std::get<std::string>(path_component) << '\n';
           return;
         }
@@ -101,6 +101,16 @@ void CreateMultiLevelJsonFromJsonPath() {
             &((*json_path_component)[std::get<std::string>(path_component)]);
         break;
       case nlohmann::json::value_t::array:
+        if (!std::holds_alternative<int>(path_component)) {
+          std::cerr << "invalid array index "
+                    << std::get<std::string>(path_component) << '\n';
+          return;
+        } else if (std::get<int>(path_component) >=
+                   json_path_component->size()) {
+          std::cerr << "array index out of bounds "
+                    << std::get<int>(path_component) << '\n';
+          return;
+        }
         json_path_component =
             &((*json_path_component)[std::get<int>(path_component)]);
         break;
