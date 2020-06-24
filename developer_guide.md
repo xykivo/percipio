@@ -60,10 +60,16 @@ the master/version branch.
 
 ## C++
 
-It is recommended to run C++ code style and lint checks.
-Config files for clang-format and clang-tidy are available in the repository
-root.
+Every xykivo C++ target will also have a C++ lint, and C++ code style targets
+(generated through the xykvio C++ rule).
+The C++ lint rule uses the clang-tidy toolchain, which requires that clang-tidy
+be in the system path.
+The C++ code style check uses the clang-format toolchain, which require that
+clang-format be in the system path.
 
+## Python
+
+It is recommended to run C++ code style and lint checks.
 
 # Versions
 
