@@ -30,7 +30,7 @@ import xml.dom.minidom
 def _which_clang_format():
     '''Locate clang-format in the local system path
     '''
-    clang_format_binary = shutil.which.find_executable('clang-format')
+    clang_format_binary = shutil.which('clang-format')
     if clang_format_binary is None:
         raise Exception('Failed to find clang-format in system path')
     return clang_format_binary
