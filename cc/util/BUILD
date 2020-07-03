@@ -15,18 +15,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-"""C++ utilities used by multiple samples
+"""Code samples on using std::all_of algorithm
 """
 
-load("//bazel:cc.bzl", "xkv_cc_binary")
+load("//bazel:cc.bzl", "xkv_cc_library")
 
-xkv_cc_binary(
-    name = "ccallof",
-    srcs = glob(["src/*.cc"]),
-    copts = ["-Icc/util/include"],
+xkv_cc_library(
+    name = "util",
+    srcs = glob([
+        "src/*.cc",
+        "src/*.h",
+    ]),
+    hdrs = glob(["include/**/*.h"]),
     version = "0.0.0",
-    visibility = ["//visibility:private"],
-    deps = [
-        "//cc/util",
-    ],
+    visibility = ["//visibility:public"],
 )

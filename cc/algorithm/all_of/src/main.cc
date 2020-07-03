@@ -19,6 +19,8 @@
 #include <iterator>
 #include <string_view>
 
+#include "xykivo/percipio/util/out_stream.h"
+
 namespace {
 
 constexpr std::array<int, 8> kPositiveIntegers{1, 2, 3, 4, 5, 6, 7, 8};
@@ -26,23 +28,18 @@ constexpr std::array<int, 8> kPositiveIntegers{1, 2, 3, 4, 5, 6, 7, 8};
 constexpr std::array<int, 8> kPositiveAndNegativeIntegers{-1, 1, -2, 2,
                                                           -3, 3, -4, 4};
 
-auto is_positive = [](int i) { return (0 < i); };
-
-template <typename OutputIter>
-void OutputRange(std::ostream& out, OutputIter begin, OutputIter end,
-                 std::string_view delimiter) {
-  std::copy(begin, end, std::ostream_iterator<int>(out, delimiter.data()));
-}
-
 template <size_t ArraySize>
 void SimpleAllOff(const std::array<int, ArraySize>& array) {
+  auto is_positive = [](int i) { return (0 < i); };
   if (std::all_of(array.begin(), array.end(), is_positive)) {
     std::cout << "All integers in ";
-    OutputRange(std::cout, array.begin(), array.end(), " ");
+    xykivo::percipio::util::OutputRange(std::cout, array.begin(), array.end(),
+                                        " ");
     std::cout << " are positive\n";
   } else {
     std::cout << "Not all integers in ";
-    OutputRange(std::cout, array.begin(), array.end(), " ");
+    xykivo::percipio::util::OutputRange(std::cout, array.begin(), array.end(),
+                                        " ");
     std::cout << " are positive\n";
   }
 }
