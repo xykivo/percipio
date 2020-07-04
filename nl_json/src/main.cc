@@ -124,6 +124,29 @@ void CreateMultiLevelJsonFromJsonPath() {
             << "\n\n";
 }
 
+void CopyJson() {
+  nlohmann::json src_json{};
+  src_json["array"][0] = 0;
+  src_json["array"][1] = 1;
+  src_json["array"][2] = 2;
+  src_json["array"][3] = 3;
+  src_json["map"]["key-0"] = "value-0";
+  src_json["map"]["key-1"] = "value-1";
+  src_json["map"]["key-2"] = "value-2";
+  src_json["map"]["key-3"] = "value-3";
+
+  static constexpr int kJsonDumpIndent{2};
+  std::cout << "copy json src\n" << src_json.dump(kJsonDumpIndent) << "\n";
+  nlohmann::json dst_json_ctr{src_json};
+  dst_json_ctr["array"][1] = -1;
+  std::cout << "copy json dst(ctr)\n"
+            << dst_json_ctr.dump(kJsonDumpIndent) << "\n";
+  nlohmann::json dst_json_op = src_json;
+  dst_json_op["array"][2] = -2;
+  std::cout << "copy json dst(op)\n"
+            << dst_json_op.dump(kJsonDumpIndent) << "\n";
+}
+
 int main() {
   std::cout << "Hello Niels Lohmann JSON\n";
   std::cout << "Sample code on how to use Niels Lohmann JSON library.\n\n";
@@ -131,4 +154,5 @@ int main() {
   CreateJsonArray();
   CreateJsonMap();
   CreateMultiLevelJsonFromJsonPath();
+  CopyJson();
 }
