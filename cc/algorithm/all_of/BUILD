@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-"""C++ utilities used by multiple samples
+"""Code samples on using C++ std::all_of algorithm
 """
 
 load("//bazel:cc.bzl", "xkv_cc_binary")

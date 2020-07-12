@@ -29,7 +29,7 @@ constexpr std::array<int, 8> kPositiveAndNegativeIntegers{-1, 1, -2, 2,
                                                           -3, 3, -4, 4};
 
 template <size_t ArraySize>
-void SimpleAllOff(const std::array<int, ArraySize>& array) {
+void SimpleAllOf(const std::array<int, ArraySize>& array) {
   auto is_positive = [](int i) { return (0 < i); };
   if (std::all_of(array.begin(), array.end(), is_positive)) {
     std::cout << "All integers in ";
@@ -49,7 +49,7 @@ void SimpleAllOff(const std::array<int, ArraySize>& array) {
 /// C++ all_of main entry point
 int main() {
   std::cout << "STL std::all_of samples\n";
-  SimpleAllOff(kPositiveIntegers);
-  SimpleAllOff(kPositiveAndNegativeIntegers);
+  SimpleAllOf(kPositiveIntegers);
+  SimpleAllOf(kPositiveAndNegativeIntegers);
   return 0;
 }
