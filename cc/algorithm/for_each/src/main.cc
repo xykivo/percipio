@@ -59,7 +59,7 @@ void ForEachSum(const std::array<int, ArraySize>& array) {
 
 /// C++ for_each main entry point
 int main() {
-  std::cout << "STL std::none_of samples\n";
+  std::cout << "STL std::for_each samples\n";
   ForEachNegate(kPositiveIntegers);
   ForEachSum(kPositiveIntegers);
   return 0;
