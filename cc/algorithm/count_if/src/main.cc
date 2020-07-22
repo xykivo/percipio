@@ -22,27 +22,24 @@
 
 namespace {
 
-/// Simple function that uses std::count algorithm to count how many time an
-/// integer appears in an array of integers
+/// Simple function that uses std::count_if algorithm to count how many
+/// negative intergers are in an array of integers
 template <size_t ArraySize>
-void CountInt(const std::array<int, ArraySize>& array, int i) {
-  std::cout << i << " appears " << std::count(array.begin(), array.end(), i)
-            << " times in ";
+void CountIfNegative(const std::array<int, ArraySize>& array) {
+  auto is_negative = [](int i) { return (i > 0); };
+  int negative_count = std::count_if(array.begin(), array.end(), is_negative);
   xykivo::percipio::util::OutputRange(std::cout, array.begin(), array.end(),
                                       " ");
-  std::cout << '\n';
+  std::cout << " has " << negative_count << " negative elements\n";
 }
 
 }  // namespace
 
-/// C++ count main entry point
+/// C++ count_if main entry point
 int main() {
-  std::cout << "STL std::count samples\n";
-  static constexpr std::array<int, 10> kIntegerArray{1, 2, 2, 3, 3,
-                                                     3, 4, 4, 4, 4};
-  static constexpr int kMaxIntCounted = 4;
-  for (int i = 0; kMaxIntCounted > i; ++i) {
-    CountInt(kIntegerArray, i);
-  }
+  std::cout << "STL std::count_if samples\n";
+  static constexpr std::array<int, 10> kIntegerArray{1,  -1, 2,  -2, 3,
+                                                     -3, 4,  -4, 5,  -5};
+  CountIfNegative(kIntegerArray);
   return 0;
 }
