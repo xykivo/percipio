@@ -42,7 +42,7 @@ void FindIntGreaterThanInRange(const std::array<int, ArraySize>& array, int i) {
 
 /// C++ std::find_if sample main entry point
 int main() {
-  std::cout << "STL std::find samples\n";
+  std::cout << "STL std::find_if samples\n";
   static constexpr std::array<int, 8> kIntegerArray{0, 1, 2, 3, 4, 5, 6, 7};
   static constexpr int kSmallInt = 5;
   FindIntGreaterThanInRange(kIntegerArray, kSmallInt);
