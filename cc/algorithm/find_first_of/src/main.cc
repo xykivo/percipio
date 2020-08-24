@@ -17,8 +17,6 @@
 #include <iostream>
 #include <string_view>
 
-#include "xykivo/percipio/util/out_stream.h"
-
 namespace {
 
 /// Simple funciton that finds the first occurence of a sub string in a string

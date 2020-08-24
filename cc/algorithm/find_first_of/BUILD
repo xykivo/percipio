@@ -23,10 +23,9 @@ load("//bazel:cc.bzl", "xkv_cc_binary")
 xkv_cc_binary(
     name = "ccfindfirstof",
     srcs = glob(["src/*.cc"]),
-    copts = ["-Icc/util/include"],
+    copts = [],
     version = "0.0.0",
     visibility = ["//visibility:private"],
     deps = [
-        "//cc/util",
     ],
 )
