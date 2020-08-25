@@ -14,6 +14,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <algorithm>
+#include <functional>
 #include <iostream>
 #include <string_view>
 
@@ -30,15 +31,45 @@ void FindSubString(const std::string_view str, const std::string_view sub_str) {
   }
 }
 
+template <typename Searcher>
+void SearchString(const std::string_view str, const std::string_view sub_str) {
+  if (str.end() == std::search(str.begin(), str.end(),
+                               Searcher(sub_str.begin(), sub_str.end()))) {
+    std::cout << sub_str << " not found in " << str << '\n';
+  } else {
+    std::cout << sub_str << " found in " << str << '\n';
+  }
+}
+
 }  // namespace
 
 /// C++ std::search sample main entry point
 int main() {
-  std::cout << "STL std::search samples\n";
+  std::cout << "STL simple std::search samples\n";
   static constexpr std::string_view kString{"hello world"};
   static constexpr std::string_view kSubString0{"world"};
   FindSubString(kString, kSubString0);
   static constexpr std::string_view kSubString1{"universe"};
   FindSubString(kString, kSubString1);
+
+  std::cout << "\nSTL std::search with std::default_searcher sample\n";
+  SearchString<std::default_searcher<std::string_view::iterator>>(kString,
+                                                                  kSubString0);
+  SearchString<std::default_searcher<std::string_view::iterator>>(kString,
+                                                                  kSubString1);
+
+  std::cout << "\nSTL std::search with std::boyer_moore_searcher sample\n";
+  SearchString<std::boyer_moore_searcher<std::string_view::iterator>>(
+      kString, kSubString0);
+  SearchString<std::boyer_moore_searcher<std::string_view::iterator>>(
+      kString, kSubString1);
+
+  std::cout
+      << "\nSTL std::search with std::boyer_moore_horspool_searcher sample\n";
+  SearchString<std::boyer_moore_horspool_searcher<std::string_view::iterator>>(
+      kString, kSubString0);
+  SearchString<std::boyer_moore_horspool_searcher<std::string_view::iterator>>(
+      kString, kSubString1);
+
   return 0;
 }
