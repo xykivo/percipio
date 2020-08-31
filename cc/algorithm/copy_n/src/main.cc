@@ -19,17 +19,18 @@
 
 #include "xykivo/percipio/util/out_stream.h"
 
-/// C++ copy main entry point
+/// C++ copy_n main entry point
 int main() {
-  std::cout << "STL std::copy samples\n";
+  std::cout << "STL std::copy_n samples\n";
   static constexpr size_t kArraySize{8};
   static constexpr std::array<int, kArraySize> kSrcArray{0, 1, 2, 3,
                                                          4, 5, 6, 7};
-  std::cout << "Copied [";
+  static constexpr size_t kCopyCount{kSrcArray.size() / 2};
+  std::cout << "Copied " << kCopyCount << " element of [";
   xykivo::percipio::util::OutputRange(std::cout, kSrcArray.begin(),
                                       kSrcArray.end(), " ");
   std::array<int, kSrcArray.size()> dst_array{};
-  std::copy(kSrcArray.begin(), kSrcArray.end(), dst_array.begin());
+  std::copy_n(kSrcArray.begin(), kCopyCount, dst_array.begin());
   std::cout << "] to [";
   xykivo::percipio::util::OutputRange(std::cout, dst_array.begin(),
                                       dst_array.end(), " ");

@@ -19,14 +19,16 @@
 
 #include "xykivo/percipio/util/out_stream.h"
 
-/// C++ count main entry point
+/// C++ copy_if main entry point
 int main() {
   std::cout << "STL std::copy_if samples\n";
-  static constexpr std::array<int, 8> kSrcArray{0, -1, 2, -3, 4, -5, 6, -7};
+  static constexpr size_t kArraySize{8};
+  static constexpr std::array<int, kArraySize> kSrcArray{0, -1, 2, -3,
+                                                         4, -5, 6, -7};
   std::cout << "Copied negative numbers from [";
   xykivo::percipio::util::OutputRange(std::cout, kSrcArray.begin(),
                                       kSrcArray.end(), " ");
-  std::array<int, 8> dst_array{};
+  std::array<int, kSrcArray.size()> dst_array{};
   auto is_negative = [](int i) { return (0 > i); };
   std::copy_if(kSrcArray.begin(), kSrcArray.end(), dst_array.begin(),
                is_negative);
