@@ -18,54 +18,28 @@
 #include <iostream>
 #include <memory>
 
-#include "xykivo/percipio/util/out_stream.h"
-
-namespace {
-
-class IntPtr {
- public:
-  IntPtr(const IntPtr& other) = delete;
-  IntPtr& operator=(const IntPtr& other) = delete;
-
-  IntPtr() noexcept = default;
-  explicit IntPtr(int i) : i_(std::make_unique<int>(i)) {}
-  IntPtr(IntPtr&& other) noexcept = default;
-  IntPtr& operator=(IntPtr&& other) noexcept = default;
-
-  void swap(IntPtr& other) { std::swap(i_, other.i_); }
-
-  friend std::ostream& operator<<(std::ostream& out, const IntPtr& int_ptr) {
-    if (nullptr == int_ptr.i_) {
-      out << "nullptr";
-    } else {
-      out << *int_ptr.i_;
-    }
-    return out;
-  }
-
- private:
-  std::unique_ptr<int> i_;
-};
-
-}  // namespace
-
 /// C++ move main entry point
 int main() {
   std::cout << "STL std::move samples\n";
   static constexpr size_t kArraySize{4};
-  std::array<IntPtr, kArraySize> src_array{IntPtr(0), IntPtr(1), IntPtr(2),
-                                           IntPtr(3)};
+  std::array<std::unique_ptr<int>, kArraySize> src_array{
+      std::make_unique<int>(0), std::make_unique<int>(1),
+      std::make_unique<int>(2), std::make_unique<int>(3)};
   std::cout << "Moved [";
-  xykivo::percipio::util::OutputRange(std::cout, src_array.begin(),
-                                      src_array.end(), " ");
+  auto print_unique_int_ptr = [](const std::unique_ptr<int>& int_ptr) {
+    if (nullptr == int_ptr) {
+      std::cout << "nullptr ";
+    } else {
+      std::cout << *int_ptr << ' ';
+    }
+  };
+  std::for_each(src_array.begin(), src_array.end(), print_unique_int_ptr);
   std::cout << "] to [";
-  std::array<IntPtr, src_array.size() * 2> dst_array{};
+  std::array<std::unique_ptr<int>, src_array.size() * 2> dst_array{};
   std::move(src_array.begin(), src_array.end(), dst_array.begin());
-  xykivo::percipio::util::OutputRange(std::cout, dst_array.begin(),
-                                      dst_array.end(), " ");
+  std::for_each(dst_array.begin(), dst_array.end(), print_unique_int_ptr);
   std::cout << "], src is now [";
-  xykivo::percipio::util::OutputRange(std::cout, src_array.begin(),
-                                      src_array.end(), " ");
+  std::for_each(src_array.begin(), src_array.end(), print_unique_int_ptr);
   std::cout << "]\n";
   return 0;
 }
