@@ -22,9 +22,10 @@
 int main() {
   std::cout << "STL std::move samples\n";
   static constexpr size_t kArraySize{4};
-  std::array<std::unique_ptr<int>, kArraySize> src_array{
-      std::make_unique<int>(0), std::make_unique<int>(1),
-      std::make_unique<int>(2), std::make_unique<int>(3)};
+  std::array<std::unique_ptr<int>, kArraySize> src_array{};
+  for (size_t i = 0; src_array.size() > i; ++i) {
+    src_array[i] = std::make_unique<int>(i);
+  }
   std::cout << "Moved [";
   auto print_unique_int_ptr = [](const std::unique_ptr<int>& int_ptr) {
     if (nullptr == int_ptr) {
@@ -41,5 +42,7 @@ int main() {
   std::cout << "], src is now [";
   std::for_each(src_array.begin(), src_array.end(), print_unique_int_ptr);
   std::cout << "]\n";
+  std::for_each(src_array.begin(), src_array.end(),
+                [](std::unique_ptr<int>& int_ptr) { int_ptr.reset(); });
   return 0;
 }
