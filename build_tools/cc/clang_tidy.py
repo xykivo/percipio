@@ -61,7 +61,6 @@ def _write_lint_succeeded_file(lint_succeeded, src_files):
 
 
 if '__main__' == __name__:
-    print('hello')
     arg_parser = argparse.ArgumentParser(description=__doc__)
     arg_parser.add_argument(
         'lint_succeeded', metavar='LINT_SUCCEEDED',
