@@ -18,7 +18,7 @@
 #include <iostream>
 
 int main() {
-  std::cout << "STL std::fill samples\n";
+  std::cout << "STL std::fill_n samples\n";
   static constexpr size_t kArraySize{8};
   std::array<int, kArraySize> array{};
   std::cout << "Initialized array [";
@@ -26,8 +26,9 @@ int main() {
   std::for_each(array.begin(), array.end(), print_int);
   std::cout << "]\n";
   for (size_t i = 0; kArraySize > i; ++i) {
-    std::fill(array.begin(), array.end(), i);
-    std::cout << "Filled array with " << i << " [";
+    std::fill_n(array.begin(), array.size() / 2, i);
+    std::cout << "Filled " << array.size() / 2 << " elements of array with "
+              << i << " [";
     std::for_each(array.begin(), array.end(), print_int);
     std::cout << "]\n";
   }
