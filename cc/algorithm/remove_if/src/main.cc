@@ -18,15 +18,15 @@
 #include <iostream>
 
 int main() {
-  std::cout << "STL std::remove sample\n";
+  std::cout << "STL std::remove_if sample\n";
   static constexpr int kArraySize{8};
-  std::array<int, kArraySize> array{-1, 1, -1, 2, -1, 3, -1, 4};
-  static constexpr int kRemovedElement{-1};
-  std::cout << "remove " << kRemovedElement << " from [";
+  std::array<int, kArraySize> array{-1, 1, -2, 2, -3, 3, -4, 4};
+  std::cout << "remove negative numbers from [";
   auto print_int = [](int i) { std::cout << i << ' '; };
   std::for_each(array.begin(), array.end(), print_int);
   std::cout << "] = [";
-  auto* iter = std::remove(array.begin(), array.end(), kRemovedElement);
+  auto is_negative = [](int i) { return (0 > i); };
+  auto* iter = std::remove_if(array.begin(), array.end(), is_negative);
   std::for_each(array.begin(), array.end(), print_int);
   std::cout << "]\n";
   std::cout << "past the end iterator points to " << *iter << "\n";
