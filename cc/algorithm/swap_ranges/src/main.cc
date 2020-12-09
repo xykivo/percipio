@@ -17,7 +17,7 @@
 #include <array>
 #include <iostream>
 
-/// C++ copy main entry point
+/// C++ swap ranges main entry point
 int main() {
   std::cout << "STL std::swap_ranges sample\n";
   static constexpr size_t kArraySize{8};
