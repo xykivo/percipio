@@ -15,13 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-"""Code samples on using C++ std::swap algorithm
+"""Code samples on using C++ std::swap_ranges algorithm
 """
 
 load("//bazel:cc.bzl", "xkv_cc_binary")
 
 xkv_cc_binary(
-    name = "ccswap",
+    name = "ccswapranges",
     srcs = glob(["src/*.cc"]),
     copts = [],
     version = "0.0.0",
