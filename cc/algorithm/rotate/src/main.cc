@@ -21,8 +21,10 @@
 int main() {
   std::cout << "STL std::rotate sample\n";
   static constexpr size_t kArraySize{16};
-  std::array<int, kArraySize> array{0, 1, 2,  3,  4,  5,  6,  7,
-                                    8, 9, 10, 11, 12, 13, 14, 15};
+
+  std::array<int, kArraySize> array{
+      0, 1, 2,  3,  4,  5,  6,  7,    // NOLINT(readability-magic-numbers)
+      8, 9, 10, 11, 12, 13, 14, 15};  // NOLINT(readability-magic-numbers)
   static constexpr int kElementsRotatedCount{kArraySize / 3};
   std::cout << "Rotating " << kElementsRotatedCount
             << " first elements of array=[";

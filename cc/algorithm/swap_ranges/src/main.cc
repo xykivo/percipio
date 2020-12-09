@@ -21,7 +21,9 @@
 int main() {
   std::cout << "STL std::swap_ranges sample\n";
   static constexpr size_t kArraySize{8};
+  // NOLINTNEXTLINE(readability-magic-numbers)
   std::array<int, kArraySize> array_0{0, 1, 2, 3, 4, 5, 6, 7};
+  // NOLINTNEXTLINE(readability-magic-numbers)
   std::array<int, kArraySize> array_1{0, -1, -2, -3, -4, -5, -6, -7};
   std::cout << "swapping full range of array_0=[";
   auto print_int = [](int i) { std::cout << i << ' '; };

@@ -21,6 +21,7 @@
 int main() {
   std::cout << "STL std::reverse sample\n";
   static constexpr size_t kArraySize{8};
+  // NOLINTNEXTLINE(readability-magic-numbers)
   std::array<int, kArraySize> array{0, 1, 2, 3, 4, 5, 6, 7};
   std::cout << "Reversing array=[";
   auto print_int = [](int i) { std::cout << i << ' '; };
