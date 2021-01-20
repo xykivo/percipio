@@ -15,7 +15,28 @@
 
 #include <iostream>
 
+namespace {
+
+template <typename... Ts>
+void SimpleOutputPack(std::ostream& out, Ts const&... args) {
+  out << "simple output pack - binary left fold: ";
+  (out << ... << args);
+  out << '\n';
+}
+
+template <typename... Ts>
+void OutputPack(std::ostream& out, Ts const&... args) {
+  out << "output pack - unary right fold: ";
+  size_t i{0};
+  ((out << args << (++i != sizeof...(Ts) ? ", " : "")), ...);
+  out << '\n';
+}
+
+}  // namespace
+
 int main() {
   std::cout << "C++ fold expressions sample\n";
+  SimpleOutputPack(std::cout, 0, 1, 2, 3);
+  OutputPack(std::cout, 0, 1, 2, 3);
   return 0;
 }
