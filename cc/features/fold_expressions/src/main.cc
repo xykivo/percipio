@@ -25,6 +25,15 @@ void SimpleOutputPack(std::ostream& out, Ts const&... args) {
 }
 
 template <typename... Ts>
+void OutputPackInBrackets(std::ostream& out, Ts const&... args) {
+  out << "simple output pack - binary right fold: ";
+  size_t i{0};
+  out << '[';
+  ((out << args << (++i != sizeof...(Ts) ? ", " : "")), ..., (out << ']'));
+  out << '\n';
+}
+
+template <typename... Ts>
 void OutputPack(std::ostream& out, Ts const&... args) {
   out << "output pack - unary right fold: ";
   size_t i{0};
@@ -37,6 +46,7 @@ void OutputPack(std::ostream& out, Ts const&... args) {
 int main() {
   std::cout << "C++ fold expressions sample\n";
   SimpleOutputPack(std::cout, 0, 1, 2, 3);
+  OutputPackInBrackets(std::cout, 0, 1, 2, 3);
   OutputPack(std::cout, 0, 1, 2, 3);
   return 0;
 }
