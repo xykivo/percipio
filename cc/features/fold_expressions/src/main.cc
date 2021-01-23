@@ -34,8 +34,16 @@ void OutputPackInBrackets(std::ostream& out, Ts const&... args) {
 }
 
 template <typename... Ts>
-void OutputPack(std::ostream& out, Ts const&... args) {
-  out << "output pack - unary right fold: ";
+void OutputPackLeftToRigth(std::ostream& out, Ts const&... args) {
+  out << "output pack left to right - unary left fold: ";
+  size_t i{0};
+  (..., (out << args << (++i != sizeof...(Ts) ? ", " : "")));
+  out << '\n';
+}
+
+template <typename... Ts>
+void OutputPackRightToLeft(std::ostream& out, Ts const&... args) {
+  out << "output pack right to left - unary right fold: ";
   size_t i{0};
   ((out << args << (++i != sizeof...(Ts) ? ", " : "")), ...);
   out << '\n';
@@ -47,6 +55,7 @@ int main() {
   std::cout << "C++ fold expressions sample\n";
   SimpleOutputPack(std::cout, 0, 1, 2, 3);
   OutputPackInBrackets(std::cout, 0, 1, 2, 3);
-  OutputPack(std::cout, 0, 1, 2, 3);
+  OutputPackLeftToRigth(std::cout, 0, 1, 2, 3);
+  OutputPackRightToLeft(std::cout, 0, 1, 2, 3);
   return 0;
 }
