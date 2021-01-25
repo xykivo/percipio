@@ -17,7 +17,6 @@
 #include <array>
 #include <iostream>
 
-/// C++ sample algorithm main entry point
 int main() {
   std::cout << "STL std::unique example\n";
   static constexpr size_t kArraySize{16};
@@ -27,7 +26,7 @@ int main() {
   std::cout << "Equality unique - array=[";
   auto print_int = [](int i) { std::cout << i << ' '; };
   std::for_each(array.begin(), array.end(), print_int);
-  auto unique_array_end = std::unique(array.begin(), array.end());
+  auto* unique_array_end = std::unique(array.begin(), array.end());
   std::cout << "] -> array=[";
   std::for_each(array.begin(), unique_array_end, print_int);
   std::cout << "]\n";
