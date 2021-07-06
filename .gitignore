@@ -29,3 +29,6 @@ bazel-testlogs
 bazel-testlogs/
 bazel-percipio
 bazel-percipio/
+
+# Python
+__pycache__/
