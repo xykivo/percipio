@@ -29,16 +29,16 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-"""Code samples on using C++ std::partition and std::is_partioned algorithm
+"""Code samples on using C++ std::partition_copy and std::is_partioned algorithm
 
-C++ reference: https://en.cppreference.com/w/cpp/algorithm/partition
+C++ reference: https://en.cppreference.com/w/cpp/algorithm/partition_copy
 C++ reference: https://en.cppreference.com/w/cpp/algorithm/is_partitioned
 """
 
 load("//bazel:cc.bzl", "xkv_cc_binary")
 
 xkv_cc_binary(
-    name = "ccpartition",
+    name = "ccpartitioncopy",
     srcs = glob(["src/*.cc"]),
     copts = [],
     version = "0.0.0",
