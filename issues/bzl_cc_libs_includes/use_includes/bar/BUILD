@@ -36,8 +36,9 @@ targets
 """
 
 cc_library(
-    name = "foo",
+    name = "bar",
     srcs = glob(["src/*.cc"]),
     includes = ["includes"],
     visibility = ["//issues/bzl_cc_libs_includes:__subpackages__"],
+    deps = ["//issues/bzl_cc_libs_includes/use_includes/foo"],
 )

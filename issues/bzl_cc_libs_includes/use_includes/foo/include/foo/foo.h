@@ -32,10 +32,15 @@
 #ifndef FOO_FOO_H_
 #define FOO_FOO_H_
 
+#include <iostream>
+
 namespace foo {
 
-void Foo();
-
+template <typename T>
+void Foo(T t) {
+  std::cout << t;
 }
+
+}  // namespace foo
 
 #endif  // FOO_FOO_H_

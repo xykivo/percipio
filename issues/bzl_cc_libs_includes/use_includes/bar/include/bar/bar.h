@@ -29,12 +29,19 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#ifndef BAR_BAR_H_
+#define BAR_BAR_H_
+
 #include "foo/foo.h"
 
-#include <iostream>
+namespace bar {
 
-namespace foo {
+template <typename T, typename... Args>
+void Bar(T t, Args... args) {
+  foo::Foo(t);
+  Bar(args);
+}
 
-void foo() { std::cout << "foo\n"; }
+}  // namespace bar
 
-}  // namespace foo
+#endif  // BAR_BAR_H_
