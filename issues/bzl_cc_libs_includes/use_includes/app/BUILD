@@ -29,17 +29,15 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-load("@rules_cc//cc:defs.bzl", "cc_library")
+load("@rules_cc//cc:defs.bzl", "cc_binary")
 
-"""Library bar package - uses includes to export include paths to dependent
-targets
+"""App package - uses bar
 """
 
-cc_library(
-    name = "bar",
+cc_binary(
+    name = "app",
     srcs = glob(["src/*.cc"]),
-    hdrs = glob(["include/**/*.h"]),
-    includes = ["include"],
-    visibility = ["//issues/bzl_cc_libs_includes/use_includes:__subpackages__"],
-    deps = ["//issues/bzl_cc_libs_includes/use_includes/foo"],
+    # copts = ["-Iissues/bzl_cc_libs_includes/use_includes/bar/include"],
+    visibility = ["//visibility:private"],
+    deps = ["//issues/bzl_cc_libs_includes/use_includes/bar"],
 )

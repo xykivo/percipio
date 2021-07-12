@@ -38,6 +38,7 @@ targets
 cc_library(
     name = "foo",
     srcs = glob(["src/*.cc"]),
-    includes = ["includes"],
-    visibility = ["//issues/bzl_cc_libs_includes:__subpackages__"],
+    hdrs = glob(["include/**/*.h"]),
+    includes = ["include"],
+    visibility = ["//issues/bzl_cc_libs_includes/use_includes:__subpackages__"],
 )

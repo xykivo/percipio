@@ -29,24 +29,14 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef BAR_BAR_H_
-#define BAR_BAR_H_
+#include "bar/bar.h"
 
-#include "foo/foo.h"
+int main(int argc, char* argv[]) {
+  (void)argc;
+  (void)argv;
+  bar::Bar(0, 1, 2);
 
-namespace bar {
-
-template <typename T>
-void Bar(T t) {
-  foo::Foo(t);
+  // On purpose error to make it easy to view the C++ compiler options using
+  // the --verbose_failures option when building.
+  error;
 }
-
-template <typename T, typename... Args>
-void Bar(T t, Args... args) {
-  foo::Foo(t);
-  Bar(args...);
-}
-
-}  // namespace bar
-
-#endif  // BAR_BAR_H_
