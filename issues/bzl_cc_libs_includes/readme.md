@@ -63,6 +63,8 @@ the --verbose_failures options when building app.
 
 * To build the use_includes sample run:
   bazel build //issues/bzl_cc_libs_includes/use_includes/app --verbose_failures
+* To build the use_copts sample run:
+  bazel build //issues/bzl_cc_libs_includes/use_copts/app --verbose_failures
 
 # Include Options
 
