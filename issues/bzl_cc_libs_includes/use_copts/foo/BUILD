@@ -39,5 +39,6 @@ cc_library(
     name = "foo",
     srcs = glob(["src/*.cc"]),
     hdrs = glob(["include/**/*.h"]),
+    strip_include_prefix = "include",
     visibility = ["//issues/bzl_cc_libs_includes/use_copts:__subpackages__"],
 )

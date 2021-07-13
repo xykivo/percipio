@@ -35,8 +35,4 @@ int main(int argc, char* argv[]) {
   (void)argc;
   (void)argv;
   bar::Bar(0, 1, 2);
-
-  // On purpose error to make it easy to view the C++ compiler options using
-  // the --verbose_failures option when building.
-  error;
 }

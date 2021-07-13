@@ -40,10 +40,6 @@ include path to foo headers through copts because bar depends on foo.
 cc_binary(
     name = "app",
     srcs = glob(["src/*.cc"]),
-    copts = [
-        "-Iissues/bzl_cc_libs_includes/use_copts/bar/include",
-        "-Iissues/bzl_cc_libs_includes/use_copts/foo/include",
-    ],
     visibility = ["//visibility:private"],
     deps = ["//issues/bzl_cc_libs_includes/use_copts/bar"],
 )

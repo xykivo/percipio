@@ -36,6 +36,8 @@ POSSIBILITY OF SUCH DAMAGE.
 This is a code sample that tries to illustrate that Bazel uses the -isystem
 option for include paths exported from a cc_library target includes argument.
 
+See https://github.com/bazelbuild/bazel/issues/13642
+
 The -isystem is generally reserved for compiler or system headers, and has
 a different behavior than include paths that are used with the -I compiler
 option.
@@ -107,3 +109,12 @@ This is because bar depends on foo, so app has a transitive dependency on foo.
 It is bad for a C++ target to have to "know" all of its transitive dependencies.
 This can cause maintenance issues of the copts for C++ targets "high up" in the
 dependency graph.
+
+## Use copts with strip_include_prefix
+
+-iquote .
+-iquote bazel-out/k8-fastbuild/bin
+-iquote external/bazel_tools
+-iquote bazel-out/k8-fastbuild/bin/external/bazel_tools
+-Ibazel-out/k8-fastbuild/bin/issues/bzl_cc_libs_includes/use_copts/bar/_virtual_includes/bar
+-Ibazel-out/k8-fastbuild/bin/issues/bzl_cc_libs_includes/use_copts/foo/_virtual_includes/foo

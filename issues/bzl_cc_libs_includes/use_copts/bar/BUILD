@@ -39,7 +39,7 @@ cc_library(
     name = "bar",
     srcs = glob(["src/*.cc"]),
     hdrs = glob(["include/**/*.h"]),
-    copts = ["-Iissues/bzl_cc_libs_includes/use_copts/foo/include"],
+    strip_include_prefix = "include",
     visibility = ["//issues/bzl_cc_libs_includes/use_copts:__subpackages__"],
     deps = ["//issues/bzl_cc_libs_includes/use_copts/foo"],
 )
