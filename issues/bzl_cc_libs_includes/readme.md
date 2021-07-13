@@ -100,7 +100,7 @@ Include options used when compiling app in the use_copts sample:
 
 As can be seen above the foo include path is _not_ passed transitively when
 compiling app, and the -I options is used for include paths. However the app
-must cc_binary rule must now add the foo include path to its copts even though
+cc_binary rule must now add the foo include path to its copts even though
 it does not directly depend on it - it's not in its deps list.
 This is because bar depends on foo, so app has a transitive dependency on foo.
 
