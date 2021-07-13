@@ -37,7 +37,6 @@ load("@rules_cc//cc:defs.bzl", "cc_binary")
 cc_binary(
     name = "app",
     srcs = glob(["src/*.cc"]),
-    # copts = ["-Iissues/bzl_cc_libs_includes/use_includes/bar/include"],
     visibility = ["//visibility:private"],
     deps = ["//issues/bzl_cc_libs_includes/use_includes/bar"],
 )
