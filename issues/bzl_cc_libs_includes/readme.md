@@ -86,4 +86,22 @@ cc_library target.
 
 ## Use copts option
 
-TODO
+Include options used when compiling app in the use_copts sample:
+
+-iquote .
+-iquote bazel-out/k8-fastbuild/bin
+-iquote external/bazel_tools
+-iquote bazel-out/k8-fastbuild/bin/external/bazel_tools
+
+-Iissues/bzl_cc_libs_includes/use_copts/bar/include
+-Iissues/bzl_cc_libs_includes/use_copts/foo/include
+
+As can be seen above the foo include path is _not_ passed transitively when
+compiling app, and the -I options is used for include paths. However the app
+must cc_binary rule must now add the foo include path to its copts even though
+it does not directly depend on it - it's not in its deps list.
+This is because bar depends on foo, so app has a transitive dependency on foo.
+
+It is bad for a C++ target to have to "know" all of its transitive dependencies.
+This can cause maintenance issues of the copts for C++ targets "high up" in the
+dependency graph.
