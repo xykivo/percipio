@@ -1,6 +1,6 @@
 // BSD 3-Clause License
 //
-// Copyright (c) 2020-2021, Dror Smolarsky
+// Copyright (c) 2021, Dror Smolarsky
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,11 @@ int main() {
   std::cout << "\nInteger series\n";
   std::make_integer_sequence<int, 9> int_series;
   PrintIntegerSequence(int_series);
-  std::cout << "\nIndex series\n";
+  std::cout << "\nSize series\n";
   std::make_integer_sequence<size_t, 7> size_series;
   PrintIntegerSequence(size_series);
+  std::cout << "\nIndex series\n";
+  std::make_index_sequence<5> index_series;
+  PrintIntegerSequence(index_series);
   return 0;
 }
