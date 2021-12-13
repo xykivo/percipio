@@ -29,15 +29,15 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-"""Code samples on using C++ std::partial_sort algorithm
+"""Code samples on using C++ std::partial_sort_copy algorithm
 
-C++ reference: https://en.cppreference.com/w/cpp/algorithm/partial_sort
+C++ reference: https://en.cppreference.com/w/cpp/algorithm/partial_sort_copy
 """
 
 load("//bazel:cc.bzl", "xkv_cc_binary")
 
 xkv_cc_binary(
-    name = "ccpartialsort",
+    name = "ccpartialsortcopy",
     srcs = glob(["src/*.cc"]),
     copts = [],
     version = "0.0.0",
