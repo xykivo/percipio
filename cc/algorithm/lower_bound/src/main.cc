@@ -33,12 +33,6 @@
 #include <array>
 #include <iostream>
 
-namespace {
-
-// bool LessThan(int lhs, int rhs) { return (lhs < rhs); }
-
-}  // namespace
-
 int main() {
   std::cout << "STL std::lower_bound example\n";
   static constexpr size_t kArraySize{15};
@@ -52,6 +46,7 @@ int main() {
     std::cout << "]";
   };
   static constexpr int kZero{0};
+  std::partition(array.begin(), array.end(), [](int i) { return i < kZero; });
   auto zero_lower_bound = std::lower_bound(array.begin(), array.end(), kZero);
   std::cout << "Zero lower bound in ";
   print_array(array);
