@@ -47,7 +47,7 @@ int main() {
     std::cout << " sorted\n";
   };
   print_range(array.begin(), array.end());
-  auto end_of_sorted_range = std::is_sorted_until(array.begin(), array.end());
+  auto* end_of_sorted_range = std::is_sorted_until(array.begin(), array.end());
   print_range(array.begin(), end_of_sorted_range);
   print_range(end_of_sorted_range, array.end());
   return 0;

@@ -52,7 +52,7 @@ int main() {
     std::cout << "]\n";
   };
   print_array(array);
-  auto zero = std::find(array.begin(), array.end(), 0);
+  auto* zero = std::find(array.begin(), array.end(), 0);
   std::nth_element(array.begin(), zero, array.end(), LessThan);
   print_array(array);
   return 0;

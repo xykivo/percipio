@@ -47,7 +47,7 @@ int main() {
   };
   static constexpr int kZero{0};
   std::partition(array.begin(), array.end(), [](int i) { return i < kZero; });
-  auto zero_lower_bound = std::lower_bound(array.begin(), array.end(), kZero);
+  auto* zero_lower_bound = std::lower_bound(array.begin(), array.end(), kZero);
   std::cout << "Zero lower bound in ";
   print_array(array);
   std::cout << " -> " << *zero_lower_bound << '\n';

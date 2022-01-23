@@ -58,7 +58,7 @@ int main() {
   print_is_array_partitioned(array);
   std::partition(array.begin(), array.end(), is_greater_than_pivot);
   print_is_array_partitioned(array);
-  auto partition_point =
+  auto* partition_point =
       std::partition_point(array.begin(), array.end(), is_greater_than_pivot);
   std::cout << "partition_point=" << *partition_point << '\n';
   return 0;

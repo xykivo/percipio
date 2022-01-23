@@ -47,7 +47,7 @@ int main() {
   };
   static constexpr int kZero{0};
   std::partition(array.begin(), array.end(), [](int i) { return i < kZero; });
-  auto zero_upper_bound = std::upper_bound(array.begin(), array.end(), kZero);
+  auto* zero_upper_bound = std::upper_bound(array.begin(), array.end(), kZero);
   std::cout << "Zero upper bound in ";
   print_array(array);
   std::cout << " -> " << *zero_upper_bound << '\n';

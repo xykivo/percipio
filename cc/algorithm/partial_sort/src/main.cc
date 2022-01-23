@@ -46,7 +46,7 @@ int main() {
     std::cout << "]\n";
   };
   print_array(array);
-  auto middle = std::find(array.begin(), array.end(), 0);
+  auto* middle = std::find(array.begin(), array.end(), 0);
   std::partial_sort(array.begin(), middle, array.end());
   print_array(array);
   return 0;
