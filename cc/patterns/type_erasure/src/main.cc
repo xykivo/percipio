@@ -36,11 +36,13 @@ namespace {
 class Func {
  public:
   template <typename F>
+  // NOLINTNEXTLINE(google-explicit-constructor)
   Func(F f) : f_(new CallableImpl<F>(f)) {}
 
   ~Func() { delete f_; }
 
   template <typename F, typename... Args>
+  // NOLINTNEXTLINE(google-explicit-constructor)
   Func(F f, Args... args) : f_(new CallableImpl<F, Args...>(f, args...)) {}
 
   void operator()() { f_->Execute(); }
@@ -48,15 +50,16 @@ class Func {
  private:
   class Callable {
    public:
-    virtual ~Callable(){};
+    virtual ~Callable() = default;
     virtual void Execute() = 0;
   };
 
   template <typename F, typename... Args>
   class CallableImpl : public Callable {
    public:
+    // NOLINTNEXTLINE(google-explicit-constructor, misc-unused-parameters)
     CallableImpl(F f, Args... args) : f_(f) {}
-    virtual ~CallableImpl() {}
+    ~CallableImpl() override = default;
     void Execute() override { f_(); }
 
    private:
@@ -75,6 +78,8 @@ void CallFunc(Func f) {
 }  // namespace
 
 int main(int argc, char* argv[]) {
+  (void)argc;
+  (void)argv;
   std::cout << "Sample implementation of the type erasure design pattern\n";
   CallFunc([]() {
     std::cout << "Call function with no arguments " << count << std::endl;
