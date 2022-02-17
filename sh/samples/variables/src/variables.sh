@@ -33,7 +33,6 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 # Local constants and variables
-
 THIS_IS_A_CONSTANT="Constant"
 readonly THIS_IS_A_CONSTANT
 echo "Constant=$THIS_IS_A_CONSTANT"
@@ -54,3 +53,16 @@ echo "all arguments \$@=$@"
 echo "exit status of last command \$?=$?"
 echo "process number of current shell \$\$=$$"
 echo "process number of last background command \$!=$!"
+
+# arrays
+ARRAY_A[0]="array_a[0]"
+ARRAY_A[1]="array_a[1]"
+ARRAY_A[2]="array_a[2]"
+ARRAY_A[3]="array_a[3]"
+ARRAY_A[4]="array_a[4]"
+echo "all array elements \${ARRAY_A[*]}=${ARRAY_A[*]}"
+echo "all array elements \${ARRAY_A[@]}=${ARRAY_A[@]}"
+
+ARRAY_B=("array_b[0]" "array_b[1]" "array_b[2]" "array_b[3]" "array_b[4]")
+echo "all array elements \${ARRAY_B[*]}=${ARRAY_B[*]}"
+echo "all array elements \${ARRAY_B[@]}=${ARRAY_B[@]}"
