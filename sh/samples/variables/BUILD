@@ -35,4 +35,5 @@
 sh_binary(
     name = "shvariables",
     srcs = ["src/variables.sh"],
+    args = ["arg-a", "arg-b"],
 )

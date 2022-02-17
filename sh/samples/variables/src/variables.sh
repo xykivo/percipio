@@ -32,13 +32,25 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+# Local constants and variables
+
 THIS_IS_A_CONSTANT="Constant"
 readonly THIS_IS_A_CONSTANT
-echo $THIS_IS_A_CONSTANT
+echo "Constant=$THIS_IS_A_CONSTANT"
 
 VARIABLE="Variable-0"
-echo $VARIABLE
+echo "VARIABLE="$VARIABLE
 VARIABLE="Variable-1"
-echo $VARIABLE
+echo "VARIABLE=$VARIABLE"
 unset VARIABLE
 echo $VARIABLE
+
+# special variables
+echo "script file name (argument 0) \$0=$0"
+echo "[\$1, \$n] script arguments \$1=$1 \$2=$2"
+echo "number of arguments \$#=$#"
+echo "all arguments \$*=$*"
+echo "all arguments \$@=$@"
+echo "exit status of last command \$?=$?"
+echo "process number of current shell \$\$=$$"
+echo "process number of last background command \$!=$!"
