@@ -88,3 +88,29 @@ then
 else
     echo "-le $x <= $y is false"
 fi
+
+echo "boolean operators"
+
+# or
+if [ $x -lt $y -o $x -eq $y ]
+then
+    echo "-o $x < $y || $x == $y is true"
+else
+    echo "-o $x < $y || $x == $y is false"
+fi
+
+# and
+if [ $x -gt $y -a $x -eq $x ]
+then
+    echo "-a $x > $y && $x == $x is true"
+else
+    echo "-a $x > $y && $x == $x is false"
+fi
+
+# not
+if [ ! $x -lt $y ]
+then
+    echo "! $x < $y is true"
+else
+    echo "! $x > $y is false"
+fi
