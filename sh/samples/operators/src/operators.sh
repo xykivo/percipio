@@ -114,3 +114,52 @@ then
 else
     echo "! $x > $y is false"
 fi
+
+echo "string operators"
+
+s0="string-0"
+s1="not-string-0"
+
+if [ $s0 = $s1 ]
+then
+    echo "$s0 = $s1 is true"
+else
+    echo "$s0 = $s1 is false"
+fi
+
+if [ $s0 != $s1 ]
+then
+    echo "$s0 != $s1 is true"
+else
+    echo "$s0 != $s1 is false"
+fi
+
+se=""
+
+if [ -z $se ]
+then
+    echo "-z \"$se\" size = 0"
+else
+    echo "-z \"$se\" size != 0"
+fi
+
+if [ -z $s0 ]
+then
+    echo "-z \"$s0\" size = 0"
+else
+    echo "-z \"$s0\" size != 0"
+fi
+
+if [ -n $se ]
+then
+    echo "-n \"$se\" size != 0 (why is -n $se size not equal 0?)"
+else
+    echo "-n \"$se\" size = 0"
+fi
+
+if [ -n $s0 ]
+then
+    echo "-n \"$s0\" size != 0"
+else
+    echo "-n \"$s0\" size = 0"
+fi
