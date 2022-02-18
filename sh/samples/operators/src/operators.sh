@@ -163,3 +163,17 @@ then
 else
     echo "-n \"$s0\" size = 0"
 fi
+
+if [ $se ]
+then
+    echo "-n \"$se\" is not the empty string"
+else
+    echo "-n \"$se\" is the empty string"
+fi
+
+if [ $s0 ]
+then
+    echo "-n \"$s0\" is not the empty string"
+else
+    echo "-n \"$s0\" is the empty string"
+fi
