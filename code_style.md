@@ -44,23 +44,23 @@ Unless noted otherwise below, follow the
 ## Additions, Clarifications, and Modification to the Google Code Style
 
 ### Doxygen Style Comments
-Use Doxygen style comments to document classes, enums, functions and fields.  
-Rational:  
+Use Doxygen style comments to document classes, enums, functions and fields.
+Rational:
 * Being able to generate documentation in various formats may prove useful in
   the future
 * Doxygen style comments provide a consistent easy to read documentation style
 
-Doxygen style:  
+Doxygen style:
 * Use /// as a doxygen comment line prefix
 * Prefer to use ///< to document arguments, enum values and fields
 
 ### Use noexcept
-Mark all functions with noexcept modifier.  
+Mark all functions with noexcept modifier.
 Rational:
 Google code style forbids throwing exceptions. However in the future the new
 [C++ determinstic error specification](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0709r0.pdf)
 may become part of the standard. If/when this happens, using deterministic
-return value exceptions will be allowed.  
+return value exceptions will be allowed.
 The noexcept modifier will let the caller know how errors are handled.
 
 ### Pointer Alignment
@@ -82,3 +82,7 @@ Follow the
 
 Follow the
 [Python Style Guide](https://www.python.org/dev/peps/pep-0008/)
+
+# Shell script
+Follow the
+[Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html)
