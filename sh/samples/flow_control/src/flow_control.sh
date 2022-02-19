@@ -74,3 +74,79 @@ case $some_string in
   "yam") echo "yam"
   ;;
 esac
+
+echo "\n====================================================================="
+echo "while"
+echo "====================================================================="
+
+echo "print fibonachi series"
+readonly MAX_I=5
+readonly MAX_J=34
+
+i=1
+while [ $i -lt $MAX_I ]
+do
+  prev_j=$i
+  j=$i
+  while [ $j -lt $MAX_J ]
+    do
+      printf " $j"
+      t=$j
+      j=`expr $prev_j + $j`
+      prev_j=$t
+    done
+    printf "\n"
+    i=`expr $i + 1`
+done
+
+echo "\n====================================================================="
+echo "for"
+echo "====================================================================="
+
+echo "print a list of string"
+for s in "zero" "one" "two" "three" "four"
+do
+  printf " $s"
+done
+echo
+echo
+
+echo "print all .* files in user home directory (= primitive ls)"
+for c in $HOME/.*
+do
+  echo "  $c"
+done
+echo
+
+echo "\n====================================================================="
+echo "until"
+echo "====================================================================="
+
+echo "count down from $MAX_I"
+i=$MAX_I
+until [ $i -eq 0 ]
+do
+  printf " $i"
+  i=`expr $i - 1`
+done
+echo
+echo
+
+echo "\n====================================================================="
+echo "select"
+echo "====================================================================="
+
+echo "select day of the week"
+select d in monday tuesday wednesday thursday friday saturday sunday exit
+do
+  case $d in
+    monday) echo "monday";;
+    tuesday) echo "tuesday";;
+    wednesday) echo "wednesday";;
+    thursday) echo "thursday";;
+    friday) echo "friady";;
+    saturday) echo "saturday";;
+    sunday) echo "sunday";;
+    exit) exit;;
+  esac
+done
