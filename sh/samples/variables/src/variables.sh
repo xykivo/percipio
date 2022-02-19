@@ -37,12 +37,12 @@ THIS_IS_A_CONSTANT="Constant"
 readonly THIS_IS_A_CONSTANT
 echo "Constant=$THIS_IS_A_CONSTANT"
 
-VARIABLE="Variable-0"
-echo "VARIABLE="$VARIABLE
-VARIABLE="Variable-1"
-echo "VARIABLE=$VARIABLE"
-unset VARIABLE
-echo $VARIABLE
+variable="variable-0"
+echo "variable="$variable
+variable="variable-1"
+echo "variable=$variable"
+unset variable
+echo $variable
 
 # special variables
 echo "script file name (argument 0) \$0=$0"
@@ -55,14 +55,14 @@ echo "process number of current shell \$\$=$$"
 echo "process number of last background command \$!=$!"
 
 # arrays
-ARRAY_A[0]="array_a[0]"
-ARRAY_A[1]="array_a[1]"
-ARRAY_A[2]="array_a[2]"
-ARRAY_A[3]="array_a[3]"
-ARRAY_A[4]="array_a[4]"
-echo "all array elements \${ARRAY_A[*]}=${ARRAY_A[*]}"
-echo "all array elements \${ARRAY_A[@]}=${ARRAY_A[@]}"
+array_a[0]="array_a[0]"
+array_a[1]="array_a[1]"
+array_a[2]="array_a[2]"
+array_a[3]="array_a[3]"
+array_a[4]="array_a[4]"
+echo "all array elements \${array_a[*]}=${array_a[*]}"
+echo "all array elements \${array_a[@]}=${array_a[@]}"
 
-ARRAY_B=("array_b[0]" "array_b[1]" "array_b[2]" "array_b[3]" "array_b[4]")
-echo "all array elements \${ARRAY_B[*]}=${ARRAY_B[*]}"
-echo "all array elements \${ARRAY_B[@]}=${ARRAY_B[@]}"
+array_b=("array_b[0]" "array_b[1]" "array_b[2]" "array_b[3]" "array_b[4]")
+echo "all array elements \${array_b[*]}=${array_b[*]}"
+echo "all array elements \${array_b[@]}=${array_b[@]}"
