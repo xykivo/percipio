@@ -32,7 +32,9 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+echo "\n====================================================================="
 echo "arithmetic operatos"
+echo "====================================================================="
 
 x=5
 y=2
@@ -45,7 +47,9 @@ echo "$x * $y = $result"
 result=`expr $x / $y`
 echo "$x / $y = $result"
 
+echo "\n====================================================================="
 echo "comparison operatos"
+echo "====================================================================="
 
 if [ $x -eq $y ]
 then
@@ -89,7 +93,9 @@ else
     echo "-le $x <= $y is false"
 fi
 
+echo "\n====================================================================="
 echo "boolean operators"
+echo "====================================================================="
 
 # or
 if [ $x -lt $y -o $x -eq $y ]
@@ -115,7 +121,9 @@ else
     echo "! $x > $y is false"
 fi
 
+echo "\n====================================================================="
 echo "string operators"
+echo "====================================================================="
 
 s0="string-0"
 s1="not-string-0"
@@ -176,4 +184,86 @@ then
     echo "-n \"$s0\" is not the empty string"
 else
     echo "-n \"$s0\" is the empty string"
+fi
+
+
+echo "\n====================================================================="
+echo "file operators"
+echo "====================================================================="
+
+if [ -e $0 ]
+then
+    echo "-e $0 exists"
+else
+    echo "-e $0 does not exist"
+fi
+
+if [ -s $0 ]
+then
+    echo "-s $0 file size > 0"
+else
+    echo "-s $0 file size == 0"
+fi
+
+if [ -d $0 ]
+then
+    echo "-d $0 is a directory"
+else
+    echo "-d $0 is not a directory"
+fi
+
+if [ -f $0 ]
+then
+    echo "-f $0 is a file"
+else
+    echo "-f $0 is not a file"
+fi
+
+if [ -p $0 ]
+then
+    echo "-p $0 is a named pipe"
+else
+    echo "-p $0 is not a named pipe"
+fi
+
+if [ -t $0 ]
+then
+    echo "-t $0 file descriptor is open"
+else
+    echo "-p $0 file descriptor is not open"
+fi
+
+if [ -t $0 ]
+then
+    echo "-t $0 file descriptor is open"
+else
+    echo "-p $0 file descriptor is not open"
+fi
+
+if [ -r $0 ]
+then
+    echo "-r $0 is readable"
+else
+    echo "-r $0 is not readable"
+fi
+
+if [ -w $0 ]
+then
+    echo "-w $0 is writeable"
+else
+    echo "-w $0 is not writeable"
+fi
+
+if [ -u $0 ]
+then
+    echo "-u $0 has user id bit set"
+else
+    echo "-u $0 does not have user id bit set"
+fi
+
+if [ -g $0 ]
+then
+    echo "-g $0 has group id bit set"
+else
+    echo "-g $0 does not have group user id bit set"
 fi

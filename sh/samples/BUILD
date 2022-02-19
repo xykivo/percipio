@@ -30,4 +30,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 """Parent package to all percipio shell script samples
+
+Many of the samples here are based on the shell script tutorial from tutorials
+point - https://www.tutorialspoint.com/unix/shell_scripting.htm
 """
