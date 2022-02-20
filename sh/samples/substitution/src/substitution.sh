@@ -49,3 +49,27 @@ echo "whoami = $whoami"
 
 netstat=`netstat`
 echo "netstat=$netstat"
+
+echo "\n====================================================================="
+echo "variable substitution"
+echo "====================================================================="
+
+var="variable-0"
+echo "regular substitution var=${var:-var-is-not-set}"
+
+echo "variable substitution when variable is set var=${var:-var-is-not-set}"
+unset var
+echo "variable substitution when variable is not set var=${var:-var-is-not-set}"
+
+echo "variable substitution when variable is not set var=${var:=setting-var}"
+echo "variable substitution when variable is set var=${var:=var-is-not-set}"
+
+replacement="variable-replacement"
+unset var
+echo "variable substitution it's not set var=${var:+$replacement}"
+var="variable-1"
+echo "variable substitution when it's set var=${var:+$replacement}"
+
+unset var
+msg="write message to stderr because var is not set"
+echo "variable substitution when variable is not set var=${var:?$msg}"
