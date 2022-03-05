@@ -56,6 +56,26 @@ http_archive(
           RULES_JVM_EXTERNAL_VERSION,
 )
 
+# Kotlin rules
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+# TODO(xykivo@gmail.com) Update Kotlin rules to latest version (currently 1.5.0)
+# RULES_KOTLIN_VERSION = "v1.5.0"
+RULES_KOTLIN_VERSION = "legacy-1.3.0"
+http_archive(
+    name = "io_bazel_rules_kotlin",
+    # sha256 = "12d22a3d9cbcf00f2e2d8f0683ba87d3823cb8c7f6837568dd7e48846e023307",
+    sha256 = "4fd769fb0db5d3c6240df8a9500515775101964eebdf85a3f9f0511130885fde",
+    strip_prefix = "rules_kotlin-%s" % RULES_KOTLIN_VERSION,
+    url = "https://github.com/bazelbuild/rules_kotlin/archive/%s.zip" % RULES_KOTLIN_VERSION,
+)
+
+load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kotlin_repositories", "kt_register_toolchains")
+
+kotlin_repositories()
+kt_register_toolchains()
+
 # Maven repositories
 load("@rules_jvm_external//:defs.bzl", "maven_install")
 
