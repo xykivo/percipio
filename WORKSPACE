@@ -34,31 +34,23 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 # Python
-
-RULES_PYTHON_SHA = \
-    "aa96a691d3a8177f3215b14b0edc9641787abaaa30363a080165d06ab65e1161"
-
-RULES_PYTHON_VERSION = "0.0.1"
+RULES_PYTHON_VERSION = "0.6.0"
 
 http_archive(
     name = "rules_python",
-    sha256 = RULES_PYTHON_SHA,
-    url = "https://github.com/bazelbuild/rules_python/releases/download/{0}/rules_python-{0}.tar.gz".format(RULES_PYTHON_VERSION),
+    sha256 = "a30abdfc7126d497a7698c29c46ea9901c6392d6ed315171a6df5ce433aa4502",
+    strip_prefix = "rules_python-%s" % RULES_PYTHON_VERSION,
+    url = "https://github.com/bazelbuild/rules_python/archive/%s.tar.gz" % RULES_PYTHON_VERSION,
 )
 
 load("@rules_python//python:repositories.bzl", "py_repositories")
 
-py_repositories()
-
 # JVM external rules - needed for load of maven_install below
-RULES_JVM_EXTERNAL_VERSION = "3.0"
-
-RULES_JVM_EXTERNAL_SHA = \
-    "62133c125bf4109dfd9d2af64830208356ce4ef8b165a6ef15bbff7460b35c3a"
+RULES_JVM_EXTERNAL_VERSION = "4.2"
 
 http_archive(
     name = "rules_jvm_external",
-    sha256 = RULES_JVM_EXTERNAL_SHA,
+    sha256 = "cd1a77b7b02e8e008439ca76fd34f5b07aecb8c752961f9640dea15e9e5ba1ca",
     strip_prefix = "rules_jvm_external-%s" % RULES_JVM_EXTERNAL_VERSION,
     url = "https://github.com/bazelbuild/rules_jvm_external/archive/%s.zip" %
           RULES_JVM_EXTERNAL_VERSION,
