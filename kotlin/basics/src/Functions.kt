@@ -31,8 +31,34 @@
 
 package com.xykivo.percipio.basics
 
-fun main() {
-    println("hello kotlin basics")
-    Functions.printStrings(listOf<String>("string-0", "string-1", "string-2"))
-    println("3 + 5 = ${Functions.add(3, 5)}")
+/**
+ * Kotlin basics samples of various functions
+ */
+class Functions {
+    companion object {
+
+        /**
+         * Print a list of strings, each in its own line
+         *
+         * Example of a function that prints a list of string with no return
+         * value.
+         * @return Unit note that in thie case return type can be ommitted
+         * @param stringList The list of strings printed
+         */
+        fun printStrings(stringList: List<String>) {
+            for (string in stringList) {
+                println(string)
+            }
+        }
+
+        /**
+         * Add 2 integers
+         *
+         * Example of a single statement function
+         * @return The sum a+b
+         * @oaram a First integer added
+         * @param b Seconds integer added
+         */
+        fun add(a: Int, b: Int) : Int = a + b
+    }
 }

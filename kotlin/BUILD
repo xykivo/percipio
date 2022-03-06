@@ -29,13 +29,5 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-"""Percipio Kotlin basics samples
+"""Percipio Kotlin samples and experiments.
 """
-
-load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kt_jvm_binary")
-
-kt_jvm_binary(
-    name = "ktbasics",
-    srcs = glob(["src/**/*.kt"]),
-    main_class = "com.xykivo.percipio.basics.MainKt"
-)
