@@ -31,35 +31,34 @@
 
 package com.xykivo.percipio.basics
 
-fun printFunctionSamples() {
-    println("Functions:")
-    Functions.printStrings(listOf<String>("string-0", "string-1", "string-2"))
-    println("3 + 5 = ${Functions.add(3, 5)}")
-    println()
-}
+// Global read only variables
+val float: Float = 5.0F
+val integer: Int = 5
 
-fun printVariableSamples() {
-    println("Global variables")
-    println("float=${float}")
-    println("integer=${integer}")
-    println("FLOAT=${FLOAT}")
-    println("INTEGER=${INTEGER}")
-    println("variable float=${vfloat}")
-    println("variable integer=${vinteger}")
-    println()
-    println("Class variables")
-    println("float=${Variables.float}")
-    println("integer=${Variables.integer}")
-    println("FLOAT=${Variables.FLOAT}")
-    println("INTEGER=${Variables.INTEGER}")
-    println("variable float=${Variables.vfloat}")
-    println("variable integer=${Variables.vinteger}")
-    println()
-}
+// Global constant
+const val FLOAT: Float = 3.0F
+const val INTEGER: Int = 3
 
-fun main() {
-    println("hello kotlin basics")
-    println()
-    printFunctionSamples()
-    printVariableSamples()
+// Global variables
+var vfloat: Float = 8.0F
+var vinteger: Int = 8
+
+/**
+ * Hold various types of variables
+ */
+class Variables {
+    // Static and constant values must be placed in a companion object
+    companion object {
+        // Class read only variables
+        val float: Float = 13.0F
+        val integer: Int = 13
+
+        // Class variables
+        var vfloat: Float = 21.0F
+        var vinteger: Int = 21
+
+        // Class constant
+        const val FLOAT: Float = 34.0F
+        const val INTEGER: Int = 34
+    }
 }
