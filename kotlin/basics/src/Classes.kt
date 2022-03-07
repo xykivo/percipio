@@ -31,43 +31,44 @@
 
 package com.xykivo.percipio.basics
 
-fun printFunctionSamples() {
-    println("Functions:")
-    Functions.printStrings(listOf<String>("string-0", "string-1", "string-2"))
-    println("3 + 5 = ${Functions.add(3, 5)}")
-    println()
+/**
+ * Simple class representing a position in 3D space
+ *
+ * Note that this class is not open, so it cannoot be derived from
+ * Variables declared in the class declaration body are part of the class.
+ *
+ * @property x Position on the X axis
+ * @property y Position on the Y axis
+ * @property z Position on the Z axis
+ */
+class Position(var x: Float, var y: Float, var z: Float) {
+  override fun toString(): String = "(${x}, ${y}, ${z})"
 }
 
-fun printVariableSamples() {
-    println("Global variables")
-    println("float=${float}")
-    println("integer=${integer}")
-    println("FLOAT=${FLOAT}")
-    println("INTEGER=${INTEGER}")
-    println("variable float=${vfloat}")
-    println("variable integer=${vinteger}")
-    println()
-    println("Class variables")
-    println("float=${Variables.float}")
-    println("integer=${Variables.integer}")
-    println("FLOAT=${Variables.FLOAT}")
-    println("INTEGER=${Variables.INTEGER}")
-    println("variable float=${Variables.vfloat}")
-    println("variable integer=${Variables.vinteger}")
-    println()
+/**
+ * Simple class representing a vehicle
+ *
+ * This is an open class that can be derived from.
+ */
+open class Vehicle(var position: Position) {
+    fun move(dx: Float, dy: Float, dz: Float) {
+        position.x += dx
+        position.y += dy
+        position.z += dz
+    }
 }
 
-fun printClassesSample() {
-    var car = Car(Position(0F, 0F, 0F))
-    println("Car created at ${car.position}")
-    car.move(1F, 1F, 1F)
-    println("Car moved to ${car.position}")
-}
+/**
+ * Simple class representing a car
+ */
+class Car(position: Position) : Vehicle(position) {
+    var wipers: Boolean = false
 
-fun main() {
-    println("hello kotlin basics")
-    println()
-    printFunctionSamples()
-    printVariableSamples()
-    printClassesSample()
+    fun turnWipersOn() {
+        wipers = true
+    }
+
+    fun turnWipersOff() {
+        wipers = false
+    }
 }
