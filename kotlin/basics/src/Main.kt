@@ -65,8 +65,11 @@ fun printClassesSample() {
 }
 
 fun printControlFlowSample() {
-    println(ControlFlow.ConditionalExpressions(false));
-    println(ControlFlow.ConditionalExpressions(true));
+    println(ControlFlow.ConditionalExpression(false));
+    println(ControlFlow.ConditionalExpression(true));
+    val strList = listOf<String>("string-0", "string-1", "string-2")
+    println(ControlFlow.ForLoop(strList));
+    println(ControlFlow.IndexedForLoop(strList));
 }
 
 fun main() {

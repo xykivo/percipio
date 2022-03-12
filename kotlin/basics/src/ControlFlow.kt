@@ -39,13 +39,29 @@ class ControlFlow {
         /**
          * Simple sample showing Kotlin conditional (if/else) expression
          */
-        fun ConditionalExpressions(b: Boolean): String {
+        fun ConditionalExpression(b: Boolean): String {
             if (b) {
                return "b is true"
             }
             else {
               return "b is false"
             }
+        }
+
+        fun ForLoop(stringList: List<String>): String {
+            var str: String =  "for loop (over list):"
+            for (s in stringList) {
+                str = str + " " + s
+            }
+            return str
+        }
+
+        fun IndexedForLoop(stringList: List<String>): String {
+            var str: String =  "indexed for loop (over list):"
+            for (i in stringList.indices) {
+                str = str + " $i." + stringList[i]
+            }
+            return str
         }
     }
 }
