@@ -64,13 +64,17 @@ fun printClassesSample() {
     println("Car moved to ${car.position}")
 }
 
-fun printControlFlowSample() {
-    println(ControlFlow.ConditionalExpression(false));
-    println(ControlFlow.ConditionalExpression(true));
+fun printControlFlowSamples() {
+    println(ControlFlow.conditionalExpression(false));
+    println(ControlFlow.conditionalExpression(true));
     val strList = listOf<String>("string-0", "string-1", "string-2")
-    println(ControlFlow.ForLoop(strList));
-    println(ControlFlow.IndexedForLoop(strList));
-    println(ControlFlow.WhileLoop(8))
+    println(ControlFlow.forLoop(strList));
+    println(ControlFlow.indexedForLoop(strList));
+    println(ControlFlow.whileLoop(8))
+    println(ControlFlow.whenValue(1))
+    println(ControlFlow.whenValue(4))
+    println(ControlFlow.whenType(4))
+    println(ControlFlow.whenType("yada"))
 }
 
 fun main() {
@@ -79,5 +83,5 @@ fun main() {
     printFunctionSamples()
     printVariableSamples()
     printClassesSample()
-    printControlFlowSample()
+    printControlFlowSamples()
 }

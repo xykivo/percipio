@@ -39,7 +39,7 @@ class ControlFlow {
         /**
          * Simple sample showing Kotlin conditional (if/else) expression
          */
-        fun ConditionalExpression(b: Boolean): String {
+        fun conditionalExpression(b: Boolean): String {
             if (b) {
                return "b is true"
             }
@@ -48,7 +48,10 @@ class ControlFlow {
             }
         }
 
-        fun ForLoop(stringList: List<String>): String {
+        /**
+         * Simple sample showing Kotlin for loop in all collection elements
+         */
+        fun forLoop(stringList: List<String>): String {
             var str: String =  "for loop (over list):"
             for (s in stringList) {
                 str = str + " $s"
@@ -56,7 +59,10 @@ class ControlFlow {
             return str
         }
 
-        fun IndexedForLoop(stringList: List<String>): String {
+        /**
+         * Simple sample showing Kotlin for and indexed based for loop
+         */
+        fun indexedForLoop(stringList: List<String>): String {
             var str: String =  "indexed for loop (over list):"
             for (i in stringList.indices) {
                 str = str + " $i.${stringList[i]}"
@@ -64,7 +70,10 @@ class ControlFlow {
             return str
         }
 
-        fun WhileLoop(max: Int): String {
+        /**
+         * Simple sample showing Kotlin while loop
+         */
+        fun whileLoop(max: Int): String {
             var str: String = "while loop from 0 to $max:"
             var i: Int = 0
             while (i < max) {
@@ -72,6 +81,33 @@ class ControlFlow {
                 ++i
             }
             return str
+        }
+
+        /**
+         * Simple sample showing Kotlin values based which expression
+         */
+        fun whenValue(value: Int): String {
+            when (value) {
+                1 -> return "$value is one"
+                2 -> return "$value is two"
+                3 -> return "$value is three"
+                else -> return "$value is bigger than three"
+            }
+            return "opps, should not be here"
+        }
+
+        /**
+         * Simple sample showing Kotlin type based which expression
+         *
+         * Note that which expression can support combined type and value
+         * cases.
+         */
+        fun whenType(value: Any): String {
+            when (value) {
+                is Int -> return "$value is Int"
+                is String -> return "$value is String"
+            }
+            return "$value type unknown"
         }
     }
 }
