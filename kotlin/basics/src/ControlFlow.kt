@@ -51,7 +51,7 @@ class ControlFlow {
         fun ForLoop(stringList: List<String>): String {
             var str: String =  "for loop (over list):"
             for (s in stringList) {
-                str = str + " " + s
+                str = str + " $s"
             }
             return str
         }
@@ -59,7 +59,17 @@ class ControlFlow {
         fun IndexedForLoop(stringList: List<String>): String {
             var str: String =  "indexed for loop (over list):"
             for (i in stringList.indices) {
-                str = str + " $i." + stringList[i]
+                str = str + " $i.${stringList[i]}"
+            }
+            return str
+        }
+
+        fun WhileLoop(max: Int): String {
+            var str: String = "while loop from 0 to $max:"
+            var i: Int = 0
+            while (i < max) {
+                str = str + " $i"
+                ++i
             }
             return str
         }

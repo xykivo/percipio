@@ -70,6 +70,7 @@ fun printControlFlowSample() {
     val strList = listOf<String>("string-0", "string-1", "string-2")
     println(ControlFlow.ForLoop(strList));
     println(ControlFlow.IndexedForLoop(strList));
+    println(ControlFlow.WhileLoop(8))
 }
 
 fun main() {
