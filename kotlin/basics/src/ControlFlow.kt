@@ -31,49 +31,21 @@
 
 package com.xykivo.percipio.basics
 
-fun printFunctionSamples() {
-    println("Functions:")
-    Functions.printStrings(listOf<String>("string-0", "string-1", "string-2"))
-    println("3 + 5 = ${Functions.add(3, 5)}")
-    println()
-}
-
-fun printVariableSamples() {
-    println("Global variables")
-    println("float=${float}")
-    println("integer=${integer}")
-    println("FLOAT=${FLOAT}")
-    println("INTEGER=${INTEGER}")
-    println("variable float=${vfloat}")
-    println("variable integer=${vinteger}")
-    println()
-    println("Class variables")
-    println("float=${Variables.float}")
-    println("integer=${Variables.integer}")
-    println("FLOAT=${Variables.FLOAT}")
-    println("INTEGER=${Variables.INTEGER}")
-    println("variable float=${Variables.vfloat}")
-    println("variable integer=${Variables.vinteger}")
-    println()
-}
-
-fun printClassesSample() {
-    var car = Car(Position(0F, 0F, 0F))
-    println("Car created at ${car.position}")
-    car.move(1F, 1F, 1F)
-    println("Car moved to ${car.position}")
-}
-
-fun printControlFlowSample() {
-    println(ControlFlow.ConditionalExpressions(false));
-    println(ControlFlow.ConditionalExpressions(true));
-}
-
-fun main() {
-    println("hello kotlin basics")
-    println()
-    printFunctionSamples()
-    printVariableSamples()
-    printClassesSample()
-    printControlFlowSample()
+/**
+ * Wrapper class for various control flow samples functions
+ */
+class ControlFlow {
+    companion object {
+        /**
+         * Simple sample showing Kotlin conditional (if/else) expression
+         */
+        fun ConditionalExpressions(b: Boolean): String {
+            if (b) {
+               return "b is true"
+            }
+            else {
+              return "b is false"
+            }
+        }
+    }
 }
