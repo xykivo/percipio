@@ -75,6 +75,12 @@ fun printControlFlowSamples() {
     println(ControlFlow.whenValue(4))
     println(ControlFlow.whenType(4))
     println(ControlFlow.whenType("yada"))
+    println()
+}
+
+fun printRangesSamples() {
+    println(Ranges.iterate(5))
+    println()
 }
 
 fun main() {
@@ -84,4 +90,5 @@ fun main() {
     printVariableSamples()
     printClassesSample()
     printControlFlowSamples()
+    printRangesSamples()
 }
