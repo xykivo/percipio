@@ -37,14 +37,35 @@ package com.xykivo.percipio.basics
 class Ranges {
     companion object {
         /**
-         * Simple sample showing Kotlin iteration over a range
-         */
-         fun iterate(max: Int): String {
+        * Simple sample showing Kotlin iteration over a range
+        */
+        fun iterate(max: Int): String {
             var str: String = "Iterating over range [0..$max)"
             for (i in 0..max) {
                 str = str + " $i"
             }
             return str
-         }
+        }
+
+        /**
+         * Simple sample checking if a number is in range
+         */
+        fun isInRange(i: Int, min: Int, max:Int): String {
+            if (i in min..max) {
+                return "$i in range [$min..$max]"
+            }
+            return "$i not in range [$min..$max]"
+        }
+
+
+        /**
+         * Simple sample checking if a number is not in range
+         */
+        fun isNotInRange(i: Int, min: Int, max:Int): String {
+            if (i !in min..max) {
+                return "$i in range [$min..$max]"
+            }
+            return "$i not in range [$min..$max]"
+        }
     }
 }
