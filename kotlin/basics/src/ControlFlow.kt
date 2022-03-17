@@ -93,7 +93,6 @@ class ControlFlow {
                 3 -> return "$value is three"
                 else -> return "$value is bigger than three"
             }
-            return "opps, should not be here"
         }
 
         /**
