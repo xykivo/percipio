@@ -32,40 +32,20 @@
 package com.xykivo.percipio.basics
 
 /**
- * Wrapper class for various range samples
+ * Wrapper class for various collections samples
  */
-class Ranges {
+class Collections {
     companion object {
+
         /**
-        * Simple sample showing Kotlin iteration over a range
-        */
-        fun iterate(max: Int, s: Int = 1): String {
-            var str: String = "Iterating over range [0..$max) step $s"
-            for (i in 0..max step s) {
-                str = str + " $i"
+         * Iterate over all items in a collection
+         */
+        fun <T> iterate(collection: Collection<T>): String {
+            var str: String = "Iterating over collection"
+            for (item in collection) {
+                str = str + " $item"
             }
             return str
-        }
-
-        /**
-         * Simple sample checking if a number is in range
-         */
-        fun isInRange(i: Int, min: Int, max:Int): String {
-            if (i in min..max) {
-                return "$i in range [$min..$max]"
-            }
-            return "$i not in range [$min..$max]"
-        }
-
-
-        /**
-         * Simple sample checking if a number is not in range
-         */
-        fun isNotInRange(i: Int, min: Int, max:Int): String {
-            if (i !in min..max) {
-                return "$i in range [$min..$max]"
-            }
-            return "$i not in range [$min..$max]"
         }
     }
 }

@@ -88,6 +88,11 @@ fun printRangesSamples() {
     println()
 }
 
+fun printCollectionsSamples() {
+    println(Collections.iterate(listOf<Int>(0, 1, 2, 3, 5, 8, 13, 21)))
+    println()
+}
+
 fun main() {
     println("hello kotlin basics")
     println()
@@ -96,4 +101,5 @@ fun main() {
     printClassesSample()
     printControlFlowSamples()
     printRangesSamples()
+    printCollectionsSamples()
 }
