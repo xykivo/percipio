@@ -80,6 +80,7 @@ fun printControlFlowSamples() {
 
 fun printRangesSamples() {
     println(Ranges.iterate(5))
+    println(Ranges.iterate(8, 2))
     println(Ranges.isInRange(0, -5, 5))
     println(Ranges.isInRange(8, -5, 5))
     println(Ranges.isNotInRange(0, -5, 5))

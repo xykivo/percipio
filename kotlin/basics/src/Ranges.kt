@@ -39,9 +39,9 @@ class Ranges {
         /**
         * Simple sample showing Kotlin iteration over a range
         */
-        fun iterate(max: Int): String {
-            var str: String = "Iterating over range [0..$max)"
-            for (i in 0..max) {
+        fun iterate(max: Int, s: Int = 1): String {
+            var str: String = "Iterating over range [0..$max) step $s "
+            for (i in 0..max step s) {
                 str = str + " $i"
             }
             return str
