@@ -47,5 +47,16 @@ class Collections {
             }
             return str
         }
+
+        /**
+         * Check if a given value is in a collection
+         */
+        fun <T> isValueInCollection(value: T, collection: Collection<T>): String {
+            when {
+                value in collection -> return "$value in $collection"
+                // It's possible to add more * in collection statements here
+            }
+            return "$value not in $collection"
+        }
     }
 }

@@ -89,7 +89,10 @@ fun printRangesSamples() {
 }
 
 fun printCollectionsSamples() {
-    println(Collections.iterate(listOf<Int>(0, 1, 2, 3, 5, 8, 13, 21)))
+    val fibonachiSeries = listOf<Int>(0, 1, 2, 3, 5, 8, 13, 21)
+    println(Collections.iterate(fibonachiSeries))
+    println(Collections.isValueInCollection(2, fibonachiSeries))
+    println(Collections.isValueInCollection(4, fibonachiSeries))
     println()
 }
 
