@@ -58,5 +58,18 @@ class Collections {
             }
             return "$value not in $collection"
         }
+
+        /**
+         * Filter and sort a given collection
+         *
+         * This is a sample showing how to execute various collection
+         * operations.
+         * Other types of collection operations can be found at:
+         * https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/
+         */
+        fun <T> filterAndSort(predicate: (T) -> Boolean, collection: Collection<T>): String {
+            val list = collection.filter(predicate).sortedBy{it.hashCode()}
+            return "Filtered and sorted $collection to $list"
+        }
     }
 }

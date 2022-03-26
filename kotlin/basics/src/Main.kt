@@ -89,10 +89,13 @@ fun printRangesSamples() {
 }
 
 fun printCollectionsSamples() {
-    val fibonachiSeries = listOf<Int>(0, 1, 2, 3, 5, 8, 13, 21)
+    val fibonachiSeries = listOf<Int>(0, 1, 2, 3, 5, 8, 13, 21, 34)
     println(Collections.iterate(fibonachiSeries))
     println(Collections.isValueInCollection(2, fibonachiSeries))
     println(Collections.isValueInCollection(4, fibonachiSeries))
+    val unsortedFibonachiSeries = listOf<Int>(8, 13, 0, 1, 2, 21, 34, 3, 5)
+    val isEven: (Int) -> Boolean = {i: Int -> 0 == (i % 2)}
+    println(Collections.filterAndSort<Int>(isEven, unsortedFibonachiSeries))
     println()
 }
 
