@@ -36,7 +36,7 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "swift_binary")
 
 swift_binary(
     name = "swiftvarsandconsts",
-    srcs = ["src/main.swift"],
+    srcs = glob(["src/*.swift"]),
     target_compatible_with = select({
             "@platforms//os:osx": [],
             "//conditions:default": ["@platforms//:incompatible"],
