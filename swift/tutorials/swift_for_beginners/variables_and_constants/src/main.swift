@@ -29,16 +29,30 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-var intVariable = 1
+var autoIntVariable = 1
+print("int (automatically typed) variable = \(autoIntVariable)")
+autoIntVariable = 2
+print("modified int (automatically typed) variable = \(autoIntVariable)")
+
+var autoStringVariable = "string-variable"
+print("string (automatically typed) variable = \(autoStringVariable)")
+
+let autoIntConstant = 3
+print("int (automatically typed) constant = \(autoIntConstant)")
+
+let autoStringConstant = "string-cosntant"
+print("string (automatically typed) constant = \(autoStringConstant)")
+
+var intVariable : Int = 1
 print("int variable = \(intVariable)")
 intVariable = 2
 print("modified int variable = \(intVariable)")
 
-var stringVariable = "string-variable"
+var stringVariable : String = "string-variable"
 print("string variable = \(stringVariable)")
 
-let intConstant = 3
+let intConstant : Int = 3
 print("int constant = \(intConstant)")
 
-let stringConstant = "string-cosntant"
+let stringConstant : String = "string-cosntant"
 print("string constant = \(stringConstant)")
