@@ -99,6 +99,14 @@ fun printCollectionsSamples() {
     println()
 }
 
+fun printNullableSamples() {
+    var i: Int? = null
+    println(Nullable.IsNull(i))
+    i = 8
+    println(Nullable.IsNull(i))
+    println()
+}
+
 fun main() {
     println("hello kotlin basics")
     println()
@@ -108,4 +116,5 @@ fun main() {
     printControlFlowSamples()
     printRangesSamples()
     printCollectionsSamples()
+    printNullableSamples()
 }
