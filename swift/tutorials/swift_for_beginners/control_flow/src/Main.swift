@@ -50,3 +50,18 @@ if i0 < i1 {
 } else {
   print("\(i0) >= \(i1)")
 }
+
+var conditionA = true
+var conditionB = false
+
+if conditionA && conditionB {
+  print("Both conditions are true")
+} else {
+  print("One condition is false")
+}
+
+if conditionA || conditionB {
+  print("One condition is true")
+} else {
+  print("Both conditions are false")
+}
