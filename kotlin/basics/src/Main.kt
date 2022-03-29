@@ -107,6 +107,19 @@ fun printNullableSamples() {
     println()
 }
 
+fun printTypeChecksSamples() {
+    val i = 5
+    println("i is ${TypeChecks.typeToString(i)}")
+    println("i ${TypeChecks.isString(i)}")
+    val f = 0.0F
+    println("f is ${TypeChecks.typeToString(f)}")
+    println("f ${TypeChecks.isString(f)}")
+    val s = "string"
+    println("s is ${TypeChecks.typeToString(s)}")
+    println("s ${TypeChecks.isString(s)}")
+    println()
+}
+
 fun main() {
     println("hello kotlin basics")
     println()
@@ -117,4 +130,5 @@ fun main() {
     printRangesSamples()
     printCollectionsSamples()
     printNullableSamples()
+    printTypeChecksSamples()
 }
