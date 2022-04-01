@@ -31,23 +31,16 @@
 
 package com.xykivo.percipio.idioms
 
-fun printDataClassesSamples() {
-    println("Data classes")
-    val someData = DataClasses.SomeData(0, "Zero")
-    println("  SomeData=${someData.toString()}")
-    println()
-}
-
-fun printDefaultFunctionValuesSamples() {
-    println("Default function arguments")
-    println(" int to string (default): ${DefaultFunctionValues.IntToString()}")
-    println(" int to string: ${DefaultFunctionValues.IntToString(1)}")
-    println()
-}
-
-fun main() {
-    println("hello kotlin idioms")
-    println()
-    printDataClassesSamples()
-    printDefaultFunctionValuesSamples()
+/**
+ * Wrapper class for various default function argument values samples
+ */
+class DefaultFunctionValues {
+    companion object {
+        /**
+         * Convert an integer to a string
+         */
+        fun IntToString(i: Int = 0): String {
+            return i.toString()
+        }
+    }
 }
