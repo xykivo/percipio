@@ -31,14 +31,12 @@
 
 package com.xykivo.percipio.idioms
 
-fun printDataClassesSamples() {
-    val someData = DataClasses.SomeData(0, "Zero")
-    println("SomeData=${someData.toString()}")
-    println()
-}
-
-fun main() {
-    println("hello kotlin idioms")
-    println()
-    printDataClassesSamples()
+/**
+ * Wrapper class for various data class samples
+ */
+class DataClasses {
+    /**
+    * Sample data class
+    */
+    data class SomeData(var intData: Int, var stringData: String)
 }
