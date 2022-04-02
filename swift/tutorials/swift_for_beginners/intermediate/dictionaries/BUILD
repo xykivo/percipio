@@ -29,13 +29,13 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-"""Sets Swift tutorial sample.
+"""Dictionaries Swift tutorial sample.
 """
 
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_binary")
 
 swift_binary(
-    name = "swiftsets",
+    name = "swiftdicts",
     srcs = glob(["src/*.swift"]),
     target_compatible_with = select({
             "@platforms//os:osx": [],
