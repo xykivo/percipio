@@ -32,9 +32,9 @@
 package com.xykivo.percipio.idioms
 
 /**
- * Wrapper class for various filter collection values samples
+ * Wrapper class for various collections idioms samples
  */
-class FilterCollection {
+class Collections {
     companion object {
         /**
          * Filter a collection using the given predicate

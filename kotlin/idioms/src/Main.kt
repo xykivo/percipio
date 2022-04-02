@@ -49,7 +49,7 @@ fun printFilterCollectionSamples() {
     println("Filter collection")
     val fibonachiList = listOf<Int>(0, 1, 2, 3, 5, 8, 13, 21, 34)
     val isEven: (Int) -> Boolean = {i: Int -> 0 == (i % 2)}
-    println("Filter ${fibonachiList} for even number: ${FilterCollection.filterCollection(fibonachiList, isEven)}")
+    println("Filter ${fibonachiList} for even number: ${Collections.filterCollection(fibonachiList, isEven)}")
     println()
 }
 
