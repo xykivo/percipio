@@ -31,32 +31,16 @@
 
 package com.xykivo.percipio.idioms
 
-fun printDataClassesSamples() {
-    println("Data classes")
-    val someData = DataClasses.SomeData(0, "Zero")
-    println("  SomeData=${someData.toString()}")
-    println()
-}
-
-fun printDefaultFunctionValuesSamples() {
-    println("Default function arguments")
-    println(" int to string (default): ${DefaultFunctionValues.IntToString()}")
-    println(" int to string: ${DefaultFunctionValues.IntToString(1)}")
-    println()
-}
-
-fun printFilterCollectionSamples() {
-    println("Filter collection")
-    val fibonachiList = listOf<Int>(0, 1, 2, 3, 5, 8, 13, 21, 34)
-    val isEven: (Int) -> Boolean = {i: Int -> 0 == (i % 2)}
-    println("Filter ${fibonachiList} for even number: ${FilterCollection.filterCollection(fibonachiList, isEven)}")
-    println()
-}
-
-fun main() {
-    println("hello kotlin idioms")
-    println()
-    printDataClassesSamples()
-    printDefaultFunctionValuesSamples()
-    printFilterCollectionSamples()
+/**
+ * Wrapper class for various filter collection values samples
+ */
+class FilterCollection {
+    companion object {
+        /**
+         * Filter a collection using the given predicate
+         */
+        fun <T> filterCollection(collection: Collection<T>, predicate: (T) -> Boolean) : Collection<T> {
+            return collection.filter(predicate)
+        }
+    }
 }
