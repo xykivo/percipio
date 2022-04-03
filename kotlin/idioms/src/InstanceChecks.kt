@@ -31,44 +31,24 @@
 
 package com.xykivo.percipio.idioms
 
-fun printDataClassesSamples() {
-    println("Data classes")
-    val someData = DataClasses.SomeData(0, "Zero")
-    println("  SomeData=${someData.toString()}")
-    println()
-}
-
-fun printDefaultFunctionValuesSamples() {
-    println("Default function arguments")
-    println(" int to string (default): ${DefaultFunctionValues.IntToString()}")
-    println(" int to string: ${DefaultFunctionValues.IntToString(1)}")
-    println()
-}
-
-fun printFilterCollectionSamples() {
-    println("Filter collection")
-    val fibonachiList = listOf<Int>(0, 1, 2, 3, 5, 8, 13, 21, 34)
-    val isEven: (Int) -> Boolean = {i: Int -> 0 == (i % 2)}
-    println("Filter ${fibonachiList} for even number: ${Collections.filterCollection(fibonachiList, isEven)}")
-    println()
-}
-
-fun printInstanceChecksSamples() {
-    println("Instance checks")
-    val i = 2
-    println("$i is a ${InstanceChecks.objectTypeToString(i)}")
-    val f = 3.0F
-    println("$f is a ${InstanceChecks.objectTypeToString(f)}")
-    val s = "string"
-    println("$s is a ${InstanceChecks.objectTypeToString(s)}")
-    println()
-}
-
-fun main() {
-    println("hello kotlin idioms")
-    println()
-    printDataClassesSamples()
-    printDefaultFunctionValuesSamples()
-    printFilterCollectionSamples()
-    printInstanceChecksSamples()
+/**
+ * Wrapper class for various instance checks samples
+ */
+class InstanceChecks {
+    companion object {
+        /**
+         * Get the object type name
+         *
+         * Just a primitive reflection of type names, used to demonstrate how
+         * to use instance checks.
+         */
+        fun objectTypeToString(obj: Any) : String {
+            when (obj) {
+                is Int -> return "Int"
+                is Float -> return "Float"
+                is String -> return "String"
+            }
+            return "unknown";
+        }
+    }
 }
