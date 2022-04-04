@@ -39,7 +39,7 @@ class Collections {
         /**
          * Filter a collection using the given predicate
          */
-        fun <T> filterCollection(collection: Collection<T>, predicate: (T) -> Boolean) : Collection<T> {
+        fun <T> filterCollection(collection: Collection<T>, predicate: (T) -> Boolean): Collection<T> {
             return collection.filter(predicate)
         }
     }

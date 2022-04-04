@@ -50,7 +50,6 @@ fun printFilterCollectionSamples() {
     val fibonachiList = listOf<Int>(0, 1, 2, 3, 5, 8, 13, 21, 34)
     val isEven: (Int) -> Boolean = {i: Int -> 0 == (i % 2)}
     println("Filter ${fibonachiList} for even number: ${Collections.filterCollection(fibonachiList, isEven)}")
-    println()
 }
 
 fun printInstanceChecksSamples() {
@@ -64,6 +63,14 @@ fun printInstanceChecksSamples() {
     println()
 }
 
+fun printAccessMap() {
+    println("Map access")
+    val numberMap = mapOf("zero" to 0, "one" to 1, "two" to 2, "three" to 3)
+    println("Access numberMap[zero]=${numberMap["three"]}")
+    println("Access numberMap[two]=${numberMap["two"]}")
+    println()
+}
+
 fun main() {
     println("hello kotlin idioms")
     println()
@@ -71,4 +78,5 @@ fun main() {
     printDefaultFunctionValuesSamples()
     printFilterCollectionSamples()
     printInstanceChecksSamples()
+    printAccessMap()
 }
