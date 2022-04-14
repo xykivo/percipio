@@ -71,6 +71,15 @@ fun printAccessMap() {
     println()
 }
 
+fun printTraverseMap() {
+    println("Traverse map")
+    val numberMap = mapOf("zero" to 0, "one" to 1, "two" to 2, "three" to 3)
+    for ((k, v) in numberMap) {
+        println("  $k $v")
+    }
+    println()
+}
+
 fun main() {
     println("hello kotlin idioms")
     println()
@@ -79,4 +88,5 @@ fun main() {
     printFilterCollectionSamples()
     printInstanceChecksSamples()
     printAccessMap()
+    printTraverseMap()
 }
