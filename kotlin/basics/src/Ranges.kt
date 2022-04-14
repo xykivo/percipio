@@ -48,6 +48,28 @@ class Ranges {
         }
 
         /**
+        * Simple sample showing Kotlin reverse iteration over a range
+        */
+        fun reverseIterate(max: Int): String {
+            var str: String = "Iterating over range [$max..0]"
+            for (i in max downTo 0) {
+                str = str + " $i"
+            }
+            return str
+        }
+
+        /**
+        * Simple sample showing Kotlin for each iteration over a range
+        */
+        fun forEachIterate(max: Int): String {
+            var str: String = "Iterating using forEach over range [0..$max]"
+            (0..max).forEach {
+                str = str + " $it"
+            }
+            return str
+        }
+
+        /**
          * Simple sample checking if a number is in range
          */
         fun isInRange(i: Int, min: Int, max:Int): String {
