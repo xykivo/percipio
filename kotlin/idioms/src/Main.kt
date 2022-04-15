@@ -80,6 +80,14 @@ fun printTraverseMap() {
     println()
 }
 
+fun printPropertiesSamples() {
+    println("Properties")
+    val p = Properties()
+    println(p.property)
+    println(p.lazyProperty)
+    println()
+}
+
 fun main() {
     println("hello kotlin idioms")
     println()
@@ -89,4 +97,5 @@ fun main() {
     printInstanceChecksSamples()
     printAccessMap()
     printTraverseMap()
+    printPropertiesSamples()
 }
