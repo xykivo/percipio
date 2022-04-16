@@ -88,6 +88,13 @@ fun printPropertiesSamples() {
     println()
 }
 
+fun printExtensionFunctionSamples() {
+    println("Extension functions")
+    var str = "some string"
+    print("$str -> ${str.spacesToUnderscores()}")
+    println()
+}
+
 fun main() {
     println("hello kotlin idioms")
     println()
@@ -98,4 +105,5 @@ fun main() {
     printAccessMap()
     printTraverseMap()
     printPropertiesSamples()
+    printExtensionFunctionSamples()
 }
