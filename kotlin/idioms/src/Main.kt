@@ -95,6 +95,14 @@ fun printExtensionFunctionSamples() {
     println()
 }
 
+fun printSingletonSamples() {
+    println("Singletons")
+    println("count=${Singleton.count}")
+    println("count=${Singleton.count}")
+    println("count=${Singleton.count}")
+    println()
+}
+
 fun main() {
     println("hello kotlin idioms")
     println()
@@ -106,4 +114,5 @@ fun main() {
     printTraverseMap()
     printPropertiesSamples()
     printExtensionFunctionSamples()
+    printSingletonSamples()
 }
