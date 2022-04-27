@@ -103,6 +103,12 @@ fun printSingletonSamples() {
     println()
 }
 
+fun printAbstractClassSamples() {
+    println("Abstract class")
+    AbstractClass.instantiateAbstractClass()
+    println()
+}
+
 fun main() {
     println("hello kotlin idioms")
     println()
@@ -115,4 +121,5 @@ fun main() {
     printPropertiesSamples()
     printExtensionFunctionSamples()
     printSingletonSamples()
+    printAbstractClassSamples()
 }
