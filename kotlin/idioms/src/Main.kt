@@ -109,6 +109,15 @@ fun printAbstractClassSamples() {
     println()
 }
 
+fun printIsNullSamples() {
+    println("Is null idioms")
+    var obj: String? = null
+    println("${IsNull.isNotNullElseIdiom(obj)}")
+    obj = "string"
+    println("${IsNull.isNotNullElseIdiom(obj)}")
+    println()
+}
+
 fun main() {
     println("hello kotlin idioms")
     println()
@@ -122,4 +131,5 @@ fun main() {
     printExtensionFunctionSamples()
     printSingletonSamples()
     printAbstractClassSamples()
+    printIsNullSamples()
 }
