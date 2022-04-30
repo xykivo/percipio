@@ -112,11 +112,13 @@ fun printAbstractClassSamples() {
 fun printIsNullSamples() {
     println("Is null idioms")
     var obj: String? = null
-    println("${IsNull.isNotNullElseIdiom(obj)}")
-    println("${IsNull.isNotNullElseCodeBlockIdiom(obj)}")
+    println("is not null else: ${IsNull.isNotNullElse(obj)}")
+    println("is not null else code block: ${IsNull.isNotNullElseCodeBlock(obj)}")
+    println("execute if null: ${IsNull.executeIfNull(obj)}")
     obj = "string"
-    println("${IsNull.isNotNullElseIdiom(obj)}")
-    println("${IsNull.isNotNullElseCodeBlockIdiom(obj)}")
+    println("is not null else: ${IsNull.isNotNullElse(obj)}")
+    println("is not null else code block: ${IsNull.isNotNullElseCodeBlock(obj)}")
+    println("execute if null: ${IsNull.executeIfNull(obj)}")
     println()
 }
 

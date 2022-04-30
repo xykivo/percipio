@@ -39,18 +39,26 @@ class IsNull {
         /**
          * Do if null else check using the ?. operator
          */
-        fun <T> isNotNullElseIdiom(obj: T?) : String {
+        fun <T> isNotNullElse(obj: T?) : String {
             return obj?.toString() ?: "is null"
         }
 
         /**
          * Do if null else check using the ?. operator in a code block
          */
-        fun <T> isNotNullElseCodeBlockIdiom(obj: T?) : String {
+        fun <T> isNotNullElseCodeBlock(obj: T?) : String {
             val str = obj?.toString() ?: run  {
                 return "is null"
             }
             return str
+        }
+
+        /**
+         * Execute a statement if object is null
+         */
+        fun <T> executeIfNull(obj: T?) : String {
+            obj ?: return "is null"
+            return obj.toString()
         }
     }
 }
