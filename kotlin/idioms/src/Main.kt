@@ -113,8 +113,10 @@ fun printIsNullSamples() {
     println("Is null idioms")
     var obj: String? = null
     println("${IsNull.isNotNullElseIdiom(obj)}")
+    println("${IsNull.isNotNullElseCodeBlockIdiom(obj)}")
     obj = "string"
     println("${IsNull.isNotNullElseIdiom(obj)}")
+    println("${IsNull.isNotNullElseCodeBlockIdiom(obj)}")
     println()
 }
 

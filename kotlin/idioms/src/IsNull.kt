@@ -42,5 +42,15 @@ class IsNull {
         fun <T> isNotNullElseIdiom(obj: T?) : String {
             return obj?.toString() ?: "is null"
         }
+
+        /**
+         * Do if null else check using the ?. operator in a code block
+         */
+        fun <T> isNotNullElseCodeBlockIdiom(obj: T?) : String {
+            val str = obj?.toString() ?: run  {
+                return "is null"
+            }
+            return str
+        }
     }
 }
