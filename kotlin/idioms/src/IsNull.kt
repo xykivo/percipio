@@ -60,5 +60,15 @@ class IsNull {
             obj ?: return "is null"
             return obj.toString()
         }
+
+        /**
+         * Execute a statement if object is not null
+         */
+        fun <T> executeIfNotNull(obj: T?): String {
+            obj?.let {
+                return obj.toString()
+            }
+            return "is null"
+        }
     }
 }

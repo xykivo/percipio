@@ -115,10 +115,12 @@ fun printIsNullSamples() {
     println("is not null else: ${IsNull.isNotNullElse(obj)}")
     println("is not null else code block: ${IsNull.isNotNullElseCodeBlock(obj)}")
     println("execute if null: ${IsNull.executeIfNull(obj)}")
+    println("execute if not null: ${IsNull.executeIfNotNull(obj)}")
     obj = "string"
     println("is not null else: ${IsNull.isNotNullElse(obj)}")
     println("is not null else code block: ${IsNull.isNotNullElseCodeBlock(obj)}")
     println("execute if null: ${IsNull.executeIfNull(obj)}")
+    println("execute if not null: ${IsNull.executeIfNotNull(obj)}")
     println()
 }
 
