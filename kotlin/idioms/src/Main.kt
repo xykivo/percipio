@@ -121,6 +121,10 @@ fun printIsNullSamples() {
     println("is not null else code block: ${IsNull.isNotNullElseCodeBlock(obj)}")
     println("execute if null: ${IsNull.executeIfNull(obj)}")
     println("execute if not null: ${IsNull.executeIfNotNull(obj)}")
+    var arrayList = ArrayList<Int>()
+    println("first item in possible empty collection: ${IsNull.firstItemInPossiblyEmptyCollection(arrayList)}")
+    arrayList.add(0)
+    println("first item in possible empty collection: ${IsNull.firstItemInPossiblyEmptyCollection(arrayList)}")
     println()
 }
 

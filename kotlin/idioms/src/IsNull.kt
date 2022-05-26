@@ -70,5 +70,19 @@ class IsNull {
             }
             return "is null"
         }
+
+        /**
+         * Check if a collection is empty
+         *
+         * @return String representation of the first item in the collection,
+         *         or a collection if empty string if the collection is empty.
+         */
+        fun <T> firstItemInPossiblyEmptyCollection(collection: Collection<T>): String {
+            val item: T?= collection.firstOrNull()
+            if (null == item) {
+                return "collection is empty"
+            }
+            return item.toString()
+        }
     }
 }
