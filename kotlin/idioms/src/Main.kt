@@ -126,6 +126,14 @@ fun printIsNullSamples() {
     arrayList.add(0)
     println("first item in possible empty collection: ${IsNull.firstItemInPossiblyEmptyCollection(arrayList)}")
     println()
+    var v : Int? = null
+    val square = { i: Int -> i * i }
+    var t = IsNull.mapNullableValue(v, -1, square)
+    println("transform value if not null: $v -> $t")
+    v = 2
+    t = IsNull.mapNullableValue(v, -1, square)
+    println("transform value if not null: $v -> $t")
+    println()
 }
 
 fun main() {

@@ -84,5 +84,18 @@ class IsNull {
             }
             return item.toString()
         }
+
+        /**
+         * Transform a value if it is not null
+         *
+         * @return The transformed value, or a provided default, if the given
+         *         value is null
+         * @param val The value transformed
+         * @param default The default return value
+         * @param transform The transformation function
+         */
+        fun <T> mapNullableValue(value: T?, default: T, transform: (value: T) -> T): T {
+            return value?.let { transform(it) } ?: default
+        }
     }
 }
