@@ -136,6 +136,16 @@ fun printIsNullSamples() {
     println()
 }
 
+fun printWhenSamples() {
+    println("When idioms")
+    println("Return on when statement (day string to int):")
+    val days = listOf("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+    for (day in days) {
+        println("${day} -> ${When.dayStringToInt(day)}")
+    }
+    println()
+}
+
 fun main() {
     println("hello kotlin idioms")
     println()
@@ -150,4 +160,5 @@ fun main() {
     printSingletonSamples()
     printAbstractClassSamples()
     printIsNullSamples()
+    printWhenSamples()
 }
