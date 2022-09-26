@@ -146,6 +146,14 @@ fun printWhenSamples() {
     println()
 }
 
+fun printTryCatchSamples() {
+    println("Try catch idioms")
+    println("Try catch is an expression")
+    println("3.0 / 2.0 = ${TryCatch.divide(3.0F, 2.0F)}")
+    println("3.0 / 0.0 = ${TryCatch.divide(3.0F, 0.0F)}")
+    println()
+}
+
 fun main() {
     println("hello kotlin idioms")
     println()
@@ -161,4 +169,5 @@ fun main() {
     printAbstractClassSamples()
     printIsNullSamples()
     printWhenSamples()
+    printTryCatchSamples()
 }

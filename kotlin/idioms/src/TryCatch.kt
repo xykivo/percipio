@@ -29,28 +29,25 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+
 /**
- * Wrapper class for various when idioms samples
+ * Wrapper class for try catch idioms samples
  */
-class When {
+class TryCatch {
     companion object {
 
         /**
-         * Covnert a day string to an integer
+         * Divide 2 floating points numbers
          *
-         * This is an example of a return on when idiom.
+         * This is an example of a try catch expression idiom.
          */
-        fun dayStringToInt(dayString: String) : Int {
-            return when (dayString) {
-                "Sunday" -> 1
-                "Monday" -> 2
-                "Tuesday" -> 3
-                "Wednesday" -> 4
-                "Thursday" -> 5
-                "Friday" -> 6
-                "Saturday" -> 7
-                else -> throw IllegalArgumentException("Invalid day name")
+        fun divide(n: Float, d: Float) : Float {
+            val result = try {
+                n / d
+            } catch (error: ArithmeticException) {
+                return Float.MAX_VALUE
             }
+            return result
         }
     }
 }
