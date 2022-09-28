@@ -32,7 +32,7 @@
 """Percipio Kotlin idioms samples
 """
 
-load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kt_jvm_binary")
+load("@io_bazel_rules_kotlin//kotlin:jvm.bzl", "kt_jvm_binary")
 
 kt_jvm_binary(
     name = "ktidioms",
