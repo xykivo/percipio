@@ -154,6 +154,14 @@ fun printTryCatchSamples() {
     println()
 }
 
+fun printIfSamples() {
+    println("If idioms")
+    println("If is an expression")
+    println("0 ${if (If.checkIfZero(0)) "is" else "is not"} zero")
+    println("1 ${if (If.checkIfZero(1)) "is" else "is not"} zero")
+    println()
+}
+
 fun main() {
     println("hello kotlin idioms")
     println()
@@ -170,4 +178,5 @@ fun main() {
     printIsNullSamples()
     printWhenSamples()
     printTryCatchSamples()
+    printIfSamples()
 }

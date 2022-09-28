@@ -30,27 +30,23 @@
 // POSSIBILITY OF SUCH DAMAGE.
 
 /**
- * Wrapper class for various when idioms samples
+ * Wrapper class for various if idioms samples
  */
-class When {
+class If {
     companion object {
 
         /**
-         * Covnert a day string to an integer
+         * Check if a given integer is zero
          *
-         * This is an example of a when expression idiom.
+         * This is an example of a if expression idiom.
          */
-        fun dayStringToInt(dayString: String) : Int {
-            return when (dayString) {
-                "Sunday" -> 1
-                "Monday" -> 2
-                "Tuesday" -> 3
-                "Wednesday" -> 4
-                "Thursday" -> 5
-                "Friday" -> 6
-                "Saturday" -> 7
-                else -> throw IllegalArgumentException("Invalid day name")
+        fun checkIfZero(i: Int) : Boolean {
+            return if (0 == i ) {
+                return true
+            } else {
+                return false
             }
+            return false
         }
     }
 }
