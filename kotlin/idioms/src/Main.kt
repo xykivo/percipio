@@ -162,6 +162,12 @@ fun printIfSamples() {
     println()
 }
 
+fun printBuilderSamples() {
+    println("Builder idioms")
+    println("Array of integer minimums [${Builder.arrayOfIntMin(3).joinToString(", ")}]")
+    println()
+}
+
 fun main() {
     println("hello kotlin idioms")
     println()
@@ -179,4 +185,5 @@ fun main() {
     printWhenSamples()
     printTryCatchSamples()
     printIfSamples()
+    printBuilderSamples()
 }

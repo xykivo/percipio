@@ -32,23 +32,19 @@
 package com.xykivo.percipio.idioms
 
 /**
- * Wrapper class for try catch idioms samples
+ * Wrapper class for various builder idioms samples
  */
-class TryCatch {
+class Builder {
     companion object {
 
         /**
-         * Divide 2 floating points numbers
+         * Return an array of integers initialized to the minimum integer
          *
-         * This is an example of a try catch expression idiom.
+         * This is an example of builder style usage of methods that return
+         * unit.
          */
-        fun divide(n: Float, d: Float) : Float {
-            val result = try {
-                n / d
-            } catch (error: ArithmeticException) {
-                return Float.MAX_VALUE
-            }
-            return result
+        fun arrayOfIntMin(size: Int) : IntArray {
+            return IntArray(size).apply { fill(Int.MIN_VALUE) }
         }
     }
-}
+  }
