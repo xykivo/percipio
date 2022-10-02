@@ -44,3 +44,38 @@ class DefaultFunctionValues {
         }
     }
 }
+
+/**
+ * Simple string extension function that converts spaces to underscores
+ */
+fun String.spacesToUnderscores(): String {
+    var chars  = this.toCharArray()
+    for (i in 0 until chars.size) {
+        if (' ' == chars[i]) {
+            chars[i] = '_'
+        }
+    }
+    return String(chars)
+}
+
+/**
+ * Wrapper class for various single expression function samples
+ */
+class SingleExpressionFunctions {
+    companion object {
+        /**
+         * Example of a single expression function returning a const
+         */
+        fun theAnswer() = 42
+
+        /**
+         * Example of a single expression function using a return on when idiom
+         */
+        fun colorStringToInt(color: String): Int = when(color) {
+                "red" -> 0
+                "green" -> 1
+                "blue" -> 2
+                else -> throw IllegalArgumentException("Unsupported color string")
+            }
+    }
+}

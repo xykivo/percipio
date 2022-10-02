@@ -88,10 +88,20 @@ fun printPropertiesSamples() {
     println()
 }
 
-fun printExtensionFunctionSamples() {
+fun printFunctionSamples() {
+    println("Function samples:")
     println("Extension functions")
     var str = "some string"
-    print("$str -> ${str.spacesToUnderscores()}")
+    println("$str -> ${str.spacesToUnderscores()}")
+    println()
+    println("Default function arguments")
+    println(" int to string (default): ${DefaultFunctionValues.IntToString()}")
+    println(" int to string: ${DefaultFunctionValues.IntToString(1)}")
+    println()
+    println("Single expression functions")
+    println("The answer ${SingleExpressionFunctions.theAnswer()}")
+    println("The color red int is ${SingleExpressionFunctions.colorStringToInt("red")}")
+    println("The color blue int is ${SingleExpressionFunctions.colorStringToInt("blue")}")
     println()
 }
 
@@ -178,7 +188,7 @@ fun main() {
     printAccessMap()
     printTraverseMap()
     printPropertiesSamples()
-    printExtensionFunctionSamples()
+    printFunctionSamples()
     printSingletonSamples()
     printAbstractClassSamples()
     printIsNullSamples()
