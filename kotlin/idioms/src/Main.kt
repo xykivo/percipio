@@ -178,6 +178,15 @@ fun printBuilderSamples() {
     println()
 }
 
+fun printObjectSamples() {
+    println("Object samples")
+    val obj: Object = Object(1)
+    println("Single expression method: ${obj.numberToString()}")
+    println("Call multiple methods on object instance")
+    Object.multipleObjectCalls(obj)
+    println()
+}
+
 fun main() {
     println("hello kotlin idioms")
     println()
@@ -196,4 +205,5 @@ fun main() {
     printTryCatchSamples()
     printIfSamples()
     printBuilderSamples()
+    printObjectSamples()
 }
