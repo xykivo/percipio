@@ -185,6 +185,8 @@ fun printObjectSamples() {
     println("Call multiple methods on object instance")
     Object.multipleObjectCalls(obj)
     println()
+    Object.configureObjectProperties()
+    println()
 }
 
 fun main() {

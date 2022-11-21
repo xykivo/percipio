@@ -35,6 +35,8 @@ package com.xykivo.percipio.idioms
  * Wrapper class for various object (and object oriented) related idioms samples.
  */
 class Object(val number: Int) {
+    var name: String = "noname"
+
     fun foo() = "foo"
 
     fun bar() : String = "bar"
@@ -46,12 +48,30 @@ class Object(val number: Int) {
     }
 
     companion object {
+        /**
+         * Example of using a with expression to call multiple methods of an
+         * object
+         */
         fun multipleObjectCalls(obj: Object) {
             with (obj) {
+                println("  ${obj.name}")
                 println("  ${obj.foo()}")
                 println("  ${obj.bar()}")
                 println("  ${obj.numberToString()}")
             }
+        }
+
+        /**
+         * Example of configuring the properties of an object
+         *
+         * This is useful in cases where object fields that are not present in
+         * the object constructor.
+         */
+        fun configureObjectProperties() {
+            val obj = Object(11).apply {
+                name = "eleven"
+            }
+            println("  ${obj.name} - ${obj.number}");
         }
 
     }
