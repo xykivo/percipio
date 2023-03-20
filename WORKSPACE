@@ -72,8 +72,6 @@ maven_install(
 
 # C++ lint and code style tools
 
-RULES_SWIFT_VERSION = "0.27.0"
-
 register_toolchains(
     "//bazel/cc_lint:clang-tidy-toolchain",
     "//bazel/cc_code_style_check:clang-format-toolchain",
@@ -82,9 +80,8 @@ register_toolchains(
 # Swift rules
 http_archive(
     name = "build_bazel_rules_swift",
-    sha256 = "a2fd565e527f83fb3f9eb07eb9737240e668c9242d3bc318712efa54a7deda97",
-    url = "https://github.com/bazelbuild/rules_swift/releases/download/{0}/rules_swift.{0}.tar.gz".format(
-            RULES_SWIFT_VERSION),
+    sha256 = "d25a3f11829d321e0afb78b17a06902321c27b83376b31e3481f0869c28e1660",
+    url = "https://github.com/bazelbuild/rules_swift/releases/download/1.6.0/rules_swift.1.6.0.tar.gz",
 )
 
 load(
