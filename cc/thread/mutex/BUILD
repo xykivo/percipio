@@ -35,7 +35,7 @@
 load("//bazel:cc.bzl", "xkv_cc_binary")
 
 xkv_cc_binary(
-    name = "ccthread",
+    name = "ccmutex",
     srcs = glob(["src/*.cc"]),
     copts = [],
     version = "0.0.0",
