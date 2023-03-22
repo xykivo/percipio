@@ -74,18 +74,19 @@ int main() {
   SearchString<std::default_searcher<std::string_view::iterator>>(kString,
                                                                   kSubString1);
 
-  std::cout << "\nSTL std::search with std::boyer_moore_searcher sample\n";
-  SearchString<std::boyer_moore_searcher<std::string_view::iterator>>(
-      kString, kSubString0);
-  SearchString<std::boyer_moore_searcher<std::string_view::iterator>>(
-      kString, kSubString1);
+  // Commented out, since it's not supported on all compiler versions in *nix systems
+  // std::cout << "\nSTL std::search with std::boyer_moore_searcher sample\n";
+  // SearchString<std::boyer_moore_searcher<std::string_view::iterator>>(
+  //     kString, kSubString0);
+  // SearchString<std::boyer_moore_searcher<std::string_view::iterator>>(
+  //     kString, kSubString1);
 
-  std::cout
-      << "\nSTL std::search with std::boyer_moore_horspool_searcher sample\n";
-  SearchString<std::boyer_moore_horspool_searcher<std::string_view::iterator>>(
-      kString, kSubString0);
-  SearchString<std::boyer_moore_horspool_searcher<std::string_view::iterator>>(
-      kString, kSubString1);
+  // std::cout
+  //     << "\nSTL std::search with std::boyer_moore_horspool_searcher sample\n";
+  // SearchString<std::boyer_moore_horspool_searcher<std::string_view::iterator>>(
+  //     kString, kSubString0);
+  // SearchString<std::boyer_moore_horspool_searcher<std::string_view::iterator>>(
+  //     kString, kSubString1);
 
   return 0;
 }
