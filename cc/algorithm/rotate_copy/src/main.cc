@@ -42,7 +42,7 @@ int main() {
   static constexpr int kElementsRotatedCount{kArraySize / 2};
   std::cout << "Rotating " << kElementsRotatedCount
             << " first elements of src_array=[";
-  auto print_int = [](int i) { std::cout << i << ' '; };
+  auto print_int = [](int integer) { std::cout << integer << ' '; };
   std::for_each(src_array.begin(), src_array.end(), print_int);
   std::cout << "] copied to dst_array=[";
   std::array<int, src_array.size()> dst_array{};

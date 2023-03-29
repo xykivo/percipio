@@ -44,7 +44,7 @@ constexpr std::array<int, 8> kPositiveIntegers{1, 2, 3, 4, 5, 6, 7, 8};
 template <size_t ArraySize>
 void ForEachNegate(const std::array<int, ArraySize>& array) {
   std::vector<int> vec{};
-  auto negate_into_vec = [&vec](int i) { vec.push_back(-1 * i); };
+  auto negate_into_vec = [&vec](int integer) { vec.push_back(-1 * integer); };
   std::for_each(array.begin(), array.end(), negate_into_vec);
   std::cout << "original array = ";
   xykivo::percipio::util::OutputRange(std::cout, array.begin(), array.end(),
@@ -58,7 +58,7 @@ void ForEachNegate(const std::array<int, ArraySize>& array) {
 template <size_t ArraySize>
 constexpr int Sum(const std::array<int, ArraySize>& array) {
   int sum = 0;
-  auto add_to_sum = [&sum](int i) { sum += i; };
+  auto add_to_sum = [&sum](int integer) { sum += integer; };
   std::for_each(array.begin(), array.end(), add_to_sum);
   return sum;
 }

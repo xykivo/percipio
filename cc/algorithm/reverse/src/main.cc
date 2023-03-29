@@ -40,7 +40,7 @@ int main() {
   // NOLINTNEXTLINE(readability-magic-numbers)
   std::array<int, kArraySize> array{0, 1, 2, 3, 4, 5, 6, 7};
   std::cout << "Reversing array=[";
-  auto print_int = [](int i) { std::cout << i << ' '; };
+  auto print_int = [](int integer) { std::cout << integer << ' '; };
   std::for_each(array.begin(), array.end(), print_int);
   std::cout << "] -> ";
   std::reverse(array.begin(), array.end());

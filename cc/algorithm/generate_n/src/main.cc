@@ -37,15 +37,15 @@ int main() {
   std::cout << "STL std::generate_n sample\n";
   static constexpr int kArraySize{21};
   std::array<int, kArraySize> array{};
-  auto fibonachi_generator = [a0 = 0, a1 = 1]() mutable {
-    int next = a0 + a1;
-    a0 = a1;
-    a1 = next;
+  auto fibonachi_generator = [num_0 = 0, num_1 = 1]() mutable {
+    const int next = num_0 + num_1;
+    num_0 = num_1;
+    num_1 = next;
     return next;
   };
   std::cout << "generating fibonachi " << array.size() / 2 << " numbers\n";
   std::generate_n(array.begin(), array.size() / 2, fibonachi_generator);
-  auto print_int = [](int i) { std::cout << i << ' '; };
+  auto print_int = [](int integer) { std::cout << integer << ' '; };
   std::for_each(array.begin(), array.end(), print_int);
   std::cout << '\n';
 }

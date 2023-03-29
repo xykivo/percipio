@@ -45,7 +45,7 @@ int main() {
   xykivo::percipio::util::OutputRange(std::cout, kSrcArray.begin(),
                                       kSrcArray.end(), " ");
   std::array<int, kSrcArray.size()> dst_array{};
-  auto is_negative = [](int i) { return (0 > i); };
+  auto is_negative = [](int integer) { return (0 > integer); };
   std::copy_if(kSrcArray.begin(), kSrcArray.end(), dst_array.begin(),
                is_negative);
   std::cout << "] to [";

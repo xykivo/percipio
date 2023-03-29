@@ -38,11 +38,11 @@ int main() {
   static constexpr int kArraySize{8};
   std::array<int, kArraySize> src_array{-1, 1, -2, 2, -3, 3, -4, 4};
   std::cout << "replace negative numbers from [";
-  auto print_int = [](int i) { std::cout << i << ' '; };
+  auto print_int = [](int integer) { std::cout << integer << ' '; };
   std::for_each(src_array.begin(), src_array.end(), print_int);
   static constexpr int kReplacement{0};
   std::cout << "] with " << kReplacement << " copied to [";
-  auto is_negative = [](int i) { return (0 > i); };
+  auto is_negative = [](int integer) { return (0 > integer); };
   std::array<int, kArraySize> dst_array{};
   std::replace_copy_if(src_array.begin(), src_array.end(), dst_array.begin(),
                        is_negative, kReplacement);

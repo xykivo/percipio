@@ -48,7 +48,7 @@ constexpr std::array<int, 8> kNegativeIntegers{-1, -2, -3, -4, -5, -6, -7, -8};
 
 template <size_t ArraySize>
 void SimpleAnyOf(const std::array<int, ArraySize>& array) {
-  auto is_positive = [](int i) { return (0 < i); };
+  auto is_positive = [](int integer) { return (0 < integer); };
   if (std::any_of(array.begin(), array.end(), is_positive)) {
     std::cout << "At least one of the integers in [";
     xykivo::percipio::util::OutputRange(std::cout, array.begin(), array.end(),
