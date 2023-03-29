@@ -1,6 +1,6 @@
 # BSD 3-Clause License
 #
-# Copyright (c) 2020-2021, Dror Smolarsky
+# Copyright (c) 2023, Dror Smolarsky
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -29,29 +29,18 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-"""C++ code sytle rules, toolchains and utilities
+"""clang-format wrapper
+
+Wrap calls to clang-tidy installed in the system path.
 """
 
-load(":toolchain.bzl", "cc_code_style_check_toolchain")
-
-toolchain_type(
-    name = "toolchain_type",
+cc_binary(
+    name = "clangformat",
+    srcs = glob([
+        "src/*.cc",
+        "src/*.h",
+    ]),
     visibility = ["//visibility:public"],
-)
-
-cc_code_style_check_toolchain(
-    name = "clang-format",
-    code_style_checker = "//build_tools/cc/clang_format:clangformat",
-    # TODO(xykivo@gmail.com) Change the config files from absolute path to a
-    #   search for the closet .clang-format up the directory tree from the lint
-    #   target
-    code_style_config_files = [
-        "//:.clang-format",
-    ],
-)
-
-toolchain(
-    name = "clang-format-toolchain",
-    toolchain = ":clang-format",
-    toolchain_type = ":toolchain_type",
+    copts = ["-std=c++20"],
+    deps = ["//build_tools/cc/cc_build_utils:ccbuildutils"],
 )
