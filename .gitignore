@@ -35,6 +35,7 @@
 .vscode/
 
 # Bazel
+.bazelrc
 bazel-bin
 bazel-bin/
 bazel-out
