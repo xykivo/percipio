@@ -82,7 +82,7 @@ def _cc_lint_impl(ctx):
     if toolchain.use_copts:
         args.add("--copts")
         args.add_joined(
-            ["copts="] + _cc_compiler_opts(
+            _cc_compiler_opts(
                 find_cpp_toolchain(ctx),
                 ctx.attr.cc_target[CcInfo],
                 ctx.attr.copts,

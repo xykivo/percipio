@@ -59,7 +59,7 @@ def _add_common_cc_options(version, **kwargs):
     ] + copts
     cc_args["copts"] = copts
     linkopts = cc_args.pop("linkopts", [])
-    linkopts.extend(["-Wl,--warn-common", "-Wl,--fatal-warnings"])
+    linkopts.extend(["-Wl,-warn_commons", "-Wl,-fatal_warnings"])
     cc_args["linkopts"] = linkopts
     return cc_args
 
