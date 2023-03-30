@@ -39,7 +39,7 @@
 namespace {
 
 int RunClangTidy(std::string_view path_list, std::string_view copts) {
-  std::string command_line{"clang-tidy "};
+  std::string command_line{"clang-tidy --header-filter=.* "};
   command_line.append(path_list);
   command_line.append(" -- -x c++ ");
   command_line.append(copts);
