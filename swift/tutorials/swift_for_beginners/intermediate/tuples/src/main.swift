@@ -42,8 +42,8 @@ print()
 print("get elements from tuple - simliar to structured binding in C++")
 let (i, s, f) = tuple
 print("i=\(i) s=\(s) f=\(f)")
-print
+print()
 
 let typedTuple : (Int, String) = (0, "zero")
 print("typed tuple \(typedTuple.0) \(typedTuple.1)")
-print
+print()
