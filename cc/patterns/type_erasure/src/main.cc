@@ -37,9 +37,9 @@ class Func {
  public:
   template <typename F>
   // NOLINTNEXTLINE(google-explicit-constructor)
-  Func(F func) : f_(new CallableImpl<F>(func)) {}
+  Func(F func) : func_(new CallableImpl<F>(func)) {}
 
-  ~Func() { delete f_; }
+  ~Func() { delete func_; }
 
   template <typename F, typename... Args>
   // NOLINTNEXTLINE(google-explicit-constructor)

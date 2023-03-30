@@ -44,6 +44,7 @@ void WorkerFunction(int count) {
 
 int main() {
   std::cout << "STL std::thread sample" << std::endl;
-  std::thread thread_0{WorkerFunction, 16};
+  static constexpr int kCount{16};
+  std::thread thread_0{WorkerFunction, kCount};
   thread_0.join();
 }

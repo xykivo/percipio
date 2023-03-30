@@ -39,8 +39,9 @@ namespace {
 std::mutex mtx{};
 int counter{0};
 
+// NOLINTNEXTLINE(bugprone-easily-swappable-parameters)
 void WorkerFunction(std::string_view name, int count, int skip) {
-  std::scoped_lock lock(mtx);
+  const std::scoped_lock lock(mtx);
   for (int i = 0; i < count; ++i) {
     counter += skip;
     std::cout << name << " counting - " << i << " counter=" << counter
