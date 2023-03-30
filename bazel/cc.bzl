@@ -51,7 +51,7 @@ def _add_common_cc_options(version, **kwargs):
     cc_args["local_defines"] = local_defines
     copts = cc_args.pop("copts", [])
     copts = [
-        "-std=c++17",
+        "-std=c++20",
         "-Wall",
         "-Werror",
         "-fno-rtti",
