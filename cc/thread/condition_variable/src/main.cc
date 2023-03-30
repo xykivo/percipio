@@ -40,7 +40,7 @@ namespace {
 std::mutex mtx{};
 std::condition_variable cond_var{};
 
-void worker_function(std::string_view name, bool* start, int count) {
+void WorkerFunction(std::string_view name, bool* start, int count) {
   std::unique_lock lock(mtx);
   cond_var.wait(lock, [&start]() { return start; });
   for (int i = 0; i < count; ++i) {
@@ -54,8 +54,8 @@ int main() {
   std::cout << "STL std::condition_variable sample" << std::endl;
   bool start{false};
   static constexpr int kCount{8};
-  std::thread thread_0{worker_function, "thread_0", &start, kCount};
-  std::thread thread_1{worker_function, "thread_1", &start, kCount};
+  std::thread thread_0{WorkerFunction, "thread_0", &start, kCount};
+  std::thread thread_1{WorkerFunction, "thread_1", &start, kCount};
   cond_var.notify_all();
   start = true;
   thread_0.join();

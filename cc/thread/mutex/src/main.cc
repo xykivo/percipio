@@ -39,7 +39,7 @@ namespace {
 std::mutex mtx{};
 int counter{0};
 
-void worker_function(std::string_view name, int count, int skip) {
+void WorkerFunction(std::string_view name, int count, int skip) {
   std::scoped_lock lock(mtx);
   for (int i = 0; i < count; ++i) {
     counter += skip;
@@ -52,10 +52,12 @@ void worker_function(std::string_view name, int count, int skip) {
 
 int main() {
   std::cout << "STL std::mutex sample" << std::endl;
-  std::thread thread_0{worker_function, "thread_0", /* count */ 16,
-                       /* skip */ 2};
-  std::thread thread_1{worker_function, "thread_1", /* count */ 8,
-                       /* skip */ 1};
+  static constexpr int kThread0Count{16};
+  static constexpr int kThread0Skip{2};
+  std::thread thread_0{WorkerFunction, "thread_0", kThread0Count, kThread0Skip};
+  static constexpr int kThread1Count{8};
+  static constexpr int kThread1Skip{1};
+  std::thread thread_1{WorkerFunction, "thread_1", kThread1Count, kThread1Skip};
   thread_0.join();
   thread_1.join();
 }
