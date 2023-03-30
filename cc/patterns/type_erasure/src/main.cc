@@ -37,15 +37,16 @@ class Func {
  public:
   template <typename F>
   // NOLINTNEXTLINE(google-explicit-constructor)
-  Func(F f) : f_(new CallableImpl<F>(f)) {}
+  Func(F func) : func_(new CallableImpl<F>(func)) {}
 
-  ~Func() { delete f_; }
+  ~Func() { delete func_; }
 
   template <typename F, typename... Args>
   // NOLINTNEXTLINE(google-explicit-constructor)
-  Func(F f, Args... args) : f_(new CallableImpl<F, Args...>(f, args...)) {}
+  Func(F func, Args... args)
+      : func_(new CallableImpl<F, Args...>(func, args...)) {}
 
-  void operator()() { f_->Execute(); }
+  void operator()() { func_->Execute(); }
 
  private:
   class Callable {
@@ -58,21 +59,21 @@ class Func {
   class CallableImpl : public Callable {
    public:
     // NOLINTNEXTLINE(google-explicit-constructor, misc-unused-parameters)
-    CallableImpl(F f, Args... args) : f_(f) {}
+    CallableImpl(F func, Args... args) : func_(func) {}
     ~CallableImpl() override = default;
-    void Execute() override { f_(); }
+    void Execute() override { func_(); }
 
    private:
-    F f_;
+    F func_;
   };
 
-  Callable* f_;
+  Callable* func_;
 };
 
 int count = 0;
-void CallFunc(Func f) {
+void CallFunc(Func func) {
   ++count;
-  f();
+  func();
 }
 
 }  // namespace

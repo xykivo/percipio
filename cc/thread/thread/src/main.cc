@@ -34,7 +34,7 @@
 
 namespace {
 
-void worker_function(int count) {
+void WorkerFunction(int count) {
   for (int i = 0; i < count; ++i) {
     std::cout << "worker counting - " << i << std::endl;
   }
@@ -44,6 +44,7 @@ void worker_function(int count) {
 
 int main() {
   std::cout << "STL std::thread sample" << std::endl;
-  std::thread thread_0{worker_function, 16};
+  static constexpr int kCount{16};
+  std::thread thread_0{WorkerFunction, kCount};
   thread_0.join();
 }

@@ -36,6 +36,7 @@ namespace {
 
 /// Generate N series of random integers using a uniform random distribution
 /// with the default random device.
+// NOLINTNEXTLINE(bugprone-easily-swappable-parameters)
 void UniformIntDistributionWithDefaultSeed(int series_count, int series_size) {
   std::random_device rng_device;
   std::mt19937_64 rng_generator(rng_device());
@@ -54,6 +55,7 @@ void UniformIntDistributionWithDefaultSeed(int series_count, int series_size) {
 
 /// Generate N series of random integers using a uniform random distribution
 /// using the same constant seed for every series.
+// NOLINTNEXTLINE(bugprone-easily-swappable-parameters)
 void UniformIntDistributionWithConstantSeed(int series_count, int series_size) {
   static constexpr int64_t kSeed = 1;
   std::mt19937_64 rng_generator(kSeed);
