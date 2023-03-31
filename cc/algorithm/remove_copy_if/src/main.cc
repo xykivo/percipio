@@ -40,10 +40,10 @@ int main() {
                                                          -3, 3, -4, 4};
   std::array<int, kSrcArray.size()> dst_array{};
   std::cout << "copy (except negative numbers) from [";
-  auto print_int = [](int i) { std::cout << i << ' '; };
+  auto print_int = [](int integer) { std::cout << integer << ' '; };
   std::for_each(kSrcArray.begin(), kSrcArray.end(), print_int);
   std::cout << "] to [";
-  auto is_negative = [](int i) { return (0 > i); };
+  auto is_negative = [](int integer) { return (0 > integer); };
   auto* iter = std::remove_copy_if(kSrcArray.begin(), kSrcArray.end(),
                                    dst_array.begin(), is_negative);
   std::for_each(dst_array.begin(), dst_array.end(), print_int);

@@ -46,7 +46,7 @@ constexpr std::array<int, 8> kPositiveAndNegativeIntegers{-1, 1, -2, 2,
 
 template <size_t ArraySize>
 void SimpleAllOf(const std::array<int, ArraySize>& array) {
-  auto is_positive = [](int i) { return (0 < i); };
+  auto is_positive = [](int integer) { return (0 < integer); };
   if (std::all_of(array.begin(), array.end(), is_positive)) {
     std::cout << "All integers in ";
     xykivo::percipio::util::OutputRange(std::cout, array.begin(), array.end(),

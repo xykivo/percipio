@@ -35,13 +35,13 @@
 namespace {
 
 template <typename T>
-void PrintArgs(const T& t) {
-  std::cout << " " << t;
+void PrintArgs(const T& arg) {
+  std::cout << " " << arg;
 }
 
 template <typename T, typename... Args>
-void PrintArgs(const T& t, const Args&... args) {
-  std::cout << " " << t;
+void PrintArgs(const T& arg, const Args&... args) {
+  std::cout << " " << arg;
   PrintArgs(args...);
 }
 

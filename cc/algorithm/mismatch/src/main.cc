@@ -76,8 +76,8 @@ void IsLessThan0RangeMismatch(const std::array<int, ArraySize>& array_0,
   std::cout << '\n';
   // The predicate returns true if there is no mismtach, and false if there is
   // a mismatch
-  auto less_than_0_predicate = [](int i0, int i1) {
-    return ((0 <= i0) && (0 <= i1));
+  auto less_than_0_predicate = [](int int_0, int int_1) {
+    return ((0 <= int_0) && (0 <= int_1));
   };
   auto is_less_than_0 =
       std::mismatch(array_0.begin(), array_0.end(), array_1.begin(),

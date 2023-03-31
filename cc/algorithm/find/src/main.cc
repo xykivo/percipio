@@ -39,13 +39,13 @@ namespace {
 
 /// Simple function that find an integer in a given range of integers
 template <size_t ArraySize>
-void FindIntInRange(const std::array<int, ArraySize>& array, int i) {
-  if (array.end() != std::find(array.begin(), array.end(), i)) {
+void FindIntInRange(const std::array<int, ArraySize>& array, int integer) {
+  if (array.end() != std::find(array.begin(), array.end(), integer)) {
     std::cout << "Found ";
   } else {
     std::cout << "Did not find ";
   }
-  std::cout << i << " in [";
+  std::cout << integer << " in [";
   xykivo::percipio::util::OutputRange(std::cout, array.begin(), array.end(),
                                       " ");
   std::cout << "]\n";

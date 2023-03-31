@@ -41,9 +41,9 @@ namespace {
 /// Simple function that uses std::count algorithm to count how many time an
 /// integer appears in an array of integers
 template <size_t ArraySize>
-void CountInt(const std::array<int, ArraySize>& array, int i) {
-  std::cout << i << " appears " << std::count(array.begin(), array.end(), i)
-            << " times in ";
+void CountInt(const std::array<int, ArraySize>& array, int integer) {
+  std::cout << integer << " appears "
+            << std::count(array.begin(), array.end(), integer) << " times in ";
   xykivo::percipio::util::OutputRange(std::cout, array.begin(), array.end(),
                                       " ");
   std::cout << '\n';

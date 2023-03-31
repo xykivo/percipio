@@ -40,7 +40,7 @@ int main() {
       0, 1, 2, 2, 3, 3, 3, 4,   // NOLINT(readability-magic-numbers)
       4, 4, 4, 5, 5, 5, 5, 5};  // NOLINT(readability-magic-numbers)
   std::cout << "Equality unique - array=[";
-  auto print_int = [](int i) { std::cout << i << ' '; };
+  auto print_int = [](int integer) { std::cout << integer << ' '; };
   std::for_each(array.begin(), array.end(), print_int);
   auto* unique_array_end = std::unique(array.begin(), array.end());
   std::cout << "] -> array=[";
@@ -51,9 +51,9 @@ int main() {
   array = {0, 1, 3, 5, 7, 2, 4, 6,   // NOLINT(readability-magic-numbers)
            8, 1, 2, 3, 4, 5, 6, 7};  // NOLINT(readability-magic-numbers)
   std::for_each(array.begin(), array.end(), print_int);
-  auto equal_lsb = [](int i0, int i1) {
+  auto equal_lsb = [](int int_0, int int_1) {
     static constexpr int kLsbMask{0x1};
-    return ((i0 & kLsbMask) == (i1 & kLsbMask));
+    return ((int_0 & kLsbMask) == (int_1 & kLsbMask));
   };
   unique_array_end = std::unique(array.begin(), array.end(), equal_lsb);
   std::cout << "] -> array=[";

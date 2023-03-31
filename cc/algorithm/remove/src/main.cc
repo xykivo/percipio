@@ -39,7 +39,7 @@ int main() {
   std::array<int, kArraySize> array{-1, 1, -1, 2, -1, 3, -1, 4};
   static constexpr int kRemovedElement{-1};
   std::cout << "remove " << kRemovedElement << " from [";
-  auto print_int = [](int i) { std::cout << i << ' '; };
+  auto print_int = [](int integer) { std::cout << integer << ' '; };
   std::for_each(array.begin(), array.end(), print_int);
   std::cout << "] = [";
   auto* iter = std::remove(array.begin(), array.end(), kRemovedElement);

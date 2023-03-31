@@ -51,7 +51,7 @@ def _add_common_cc_options(version, **kwargs):
     cc_args["local_defines"] = local_defines
     copts = cc_args.pop("copts", [])
     copts = [
-        "-std=c++17",
+        "-std=c++20",
         "-Wall",
         "-Werror",
         "-fno-rtti",
@@ -59,7 +59,7 @@ def _add_common_cc_options(version, **kwargs):
     ] + copts
     cc_args["copts"] = copts
     linkopts = cc_args.pop("linkopts", [])
-    linkopts.extend(["-Wl,--warn-common", "-Wl,--fatal-warnings"])
+    linkopts.extend(["-Wl,-warn_commons", "-Wl,-fatal_warnings"])
     cc_args["linkopts"] = linkopts
     return cc_args
 

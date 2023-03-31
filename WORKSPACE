@@ -35,30 +35,23 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 # Python
 
-RULES_PYTHON_SHA = \
-    "aa96a691d3a8177f3215b14b0edc9641787abaaa30363a080165d06ab65e1161"
-
-RULES_PYTHON_VERSION = "0.0.1"
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "rules_python",
-    sha256 = RULES_PYTHON_SHA,
-    url = "https://github.com/bazelbuild/rules_python/releases/download/{0}/rules_python-{0}.tar.gz".format(RULES_PYTHON_VERSION),
+    sha256 = "a644da969b6824cc87f8fe7b18101a8a6c57da5db39caa6566ec6109f37d2141",
+    strip_prefix = "rules_python-0.20.0",
+    url = "https://github.com/bazelbuild/rules_python/releases/download/0.20.0/rules_python-0.20.0.tar.gz",
 )
 
 load("@rules_python//python:repositories.bzl", "py_repositories")
 
-py_repositories()
-
 # JVM external rules - needed for load of maven_install below
-RULES_JVM_EXTERNAL_VERSION = "3.0"
-
-RULES_JVM_EXTERNAL_SHA = \
-    "62133c125bf4109dfd9d2af64830208356ce4ef8b165a6ef15bbff7460b35c3a"
+RULES_JVM_EXTERNAL_VERSION = "4.2"
 
 http_archive(
     name = "rules_jvm_external",
-    sha256 = RULES_JVM_EXTERNAL_SHA,
+    sha256 = "cd1a77b7b02e8e008439ca76fd34f5b07aecb8c752961f9640dea15e9e5ba1ca",
     strip_prefix = "rules_jvm_external-%s" % RULES_JVM_EXTERNAL_VERSION,
     url = "https://github.com/bazelbuild/rules_jvm_external/archive/%s.zip" %
           RULES_JVM_EXTERNAL_VERSION,
@@ -79,7 +72,29 @@ maven_install(
 )
 
 # C++ lint and code style tools
+
 register_toolchains(
     "//bazel/cc_lint:clang-tidy-toolchain",
     "//bazel/cc_code_style_check:clang-format-toolchain",
 )
+
+# Swift rules
+http_archive(
+    name = "build_bazel_rules_swift",
+    sha256 = "d25a3f11829d321e0afb78b17a06902321c27b83376b31e3481f0869c28e1660",
+    url = "https://github.com/bazelbuild/rules_swift/releases/download/1.6.0/rules_swift.1.6.0.tar.gz",
+)
+
+load(
+    "@build_bazel_rules_swift//swift:repositories.bzl",
+    "swift_rules_dependencies",
+)
+
+swift_rules_dependencies()
+
+load(
+    "@build_bazel_rules_swift//swift:extras.bzl",
+    "swift_rules_extra_dependencies",
+)
+
+swift_rules_extra_dependencies()

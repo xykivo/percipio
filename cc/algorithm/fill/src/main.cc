@@ -38,7 +38,7 @@ int main() {
   static constexpr size_t kArraySize{8};
   std::array<int, kArraySize> array{};
   std::cout << "Initialized array [";
-  auto print_int = [](int i) { std::cout << i << ' '; };
+  auto print_int = [](int integer) { std::cout << integer << ' '; };
   std::for_each(array.begin(), array.end(), print_int);
   std::cout << "]\n";
   for (size_t i = 0; kArraySize > i; ++i) {

@@ -37,10 +37,10 @@ int main() {
   std::cout << "STL std::transform samples\n";
   static constexpr std::array<int, 8> kInputArray{0, 1, 2, 3, 4, 5, 6, 7};
   std::cout << "transforming (unary increment by 1) [";
-  auto print_int = [](int i) { std::cout << i << ' '; };
+  auto print_int = [](int integer) { std::cout << integer << ' '; };
   std::for_each(kInputArray.begin(), kInputArray.end(), print_int);
   std::cout << "] to [";
-  auto inc_by_1 = [](int i) { return i + 1; };
+  auto inc_by_1 = [](int integer) { return integer + 1; };
   std::array<int, kInputArray.size()> array{};
   std::transform(kInputArray.begin(), kInputArray.end(), array.begin(),
                  inc_by_1);
@@ -52,7 +52,7 @@ int main() {
   std::for_each(array.begin(), array.end(), print_int);
   std::cout << "] = [";
   std::array<int, kInputArray.size()> sum{};
-  auto add = [](int i0, int i1) { return i0 + i1; };
+  auto add = [](int int_0, int int_1) { return int_0 + int_1; };
   std::transform(kInputArray.begin(), kInputArray.end(), array.begin(),
                  sum.begin(), add);
   std::for_each(sum.begin(), sum.end(), print_int);

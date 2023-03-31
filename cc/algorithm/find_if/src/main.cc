@@ -40,15 +40,16 @@ namespace {
 /// Simple function that finds the 1st integer in a given range of integers
 /// that is greater than a given integer
 template <size_t ArraySize>
-void FindIntGreaterThanInRange(const std::array<int, ArraySize>& array, int i) {
-  auto greater_than = [&i](int j) { return (j > i); };
+void FindIntGreaterThanInRange(const std::array<int, ArraySize>& array,
+                               int integer) {
+  auto greater_than = [&integer](int num) { return (num > integer); };
   auto greater_than_i = std::find_if(array.begin(), array.end(), greater_than);
   if (array.end() != greater_than_i) {
     std::cout << *greater_than_i << " is greater than ";
   } else {
     std::cout << "No integer greater than ";
   }
-  std::cout << i << " in [";
+  std::cout << integer << " in [";
   xykivo::percipio::util::OutputRange(std::cout, array.begin(), array.end(),
                                       " ");
   std::cout << "]\n";
