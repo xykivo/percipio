@@ -1,6 +1,6 @@
 // BSD 3-Clause License
 //
-// Copyright (c) 2020-2021, Dror Smolarsky
+// Copyright (c) 2021, Dror Smolarsky
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -29,26 +29,36 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <cmath>
+
 #include <algorithm>
 #include <array>
 #include <iostream>
 
+namespace {
+
+bool AbsLessThan(int lhs, int rhs) { return (std::abs(lhs) < std::abs(rhs)); }
+
+}  // namespace
+
 int main() {
-  std::cout << "C++ STL std::is_sorted_until example\n";
-  static constexpr size_t kArraySize{8};
+  std::cout << "STL std::stable_sort example\n";
+  static constexpr size_t kArraySize{15};
   std::array<int, kArraySize> array{
-      0, 1, 2, 3, 4, -1, -2, -3};  // NOLINT(readability-magic-numbers)
-  auto print_range = [](auto begin, auto end) {
-    std::cout << "range=[";
+      0,  4, -4, 7, -7, 5, -5, 1,  // NOLINT(readability-magic-numbers)
+      -1, 3, -3, 6, -6, 2, -2};    // NOLINT(readability-magic-numbers)
+  auto print_array = [](std::array<int, kArraySize>& array) {
+    std::cout << "array=[";
     auto print_int = [](int i) { std::cout << i << ' '; };
-    std::for_each(begin, end, print_int);
+    std::for_each(array.begin(), array.end(), print_int);
     std::cout << "] ";
-    std::cout << (std::is_sorted(begin, end) ? "" : "not");
+    std::cout << (std::is_sorted(array.begin(), array.end(), AbsLessThan)
+                      ? ""
+                      : "not");
     std::cout << " sorted\n";
   };
-  print_range(array.begin(), array.end());
-  auto* end_of_sorted_range = std::is_sorted_until(array.begin(), array.end());
-  print_range(array.begin(), end_of_sorted_range);
-  print_range(end_of_sorted_range, array.end());
+  print_array(array);
+  std::stable_sort(array.begin(), array.end(), AbsLessThan);
+  print_array(array);
   return 0;
 }

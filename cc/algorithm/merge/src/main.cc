@@ -1,6 +1,6 @@
 // BSD 3-Clause License
 //
-// Copyright (c) 2020-2021, Dror Smolarsky
+// Copyright (c) 2022, Dror Smolarsky
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -34,21 +34,31 @@
 #include <iostream>
 
 int main() {
-  std::cout << "C++ STL std::is_sorted_until example\n";
-  static constexpr size_t kArraySize{8};
-  std::array<int, kArraySize> array{
-      0, 1, 2, 3, 4, -1, -2, -3};  // NOLINT(readability-magic-numbers)
+  std::cout << "STL std::merge example\n";
+  static constexpr size_t kArraySize{15};
+  std::array<int, kArraySize> array_0{
+      -7, -6, -5, -4, -3, -2, -1,      // NOLINT(readability-magic-numbers)
+      1,  2,  3,  4,  5,  6,  7,  8};  // NOLINT(readability-magic-numbers)
+  std::array<int, kArraySize> array_1{
+      9, 10, 11, 12, 13, 14, 15,      // NOLINT(readability-magic-numbers)
+      1, 2,  3,  4,  5,  6,  7,  8};  // NOLINT(readability-magic-numbers)
   auto print_range = [](auto begin, auto end) {
-    std::cout << "range=[";
-    auto print_int = [](int i) { std::cout << i << ' '; };
-    std::for_each(begin, end, print_int);
-    std::cout << "] ";
-    std::cout << (std::is_sorted(begin, end) ? "" : "not");
-    std::cout << " sorted\n";
+    std::cout << "[";
+    auto print_value = [](auto i) { std::cout << i << ' '; };
+    std::for_each(begin, end, print_value);
+    std::cout << "]";
   };
-  print_range(array.begin(), array.end());
-  auto* end_of_sorted_range = std::is_sorted_until(array.begin(), array.end());
-  print_range(array.begin(), end_of_sorted_range);
-  print_range(end_of_sorted_range, array.end());
+  std::sort(array_0.begin(), array_0.end());
+  std::sort(array_1.begin(), array_1.end());
+  std::cout << "Merging ";
+  print_range(array_0.begin(), array_0.end());
+  std::cout << " and ";
+  print_range(array_1.begin(), array_1.end());
+  std::array<int, array_0.size() + array_1.size()> merged_array;
+  std::merge(array_0.begin(), array_0.end(), array_1.begin(), array_1.end(),
+             merged_array.begin());
+  std::cout << " -> ";
+  print_range(merged_array.begin(), merged_array.end());
+  std::cout << '\n';
   return 0;
 }

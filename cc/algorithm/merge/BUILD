@@ -1,6 +1,6 @@
 # BSD 3-Clause License
 #
-# Copyright (c) 2020-2021, Dror Smolarsky
+# Copyright (c) 2021, Dror Smolarsky
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -29,15 +29,15 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-"""Code samples on using C++ std::partial_sort algorithm
+"""Code samples on using C++ std::merge
 
-C++ reference: https://en.cppreference.com/w/cpp/algorithm/partial_sort
+C++ reference: https://en.cppreference.com/w/cpp/algorithm/merge
 """
 
 load("//bazel:cc.bzl", "xkv_cc_binary")
 
 xkv_cc_binary(
-    name = "ccpartialsort",
+    name = "ccmerge",
     srcs = glob(["src/*.cc"]),
     copts = [],
     version = "0.0.0",

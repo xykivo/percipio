@@ -1,6 +1,6 @@
 // BSD 3-Clause License
 //
-// Copyright (c) 2020-2021, Dror Smolarsky
+// Copyright (c) 2021, Dror Smolarsky
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -34,21 +34,27 @@
 #include <iostream>
 
 int main() {
-  std::cout << "C++ STL std::is_sorted_until example\n";
-  static constexpr size_t kArraySize{8};
+  std::cout << "STL std::binary_search example\n";
+  static constexpr size_t kArraySize{15};
   std::array<int, kArraySize> array{
-      0, 1, 2, 3, 4, -1, -2, -3};  // NOLINT(readability-magic-numbers)
-  auto print_range = [](auto begin, auto end) {
-    std::cout << "range=[";
+      -7, -6, -5, -4, -3, -2, -1,      // NOLINT(readability-magic-numbers)
+      1,  2,  3,  4,  5,  6,  7,  8};  // NOLINT(readability-magic-numbers)
+  auto print_array = [](std::array<int, kArraySize>& array) {
+    std::cout << "array=[";
     auto print_int = [](int i) { std::cout << i << ' '; };
-    std::for_each(begin, end, print_int);
-    std::cout << "] ";
-    std::cout << (std::is_sorted(begin, end) ? "" : "not");
-    std::cout << " sorted\n";
+    std::for_each(array.begin(), array.end(), print_int);
+    std::cout << "]";
   };
-  print_range(array.begin(), array.end());
-  auto* end_of_sorted_range = std::is_sorted_until(array.begin(), array.end());
-  print_range(array.begin(), end_of_sorted_range);
-  print_range(end_of_sorted_range, array.end());
+  std::sort(array.begin(), array.end());
+  for (const auto& i : std::array<int, 3>{-1, 0, 1}) {
+    if (std::binary_search(array.begin(), array.end(), i)) {
+      std::cout << "Found ";
+    } else {
+      std::cout << "Failed to find ";
+    }
+    std::cout << i << " in ";
+    print_array(array);
+    std::cout << '\n';
+  }
   return 0;
 }

@@ -34,21 +34,21 @@
 #include <iostream>
 
 int main() {
-  std::cout << "C++ STL std::is_sorted_until example\n";
-  static constexpr size_t kArraySize{8};
-  std::array<int, kArraySize> array{
-      0, 1, 2, 3, 4, -1, -2, -3};  // NOLINT(readability-magic-numbers)
-  auto print_range = [](auto begin, auto end) {
-    std::cout << "range=[";
+  std::cout << "STL std::partial_sort_copy example\n";
+  static constexpr size_t kArraySize{15};
+  static constexpr std::array<int, kArraySize> kSrcArray{
+      1,  -1, 2,  -2, 3,  -3, 4, 0,  // NOLINT(readability-magic-numbers)
+      -4, 5,  -5, 6,  -6, 7,  -7};   // NOLINT(readability-magic-numbers)
+  auto print_range = [](const auto begin, const auto end) {
+    std::cout << "array=[";
     auto print_int = [](int i) { std::cout << i << ' '; };
     std::for_each(begin, end, print_int);
-    std::cout << "] ";
-    std::cout << (std::is_sorted(begin, end) ? "" : "not");
-    std::cout << " sorted\n";
+    std::cout << "]\n";
   };
-  print_range(array.begin(), array.end());
-  auto* end_of_sorted_range = std::is_sorted_until(array.begin(), array.end());
-  print_range(array.begin(), end_of_sorted_range);
-  print_range(end_of_sorted_range, array.end());
+  print_range(kSrcArray.begin(), kSrcArray.end());
+  std::array<int, kSrcArray.size() / 2> dst_array{};
+  std::partial_sort_copy(kSrcArray.begin(), kSrcArray.end(), dst_array.begin(),
+                         dst_array.end());
+  print_range(dst_array.begin(), dst_array.end());
   return 0;
 }
