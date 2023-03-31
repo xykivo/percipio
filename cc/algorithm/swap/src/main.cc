@@ -35,10 +35,10 @@
 /// C++ swap sample main entry point
 int main() {
   std::cout << "STL std::swap samples\n";
-  int i0{0};
-  int i1{1};
-  std::cout << "swapping i0=" << i0 << " with i1=" << i1 << " -> ";
-  std::swap(i0, i1);
-  std::cout << "i0=" << i0 << " i1=" << i1 << '\n';
+  int int_0{0};
+  int int_1{1};
+  std::cout << "swapping int_0=" << int_0 << " with int_1=" << int_1 << " -> ";
+  std::swap(int_0, int_1);
+  std::cout << "int_0=" << int_0 << " int_1=" << int_1 << '\n';
   return 0;
 }

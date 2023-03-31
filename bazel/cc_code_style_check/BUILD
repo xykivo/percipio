@@ -41,7 +41,7 @@ toolchain_type(
 
 cc_code_style_check_toolchain(
     name = "clang-format",
-    code_style_checker = "//build_tools/cc:clang-format",
+    code_style_checker = "//build_tools/cc/clang_format:clangformat",
     # TODO(xykivo@gmail.com) Change the config files from absolute path to a
     #   search for the closet .clang-format up the directory tree from the lint
     #   target

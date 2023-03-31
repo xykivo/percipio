@@ -41,7 +41,7 @@ int main() {
   std::array<int, kSrcArray.size()> dst_array{};
   static constexpr int kRemovedElement{-1};
   std::cout << "copy (except " << kRemovedElement << ") from [";
-  auto print_int = [](int i) { std::cout << i << ' '; };
+  auto print_int = [](int integer) { std::cout << integer << ' '; };
   std::for_each(kSrcArray.begin(), kSrcArray.end(), print_int);
   std::cout << "] to [";
   auto* iter = std::remove_copy(kSrcArray.begin(), kSrcArray.end(),

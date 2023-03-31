@@ -41,8 +41,8 @@ namespace {
 /// that is greater than a given integer
 template <size_t ArraySize>
 void FindIntNotGreaterThanInRange(const std::array<int, ArraySize>& array,
-                                  int i) {
-  auto greater_than = [&i](int j) { return (j > i); };
+                                  int integer) {
+  auto greater_than = [&integer](int num) { return (num > integer); };
   auto greater_than_i =
       std::find_if_not(array.begin(), array.end(), greater_than);
   if (array.end() != greater_than_i) {
@@ -50,7 +50,7 @@ void FindIntNotGreaterThanInRange(const std::array<int, ArraySize>& array,
   } else {
     std::cout << "No integer not greater than ";
   }
-  std::cout << i << " in [";
+  std::cout << integer << " in [";
   xykivo::percipio::util::OutputRange(std::cout, array.begin(), array.end(),
                                       " ");
   std::cout << "]\n";

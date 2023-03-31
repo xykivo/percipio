@@ -41,7 +41,7 @@ toolchain_type(
 
 cc_lint_toolchain(
     name = "clang-tidy",
-    linter = "//build_tools/cc:clang-tidy",
+    linter = "//build_tools/cc/clang_tidy:clangtidy",
     # TODO(xykivo@gmail.com) Change the config files from absolute path to a
     #   search for the closet .clang-tidy and .clang-format up the directory
     #   tree from the lint target

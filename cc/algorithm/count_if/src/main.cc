@@ -42,8 +42,9 @@ namespace {
 /// negative intergers are in an array of integers
 template <size_t ArraySize>
 void CountIfNegative(const std::array<int, ArraySize>& array) {
-  auto is_negative = [](int i) { return (i > 0); };
-  int negative_count = std::count_if(array.begin(), array.end(), is_negative);
+  auto is_negative = [](int integer) { return (integer > 0); };
+  const int negative_count =
+      std::count_if(array.begin(), array.end(), is_negative);
   xykivo::percipio::util::OutputRange(std::cout, array.begin(), array.end(),
                                       " ");
   std::cout << " has " << negative_count << " negative elements\n";

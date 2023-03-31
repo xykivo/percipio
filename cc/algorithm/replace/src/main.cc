@@ -39,7 +39,7 @@ int main() {
   std::array<int, kArraySize> array{-1, 1, -1, 2, -1, 3, -1, 4};
   static constexpr int kReplaced{-1};
   std::cout << "replace " << kReplaced << " in [";
-  auto print_int = [](int i) { std::cout << i << ' '; };
+  auto print_int = [](int integer) { std::cout << integer << ' '; };
   std::for_each(array.begin(), array.end(), print_int);
   static constexpr int kReplacement{0};
   std::cout << "] with " << kReplacement << " = [";

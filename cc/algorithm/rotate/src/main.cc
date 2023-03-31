@@ -44,7 +44,7 @@ int main() {
   static constexpr int kElementsRotatedCount{kArraySize / 3};
   std::cout << "Rotating " << kElementsRotatedCount
             << " first elements of array=[";
-  auto print_int = [](int i) { std::cout << i << ' '; };
+  auto print_int = [](int integer) { std::cout << integer << ' '; };
   std::for_each(array.begin(), array.end(), print_int);
   std::cout << "] -> ";
   std::rotate(array.begin(), array.begin() + kElementsRotatedCount,

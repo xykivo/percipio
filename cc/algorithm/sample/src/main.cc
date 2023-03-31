@@ -43,7 +43,7 @@ int main() {
       8, 9, 10, 11, 12, 13, 14, 15};  // NOLINT(readability-magic-numbers)
   std::array<int, src_array.size() / 3> dst_array{};
   std::cout << "Sampling " << dst_array.size() << " elements of array=[";
-  auto print_int = [](int i) { std::cout << i << ' '; };
+  auto print_int = [](int integer) { std::cout << integer << ' '; };
   std::for_each(src_array.begin(), src_array.end(), print_int);
   std::sample(src_array.begin(), src_array.end(), dst_array.begin(),
               dst_array.size(), std::mt19937{std::random_device{}()});

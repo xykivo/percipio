@@ -31,23 +31,3 @@
 
 """C++ build utilities
 """
-
-load("@rules_python//python:defs.bzl", "py_binary")
-
-# Wrapper to run clang-tidy lint tool for C++ targets
-py_binary(
-    name = "clang-tidy",
-    srcs = ["clang_tidy.py"],
-    main = "clang_tidy.py",
-    python_version = "PY3",
-    visibility = ["//visibility:public"],
-)
-
-# Wrapper to run clang-tidy lint tool for C++ targets
-py_binary(
-    name = "clang-format",
-    srcs = ["clang_format.py"],
-    main = "clang_format.py",
-    python_version = "PY3",
-    visibility = ["//visibility:public"],
-)
