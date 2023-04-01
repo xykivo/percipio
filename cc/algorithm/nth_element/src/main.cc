@@ -47,7 +47,7 @@ int main() {
       -1, 3,  -3, 6,  -6, 2,  -2};   // NOLINT(readability-magic-numbers)
   auto print_array = [](std::array<int, kArraySize>& array) {
     std::cout << "array=[";
-    auto print_int = [](int i) { std::cout << i << ' '; };
+    auto print_int = [](int integer) { std::cout << integer << ' '; };
     std::for_each(array.begin(), array.end(), print_int);
     std::cout << "]\n";
   };

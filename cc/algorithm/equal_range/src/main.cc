@@ -41,7 +41,7 @@ int main() {
       0,  2,  3,  4,  5,  6,  7};    // NOLINT(readability-magic-numbers)
   auto print_range = [](auto begin, auto end) {
     std::cout << "range=[";
-    auto print_value = [](auto i) { std::cout << i << ' '; };
+    auto print_value = [](auto integer) { std::cout << integer << ' '; };
     std::for_each(begin, end, print_value);
     std::cout << "]";
   };

@@ -39,14 +39,14 @@ int main() {
   std::array<int, kArraySize> array{
       0,  1, -1, 2, -2, 3, -3, 4,  // NOLINT(readability-magic-numbers)
       -4, 5, -5, 6, -6, 7, -7};    // NOLINT(readability-magic-numbers)
-  auto is_greater_than_pivot = [](int i) {
+  auto is_greater_than_pivot = [](int integer) {
     static constexpr int kPivot{0};
-    return i > kPivot;
+    return integer > kPivot;
   };
   auto print_is_array_partitioned =
       [is_greater_than_pivot](const std::array<int, kArraySize>& array) {
         std::cout << "array=[";
-        auto print_int = [](int i) { std::cout << i << ' '; };
+        auto print_int = [](int integer) { std::cout << integer << ' '; };
         std::for_each(array.begin(), array.end(), print_int);
         std::cout << "] is ";
         std::cout << (std::is_partitioned(array.begin(), array.end(),
@@ -63,7 +63,7 @@ int main() {
                       less_than_pivot_array.begin(), is_greater_than_pivot);
   auto print_array = [](const std::array<int, kArraySize>& array) {
     std::cout << "array=[";
-    auto print_int = [](int i) { std::cout << i << ' '; };
+    auto print_int = [](int integer) { std::cout << integer << ' '; };
     std::for_each(array.begin(), array.end(), print_int);
     std::cout << "]";
   };

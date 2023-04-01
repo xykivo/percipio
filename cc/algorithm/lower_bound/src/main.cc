@@ -41,12 +41,13 @@ int main() {
       1,  2,  3,  4,  5,  6,  7,  8};  // NOLINT(readability-magic-numbers)
   auto print_array = [](std::array<int, kArraySize>& array) {
     std::cout << "array=[";
-    auto print_int = [](int i) { std::cout << i << ' '; };
+    auto print_int = [](int integer) { std::cout << integer << ' '; };
     std::for_each(array.begin(), array.end(), print_int);
     std::cout << "]";
   };
   static constexpr int kZero{0};
-  std::partition(array.begin(), array.end(), [](int i) { return i < kZero; });
+  std::partition(array.begin(), array.end(),
+                 [](int integer) { return integer < kZero; });
   auto* zero_lower_bound = std::lower_bound(array.begin(), array.end(), kZero);
   std::cout << "Zero lower bound in ";
   print_array(array);

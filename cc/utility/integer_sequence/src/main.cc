@@ -36,9 +36,9 @@
 
 namespace {
 
-template <typename T, T... ints>
-void PrintIntegerSequence(std::integer_sequence<T, ints...> sequence) {
-  ((std::cout << ints << ' '), ...);
+template <typename T, T... Ints>
+void PrintIntegerSequence(std::integer_sequence<T, Ints...> /* unused */) {
+  ((std::cout << Ints << ' '), ...);
   std::cout << '\n';
 }
 
@@ -47,16 +47,17 @@ void PrintIntegerSequence(std::integer_sequence<T, ints...> sequence) {
 int main() {
   std::cout << "Simple sample of using std::integer_sequence\n";
   std::cout << "\nSequence\n";
-  std::integer_sequence<int, 9, -8, 7, -6, -5, 4, -3, 2, -1, 0> int_sequence;
+  const std::integer_sequence<int, 9, -8, 7, -6, -5, 4, -3, 2, -1, 0>
+      int_sequence;
   PrintIntegerSequence(int_sequence);
   std::cout << "\nInteger series\n";
-  std::make_integer_sequence<int, 9> int_series;
+  const std::make_integer_sequence<int, 9> int_series;
   PrintIntegerSequence(int_series);
   std::cout << "\nSize series\n";
-  std::make_integer_sequence<size_t, 7> size_series;
+  const std::make_integer_sequence<size_t, 7> size_series;
   PrintIntegerSequence(size_series);
   std::cout << "\nIndex series\n";
-  std::make_index_sequence<5> index_series;
+  const std::make_index_sequence<5> index_series;
   PrintIntegerSequence(index_series);
   return 0;
 }

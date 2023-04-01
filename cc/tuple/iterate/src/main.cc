@@ -36,15 +36,16 @@
 
 namespace {
 
-template <typename... Types, size_t... indices>
-void PrintTupleElements(const std::tuple<Types...>& tpl,
-                        std::integer_sequence<size_t, indices...>) {
-  ((std::cout << std::get<indices>(tpl) << ' '), ...);
+template <typename... Types, size_t... Indices>
+void PrintTupleElements(
+    const std::tuple<Types...>& tpl,
+    std::integer_sequence<size_t, Indices...> /* unused */) {
+  ((std::cout << std::get<Indices>(tpl) << ' '), ...);
 }
 
 template <typename... Types>
 void PrintTupleElements(const std::tuple<Types...>& tpl) {
-  std::index_sequence_for<Types...> index_sequence;
+  const std::index_sequence_for<Types...> index_sequence;
   PrintTupleElements(tpl, index_sequence);
   std::cout << '\n';
 }
@@ -53,6 +54,7 @@ void PrintTupleElements(const std::tuple<Types...>& tpl) {
 
 int main() {
   std::cout << "Simple sample of iterating over tuple values\n";
+  // NOLINTNEXTLINE(readability-magic-numbers)
   auto tpl = std::make_tuple<bool, float, int, std::string>(false, 0.1F, 1,
                                                             "some string");
   PrintTupleElements(tpl);

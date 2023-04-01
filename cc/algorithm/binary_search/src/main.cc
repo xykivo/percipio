@@ -41,11 +41,12 @@ int main() {
       1,  2,  3,  4,  5,  6,  7,  8};  // NOLINT(readability-magic-numbers)
   auto print_array = [](std::array<int, kArraySize>& array) {
     std::cout << "array=[";
-    auto print_int = [](int i) { std::cout << i << ' '; };
+    auto print_int = [](int integer) { std::cout << integer << ' '; };
     std::for_each(array.begin(), array.end(), print_int);
     std::cout << "]";
   };
   std::sort(array.begin(), array.end());
+  // NOLINTNEXTLINE(readability-identifier-length)
   for (const auto& i : std::array<int, 3>{-1, 0, 1}) {
     if (std::binary_search(array.begin(), array.end(), i)) {
       std::cout << "Found ";

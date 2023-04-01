@@ -40,7 +40,7 @@ int main() {
       0, 1, 2, 3, 4, -1, -2, -3};  // NOLINT(readability-magic-numbers)
   auto print_range = [](auto begin, auto end) {
     std::cout << "range=[";
-    auto print_int = [](int i) { std::cout << i << ' '; };
+    auto print_int = [](int integer) { std::cout << integer << ' '; };
     std::for_each(begin, end, print_int);
     std::cout << "] ";
     std::cout << (std::is_sorted(begin, end) ? "" : "not");

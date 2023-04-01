@@ -27,25 +27,26 @@ void SimpleOutputPack(std::ostream& out, Ts const&... args) {
 template <typename... Ts>
 void OutputPackInBrackets(std::ostream& out, Ts const&... args) {
   out << "simple output pack - binary right fold: ";
-  size_t i{0};
+  size_t integer{0};
   out << '[';
-  ((out << args << (++i != sizeof...(Ts) ? ", " : "")), ..., (out << ']'));
+  ((out << args << (++integer != sizeof...(Ts) ? ", " : "")), ...,
+   (out << ']'));
   out << '\n';
 }
 
 template <typename... Ts>
 void OutputPackLeftToRigth(std::ostream& out, Ts const&... args) {
   out << "output pack left to right - unary left fold: ";
-  size_t i{0};
-  (..., (out << args << (++i != sizeof...(Ts) ? ", " : "")));
+  size_t integer{0};
+  (..., (out << args << (++integer != sizeof...(Ts) ? ", " : "")));
   out << '\n';
 }
 
 template <typename... Ts>
 void OutputPackRightToLeft(std::ostream& out, Ts const&... args) {
   out << "output pack right to left - unary right fold: ";
-  size_t i{0};
-  ((out << args << (++i != sizeof...(Ts) ? ", " : "")), ...);
+  size_t integer{0};
+  ((out << args << (++integer != sizeof...(Ts) ? ", " : "")), ...);
   out << '\n';
 }
 
