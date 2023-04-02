@@ -34,12 +34,13 @@
 #include <iostream>
 
 int main() {
-  std::cout << "STL std::set_intersection example\n";
-  std::array array{
+  std::cout << "STL std::set_symmetric_difference example\n";
+  std::array src_0{
       -7, -6, -5, -4, -3, -2, -1,      // NOLINT(readability-magic-numbers)
-      1,  2,  3,  4,  5,  6,  7,  8,   // NOLINT(readability-magic-numbers)
-      9,  10, 11, 12, 13, 14, 15,      // NOLINT(readability-magic-numbers)
       1,  2,  3,  4,  5,  6,  7,  8};  // NOLINT(readability-magic-numbers)
+  std::array src_1{
+      9, 10, 11, 12, 13, 14, 15,      // NOLINT(readability-magic-numbers)
+      1, 2,  3,  4,  5,  6,  7,  8};  // NOLINT(readability-magic-numbers)
   auto print_range = [](auto begin, auto end) {
     std::cout << "[";
     auto print_value = [](auto val) { std::cout << val << ' '; };
@@ -47,18 +48,17 @@ int main() {
     std::cout << "]";
   };
   std::cout << '\n';
-  std::sort(array.begin(), array.end());
-  const auto sub_array_begin = array.begin() + array.size() / 2;
-  const auto sub_array_end = sub_array_begin + array.size() / 4;
-  std::cout << "the intersection between ";
-  print_range(array.begin(), array.end());
+  std::sort(src_0.begin(), src_0.end());
+  std::sort(src_1.begin(), src_1.end());
+  std::cout << "the symmetric differrence between ";
+  print_range(src_0.begin(), src_0.end());
   std::cout << " and ";
-  print_range(sub_array_begin, sub_array_end);
+  print_range(src_1.begin(), src_1.end());
   std::cout << " is ";
-  std::array<int, array.size() / 4> difference{};
-  std::set_intersection(array.begin(), array.end(), sub_array_begin,
-                        sub_array_end, difference.begin());
-  print_range(difference.begin(), difference.end());
+  std::array<int, src_0.size() + src_1.size()> dst{};
+  std::set_symmetric_difference(src_0.begin(), src_0.end(), src_1.begin(),
+                                src_1.end(), dst.begin());
+  print_range(dst.begin(), dst.end());
   std::cout << '\n';
   return 0;
 }
