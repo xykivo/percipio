@@ -48,8 +48,8 @@ int main() {
   };
   std::cout << '\n';
   std::sort(array.begin(), array.end());
-  const auto sub_array_begin = array.begin() + array.size() / 2;
-  const auto sub_array_end = sub_array_begin + array.size() / 4;
+  const auto* sub_array_begin = array.begin() + array.size() / 2;
+  const auto* sub_array_end = sub_array_begin + array.size() / 4;
   std::cout << "the differrence between ";
   print_range(array.begin(), array.end());
   std::cout << " and ";

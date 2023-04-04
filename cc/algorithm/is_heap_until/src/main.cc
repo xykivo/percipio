@@ -29,14 +29,17 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <cstdint>
+
 #include <algorithm>
 #include <iostream>
 #include <vector>
 
 int main() {
   std::cout << "STL std::make_heap and std::is_heap_until example\n";
-  std::vector<int> heap{17, 8,  19, -4, -6, 10, 2,  17, 21,
-                        7,  -7, 6,  9,  13, 33, 25, 16};
+  std::vector<int> heap{
+      17, 8,  19, -4, -6, 10, 2,  17, 21,  // NOLINT(readability-magic-numbers)
+      7,  -7, 6,  9,  13, 33, 25, 16};     // NOLINT(readability-magic-numbers)
   auto print_range = [](auto begin, auto end) {
     std::cout << "[";
     auto print_value = [](auto val) { std::cout << val << ' '; };
@@ -53,7 +56,8 @@ int main() {
   print_range(heap.begin(), heap.end());
   print_is_heap(heap.begin(), heap.end());
   std::cout << '\n';
-  std::make_heap(heap.begin(), heap.begin() + (heap.size() / 2));
+  std::make_heap(heap.begin(),
+                 heap.begin() + static_cast<int64_t>(heap.size() / 2));
   print_range(heap.begin(), heap.end());
   print_is_heap(heap.begin(), heap.end());
   std::cout << '\n';

@@ -48,8 +48,8 @@ int main() {
   };
   std::cout << '\n';
   std::sort(array.begin(), array.end());
-  const auto sub_array_begin = array.begin() + array.size() / 2;
-  const auto sub_array_end = sub_array_begin + array.size() / 4;
+  const auto* sub_array_begin = array.begin() + array.size() / 2;
+  const auto* sub_array_end = sub_array_begin + array.size() / 4;
   print_range(sub_array_begin, sub_array_end);
   std::cout << " is";
   if (!std::includes(array.begin(), array.end(), sub_array_begin,

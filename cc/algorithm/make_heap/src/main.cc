@@ -35,8 +35,9 @@
 
 int main() {
   std::cout << "STL std::make_heap and std::is_heap example\n";
-  std::vector<int> heap{17, 8,  19, -4, -6, 10, 2,  17, 21,
-                        7,  -7, 6,  9,  13, 33, 25, 16};
+  std::vector<int> heap{
+      17, 8,  19, -4, -6, 10, 2,  17, 21,  // NOLINT(readability-magic-numbers)
+      7,  -7, 6,  9,  13, 33, 25, 16};     // NOLINT(readability-magic-numbers)
   auto print_range = [](auto begin, auto end) {
     std::cout << "[";
     auto print_value = [](auto val) { std::cout << val << ' '; };

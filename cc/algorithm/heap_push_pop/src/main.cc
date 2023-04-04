@@ -36,7 +36,8 @@
 
 int main() {
   std::cout << "STL std::make_heap, std::heap_push and std::heap_pop example\n";
-  std::vector<int> heap{17, 8, 19, -4, -6, 10, 2, 17, 21};
+  std::vector<int> heap{17, 8, 19, -4, -6,  // NOLINT(readability-magic-numbers)
+                        10, 2, 17, 21};     // NOLINT(readability-magic-numbers)
   auto print_range = [](auto begin, auto end) {
     std::cout << "[";
     auto print_value = [](auto val) { std::cout << val << ' '; };
@@ -55,10 +56,10 @@ int main() {
   print_is_heap(heap.begin(), heap.end());
   std::cout << '\n';
   static constexpr std::array kArray{-7, 24, 14, 9};
-  for (const auto i : kArray) {
-    heap.push_back(i);
+  for (const auto value : kArray) {
+    heap.push_back(value);
     std::push_heap(heap.begin(), heap.end());
-    std::cout << "heap push " << i << " - ";
+    std::cout << "heap push " << value << " - ";
     print_range(heap.begin(), heap.end());
     std::cout << '\n';
   }
