@@ -51,7 +51,12 @@ the guideline from the C++ core guideline.
 
 ### C++20
 
-All C++20 features are allowed.
+All C++20 features are allowed, except for those noted below:
+
+* Moduels: currently not fully supported on all toolchains. There are also
+   issues with support in the build systems
+* Format: not fully supported on all toolchains, and STL implementations.
+  Use the [fmt](https://fmt.dev/latest/index.html) library.
 
 ### Use pragma once
 
