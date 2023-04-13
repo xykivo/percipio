@@ -88,11 +88,13 @@ recommend using them. In addition in the future the new
 may become part of the standard. If/when this happens, exception runtime and memory
 usage may become deterministic.
 
-
 ### Pointer Alignment
 Pointer (*) and reference (&) expressions must be aligned left.
 Rational:
 * This makes it easier to see the variable type for pointers and references
+
+# Go
+[Google Go coding style](https://google.github.io/styleguide/go/)
 
 # Java
 

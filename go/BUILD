@@ -1,6 +1,6 @@
 # BSD 3-Clause License
 #
-# Copyright (c) 2020, Dror Smolarsky
+# Copyright (c) 2023, Dror Smolarsky
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -29,21 +29,10 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-# Editors and IDEs
-.aswb
-.aswb/
-.vscode/
+"""Go samples, tutorials, and experiments
+"""
 
-# Bazel
-.bazelrc
-bazel-bin
-bazel-bin/
-bazel-out
-bazel-out/
-bazel-testlogs
-bazel-testlogs/
-bazel-percipio
-bazel-percipio/
+load("@bazel_gazelle//:def.bzl", "gazelle")
 
-# Python
-__pycache__/
+# gazelle:prefix github.com/xykivo/percipio
+gazelle(name = "gazelle")
