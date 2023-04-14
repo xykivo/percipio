@@ -1,4 +1,4 @@
-module go/tutorials/t0hello
+module xykivo/percipio/go/tutorials/t0hello
 
 go 1.20
 
