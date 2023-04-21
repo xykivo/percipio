@@ -1,6 +1,6 @@
 # BSD 3-Clause License
 #
-# Copyright (c) 2020-2021, Dror Smolarsky
+# Copyright (c) 2023, Dror Smolarsky
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -29,13 +29,5 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-# clang-format configuration for xykivo workspace
-
-BasedOnStyle: Google
-
-Language: Cpp
-DerivePointerAlignment: false
-PointerAlignment: Left
-IncludeBlocks: Preserve
-
-Language: ObjC
+"""Parent package to all percipio Objective-C samples, tutorial and experiments
+"""

@@ -1,6 +1,6 @@
 # BSD 3-Clause License
 #
-# Copyright (c) 2020-2021, Dror Smolarsky
+# Copyright (c) 2023, Dror Smolarsky
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -29,13 +29,34 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-# clang-format configuration for xykivo workspace
+"""Xykivo percipio Objective-C hello world
 
-BasedOnStyle: Google
+This example uses a Swift binary linked with an Objective-C library to run
+the Object-C code.
+"""
 
-Language: Cpp
-DerivePointerAlignment: false
-PointerAlignment: Left
-IncludeBlocks: Preserve
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_binary")
 
-Language: ObjC
+objc_library(
+    name = "ObjCHelloWorld",
+    hdrs = glob(["src/**/*.h"]),
+    srcs = glob(["src/**/*.m"]),
+    enable_modules = True,
+    # The default module name is the full path to the target delimited by '_':
+    # objc_tour_hello_world_ObjCHelloWorld
+    module_name = "ObjCHelloWorld",
+    target_compatible_with = select({
+            "@platforms//os:osx": [],
+            "//conditions:default": ["@platforms//:incompatible"],
+    }),
+)
+
+swift_binary(
+    name = "ObjCHelloWorldApp",
+    srcs = glob(["src/*.swift"]),
+    target_compatible_with = select({
+            "@platforms//os:osx": [],
+            "//conditions:default": ["@platforms//:incompatible"],
+    }),
+    deps = [":ObjCHelloWorld"]
+)
