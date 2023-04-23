@@ -29,9 +29,12 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-import ObjCHelloWorld
+#import "WindowDelegate.h"
 
-autoreleasepool {
-  let helloWorld = XKVHelloWorld()
-  print(helloWorld.sayHello() ?? "XKVHelloWorld object is nil")
+@implementation WindowDelegate
+
+- (void)windowWillClose:(NSNotification*)notification {
+  [NSApp terminate:self];
 }
+
+@end

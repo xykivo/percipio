@@ -29,9 +29,16 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-import ObjCHelloWorld
+#import "View.h"
 
-autoreleasepool {
-  let helloWorld = XKVHelloWorld()
-  print(helloWorld.sayHello() ?? "XKVHelloWorld object is nil")
+@import AppKit;
+@import Foundation;
+
+@implementation View
+
+- (void)drawRect:(NSRect)rect {
+  [[NSColor redColor] set];
+  NSRectFill([self bounds]);
 }
+
+@end

@@ -29,9 +29,35 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-import ObjCHelloWorld
+#include <stdlib.h>
 
-autoreleasepool {
-  let helloWorld = XKVHelloWorld()
-  print(helloWorld.sayHello() ?? "XKVHelloWorld object is nil")
+@import Foundation;
+@import Cocoa;
+
+#import "View.h"
+#import "WindowDelegate.h"
+
+void setup() {
+  NSRect windowRect = NSMakeRect(100.0, 100.0, 400.0, 400.0);
+  NSWindow* window =
+      [[NSWindow alloc] initWithContentRect:windowRect
+                                  styleMask:NSWindowStyleMaskClosable | NSWindowStyleMaskTitled
+                                    backing:NSBackingStoreBuffered
+                                      defer:NO];
+  [window setTitle:@"Xykvio Percipio Hello Cocoa"];
+  View* view = [[View alloc] initWithFrame:windowRect];
+  [window setContentView:view];
+  WindowDelegate* windowDelegate = [[WindowDelegate alloc] init];
+  [window setDelegate:windowDelegate];
+  [window makeKeyAndOrderFront:nil];
+}
+
+int main() {
+  @autoreleasepool {
+    NSApp = [NSApplication sharedApplication];
+    setup();
+    [NSApp activateIgnoringOtherApps:YES];
+    [NSApp run];
+  }
+  return EXIT_SUCCESS;
 }
