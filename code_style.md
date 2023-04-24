@@ -104,6 +104,10 @@ Follow the
 Follow the
 [Kotlin Style Guide](https://kotlinlang.org/docs/reference/coding-conventions.html)
 
+# Objective C
+
+Follow the [Apple Coding Guidelines for Cocoa](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CodingGuidelines/CodingGuidelines.html#//apple_ref/doc/uid/10000146-SW1)
+
 # Python
 
 Follow the
