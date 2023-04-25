@@ -32,10 +32,9 @@
 # Xykivo repo workspace
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 # Python
-
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "rules_python",
@@ -120,3 +119,11 @@ load(
 )
 
 apple_support_dependencies()
+
+# Metal
+
+git_repository(
+    name = "build_bazel_rules_metal",
+    remote = "https://github.com/nchavez324/rules_metal",
+    commit = "96594931692cef6d842a7a2dbc9249882d838bf3",
+)
