@@ -33,9 +33,13 @@
 
 BasedOnStyle: Google
 
+---
+
 Language: Cpp
 DerivePointerAlignment: false
 PointerAlignment: Left
 IncludeBlocks: Preserve
+
+---
 
 Language: ObjC
