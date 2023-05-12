@@ -59,7 +59,8 @@ Prefer using the #pragma once pre processor directive to header guards.
 
 Rational:
 
-The #pragma once directive is safer and easier to use.
+The #pragma once directive is safer and easier to use. It is supported on most
+modern compilers that support C++20.
 
 ### Doxygen Style Comments
 Use Doxygen style comments to document classes, enums, functions and fields.
