@@ -49,6 +49,7 @@ objc_library(
             "@platforms//os:osx": [],
             "//conditions:default": ["@platforms//:incompatible"],
     }),
+    visibility = ["//visibility:private"],
 )
 
 swift_binary(

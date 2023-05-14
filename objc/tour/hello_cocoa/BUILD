@@ -71,4 +71,5 @@ macos_application(
             "@platforms//os:osx": [],
             "//conditions:default": ["@platforms//:incompatible"],
     }),
+    visibility = ["//visibility:private"],
 )
