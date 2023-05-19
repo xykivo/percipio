@@ -29,14 +29,24 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#import "XKVObjectHolder.h"
+
 @import Foundation;
 
-@interface XKVObject : NSObject
+#import "XKVObject.h"
 
-@property(readonly, retain) NSString* name;
+@implementation XKVObjectHolder {
+  XKVObject* _obj;
+}
 
-+ (instancetype)createWithName:(NSString*)name;
+- (instancetype)initWithName:(NSString*)name {
+  _obj = [[XKVObject alloc] initWithName:name];
+  NSLog(@"obj holder init %@", _obj.name);
+  return self;
+}
 
-- (instancetype)initWithName:(NSString*)name;
+- (void)dealloc {
+  NSLog(@"obj holder dealloc %@", _obj.name);
+}
 
 @end

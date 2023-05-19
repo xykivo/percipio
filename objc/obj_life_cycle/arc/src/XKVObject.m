@@ -35,6 +35,10 @@
 
 @implementation XKVObject
 
++ (instancetype)createWithName:(NSString*)name {
+  return [[XKVObject alloc] initWithName:name];
+}
+
 - (instancetype)initWithName:(NSString*)name {
   self = [super init];
   _name = name;

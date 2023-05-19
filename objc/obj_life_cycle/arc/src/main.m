@@ -34,12 +34,14 @@
 @import Foundation;
 
 #import "XKVObject.h"
+#import "XKVObjectHolder.h"
 
 void autoReleasePool() {
   @autoreleasepool {
     NSLog(@"-> auto_release_pool");
 
     XKVObject* obj = [[XKVObject alloc] initWithName:@"obj-auto_release_pool"];
+    XKVObject* holder = [[XKVObjectHolder alloc] initWithName:@"holder-auto_release_pool"];
 
     NSLog(@"<- auto_release_pool");
   }
@@ -49,7 +51,9 @@ void localAutoReleasePool() {
   NSLog(@"-> local_auto_release_pool");
 
   @autoreleasepool {
+    XKVObject* created_obj = [XKVObject createWithName:@"created_obj-local_auto_release_pool"];
     XKVObject* obj = [[XKVObject alloc] initWithName:@"obj-local_auto_release_pool"];
+    XKVObject* holder = [[XKVObjectHolder alloc] initWithName:@"holder-local_auto_release_pool"];
   }
 
   NSLog(@"<- local_auto_release_pool");

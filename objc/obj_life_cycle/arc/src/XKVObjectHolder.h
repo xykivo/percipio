@@ -31,11 +31,7 @@
 
 @import Foundation;
 
-@interface XKVObject : NSObject
-
-@property(readonly, retain) NSString* name;
-
-+ (instancetype)createWithName:(NSString*)name;
+@interface XKVObjectHolder : NSObject
 
 - (instancetype)initWithName:(NSString*)name;
 
