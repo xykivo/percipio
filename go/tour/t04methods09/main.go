@@ -29,7 +29,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-// Tour: https://go.dev/tour/methods/1
+// Tour: https://go.dev/tour/methods/9
 
 package main
 
@@ -38,14 +38,21 @@ import (
 	"math"
 )
 
+type Vector interface {
+	Length() float64;
+}
+
 type Vector3D struct {
 	X float64
 	Y float64
 	Z float64
 }
 
-func (v Vector3D) Length() float64 {
-	return math.Sqrt((v.X * v.X) + (v.Y * v.Y) + (v.Z * v.Z))
+func (v *Vector3D) Length() float64 {
+	if nil == v {
+		return 0
+	}
+ 	return math.Sqrt((v.X * v.X) + (v.Y * v.Y) + (v.Z * v.Z))
 }
 
 func (v *Vector3D) Negate() {
@@ -54,21 +61,23 @@ func (v *Vector3D) Negate() {
 	v.Z = -v.Z
 }
 
-type MyInt int
-
-func (i MyInt) Neg() int {
-	return -(int(i))
+// The empty interface is an interface to all types
+func PrintInterface(i interface{}) {
+	fmt.Printf("print interface %v %T\n", i, i)
 }
 
 func main() {
-	fmt.Println("methods")
-	v := Vector3D{1, 1, 1}
-	fmt.Println("struct method -length of", v, "is", v.Length())
-	pv := &v
-	fmt.Println("length of", pv, "is", pv.Length())
-	fmt.Print("struct pointer method -negate ", v, " -> ")
-	v.Negate()
-	fmt.Println(v)
-	i := MyInt(1)
-	fmt.Println("method on existing type - he negative of", i, "is", i.Neg())
+	fmt.Println("interfaces")
+	v3 := Vector3D{2, 2, 2}
+	var v Vector = &v3
+	fmt.Println("interface method - length of", v, "is", v.Length())
+	var nv3 *Vector3D = nil
+	var nv Vector = nv3
+	fmt.Println("nil interface method - length of", nv, "is", nv.Length())
+	PrintInterface(v)
+	PrintInterface(nv)
+	i := 42
+	PrintInterface(i)
+	s := "hello"
+	PrintInterface(s)
 }
