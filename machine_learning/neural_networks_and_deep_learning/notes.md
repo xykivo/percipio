@@ -36,14 +36,16 @@ POSSIBILITY OF SUCH DAMAGE.
 Notes and references for the book -
 [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/)
 
-# Activation Functions
+# Chapter 1
+
+## Activation Functions
 
 For various activation functions see:
 
 - Wikipedia: https://en.wikipedia.org/wiki/Activation_function
 - DeepAI: https://deepai.org/machine-learning-glossary-and-terms/activation-function
 
-## ReLU - Rectified Linear Unit
+### ReLU - Rectified Linear Unit
 
 One of the more common activation functions used in neural networks.
 
