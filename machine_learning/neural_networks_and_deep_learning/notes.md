@@ -49,14 +49,14 @@ For various activation functions see:
 
 One of the more common activation functions used in neural networks.
 
-$$
+```math
 \displaystyle
 f(x) = max(0, x)
-$$
+```
 
 The derivative is:
 
-$$
+```math
 \displaystyle
 \begin{equation}
    \frac{d f(x)}{dx} = \begin{cases}
@@ -65,7 +65,7 @@ $$
       undefined & \text{otherwise}
    \end{cases}
 \end{equation}
-$$
+```
 
 ## Neural Network Types
 

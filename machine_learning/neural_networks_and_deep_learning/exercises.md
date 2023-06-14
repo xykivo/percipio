@@ -35,125 +35,168 @@ POSSIBILITY OF SUCH DAMAGE.
 
 ## Sigmoid Neurons
 
-- Sigmoid neurons simulating perceptrons, part 1:
+### Sigmoid neurons simulating perceptrons, part 1:
 
-  Show that multiplying the weights and biaases of a perceptron doesn't change
-  network behaviour.
+Show that multiplying the weights and biaases of a perceptron doesn't change
+network behaviour.
 
-  Ther perception function is one of
+The percepton function is one of
 
-  $$
-  \begin{equation}
-    output = \begin{cases}
-      0 & w \cdot x + b \le 0 \\
-      1 & w \cdot x + b > 0
-    \end{cases}
-  \end{equation}
-  $$
+```math
+\displaylines
 
-  If we multipley both w, and b by c we get
+output = \begin{cases}
+  0 & w \cdot x + b \le 0 \\
+  1 & w \cdot x + b > 0
+\end{cases}
+```
 
-  $$
-  c \cdot w \cdot x + c \cdot b \rArr c \cdot (w \cdot x + b) \\
-  w \cdot x + b \le 0 \rArr c \cdot (w \cdot x + b) \le 0 \\
-  w \cdot x + b > 0 \rArr c \cdot (w \cdot x + b) > 0
-  $$
+If we multipley both w, and b by c we get
 
-- Sigmoid neurons simulating perceptrons, part 2:
+```math
+c \cdot w \cdot x + c \cdot b \Rightarrow c \cdot (w \cdot x + b)
+```
 
-  Let us have a perceptron neural network with a given input, where all neurons
+```math
+w \cdot x + b \le 0 \Rightarrow c \cdot (w \cdot x + b) \le 0
+```
 
-  $$
-  w \cdot x + b \ne 0
-  $$
+```math
+w \cdot x + b > 0 \Rightarrow c \cdot (w \cdot x + b) > 0
+```
 
-  Show that if we replace all perceptron neurons with sigmoid neurons, and
-  multiply weights and biases by $c > 0$, and $c \rarr \infin$, then the
-  behaviour of the sigmoid network is the same as the perceptron network.
+### Sigmoid neurons simulating perceptrons, part 2:
 
-  The sigmoid function
+Let us have a perceptron neural network with a given input, where all neurons
 
-  $$
-  \sigma(w \cdot x + b) = \frac{1}{1 + \epsilon ^ {(-w \cdot x - b)}}
-  $$
+```math
+w \cdot x + b \ne 0
+```
 
-  The sigmoid function where w and b are multiplied by c
+Show that if we replace all perceptron neurons with sigmoid neurons, and
+multiply weights and biases by $c > 0$, and $c \rightarrow \infty$, then the
+behaviour of the sigmoid network is the same as the perceptron network.
 
-  $$
-  \sigma(c \cdot (w \cdot x + b)) =
-    \frac{1}{1 + \epsilon ^ {(c \cdot (-w \cdot x - b))}} \\
-  $$
+The sigmoid function
 
-  when $c \rarr \infin$
+```math
+\sigma(w \cdot x + b) = \frac{1}{1 + \epsilon ^ {(-w \cdot x - b)}}
+```
 
-  $$
-  c \rarr \infin \\
-  \dArr \\
-  \begin{equation}
-    1 + \epsilon ^ {(c \cdot (-w \cdot x - b))} \rarr \begin{cases}
-      0 & \text{if} & w \cdot x + b > 0 \\
-      \infin & \text{if} & w \cdot x + b < 0
-    \end{cases}
-  \end{equation} \\
-  \dArr \\
-  \begin{equation}
-    \frac{1}{1 + \epsilon ^ {(c \cdot (-w \cdot x - b))}} \rarr \begin{cases}
-      1 & \text{if} & w \cdot x + b > 0 \\
-      0 & \text{if} & w \cdot x + b < 0
-    \end{cases}
-  \end{equation}
-  $$
+The sigmoid function where w and b are multiplied by c
+
+```math
+\sigma(c \cdot (w \cdot x + b)) =
+  \frac{1}{1 + \epsilon ^ {(c \cdot (-w \cdot x - b))}}$
+```
+
+when $c \rightarrow \infty$
+
+```math
+c \rightarrow \infty \newline
+```
+
+```math
+\Downarrow
+```
+
+```math
+1 + \epsilon ^ {(c \cdot (-w \cdot x - b))} \rightarrow \begin{cases}
+  0 & \text{if} & w \cdot x + b > 0\\
+  \infty & \text{if} & w \cdot x + b < 0
+\end{cases}$
+```
+
+```math
+\Downarrow
+```
+
+```math
+\frac{1}{1 + \epsilon ^ {(c \cdot (-w \cdot x - b))}} \rightarrow \begin{cases}
+  1 & \text{if} & w \cdot x + b > 0\\
+  0 & \text{if} & w \cdot x + b < 0
+\end{cases}
+```
 
 ## The Architecture of Neural Networks
 
-- Generate bitwise representation from digit neurons
+### Generate bitwise representation from digit neurons
 
-  Let the last layer neuorons be [d0 - d9].<br/>
-  Let the bitwise representation output neurons be [o0 - o3].
+Let the last layer neuorons be [d0 - d9].<br/>
+Let the bitwise representation output neurons be [o0 - o3].
 
-  Bitwise represntation of each digit:
+Bitwise represntation of each digit:
 
-  ```
-  0 = 0000
-  1 = 0001
-  2 = 0010
-  3 = 0011
-  4 = 0100
-  5 = 0101
-  6 = 0110
-  7 = 0111
-  8 = 1000
-  9 = 1001
-  ```
+```
+0 = 0000
+1 = 0001
+2 = 0010
+3 = 0011
+4 = 0100
+5 = 0101
+6 = 0110
+7 = 0111
+8 = 1000
+9 = 1001
+```
 
-  We will show for $o_0$, simliar logic can be applied to [$o_1$ - $o_3$].
+We will show for $o_0$, simliar logic can be applied to [ $o_1$ - $o_3$ ].
 
-  $b_0$ is lit by [$d_1$, $d_3$, $d_5$, $d_7$, $d_9$].
+$b_0$ is lit by [ $d_1$, $d_3$, $d_5$, $d_7$, $d_9$ ].
 
-  if $d_i$ is lit, it means that its $output > 0.99$, if it's not lit its
-  $output < 0.01$. We assume simliar outputs are required for $o_x$.
+if $d_i$ is lit, it means that its $output > 0.99$, if it's not lit its
+$output < 0.01$. We assume simliar outputs are required for $o_x$.
 
-  Let
-  $$
-  o_i = \sum_{j=0}^9 w_j * d_j + b_j
-  $$
+Let
 
-  That means that for b0 the following weights and biases can to be used
+```math
+o_i = \sum_{j=0}^9 w_j * d_j + b_j
+```
 
-  $w_0 = 0, b_0 = 0$<br/>
-  $w_1 = 1, b_1 = 0$<br/>
-  $w_2 = 0, b_2 = 0$<br/>
-  $w_3 = 1, b_3 = 0$<br/>
-  $w_4 = 0, b_4 = 0$<br/>
-  $w_5 = 1, b_5 = 0$<br/>
-  $w_6 = 0, b_6 = 0$<br/>
-  $w_7 = 1, b_7 = 0$<br/>
-  $w_8 = 0, b_8 = 0$<br/>
-  $w_9 = 1, b_9 = 0$<br/>
+That means that for b0 the following weights and biases can to be used
 
-  This will cause $o_0$ to have a $output > 0.99$ if the digits neurons 1, 3,
-  5, 7, 9 are lit, and an $output < 0.01$ if these same digits are not lit.
+```math
+w_0 = 0 \cdot b_0 + 0 \\
+```
 
-  As stated above, a simliar process can be applied to other bit outputs, each
-  with the set of digits in which it is lit.
+```math
+w_1 = 1 \cdot b_1 + 0 \\
+```
 
+```math
+w_2 = 0 \cdot b_2 + 0 \\
+```
+
+```math
+w_3 = 1 \cdot b_3 + 0 \\
+```
+
+```math
+w_4 = 0 \cdot b_4 + 0 \\
+```
+
+```math
+w_5 = 1 \cdot b_5 + 0 \\
+```
+
+```math
+w_6 = 0 \cdot b_6 + 0 \\
+```
+
+```math
+w_7 = 1 \cdot b_7 + 0 \\
+```
+
+```math
+w_8 = 0 \cdot b_8 + 0 \\
+```
+
+```math
+w_9 = 1 \cdot b_9 + 0 \\
+```
+
+This will cause $o_0$ to have a $output > 0.99$ if the digits neurons 1, 3,
+5, 7, 9 are lit, and an $output < 0.01$ if these same digits are not lit.
+
+As stated above, a simliar process can be applied to other bit outputs, each
+with the set of digits in which it is lit.
