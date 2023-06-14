@@ -66,3 +66,23 @@ $$
    \end{cases}
 \end{equation}
 $$
+
+## Neural Network Types
+
+### Feedforward Neural Network
+
+Connections between the nodes do not form circles.
+
+https://en.wikipedia.org/wiki/Feedforward_neural_network
+
+### Recurrent Neural Network
+
+Connections between nodes can form circles.
+
+https://en.wikipedia.org/wiki/Recurrent_neural_network
+
+### Recursive Neural Network
+
+Apply the same set of weights recursively over a structured input.
+
+https://en.wikipedia.org/wiki/Recursive_neural_network

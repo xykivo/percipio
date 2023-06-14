@@ -43,7 +43,6 @@ POSSIBILITY OF SUCH DAMAGE.
   Ther perception function is one of
 
   $$
-  \displaystyle
   \begin{equation}
     output = \begin{cases}
       0 & w \cdot x + b \le 0 \\
@@ -55,7 +54,6 @@ POSSIBILITY OF SUCH DAMAGE.
   If we multipley both w, and b by c we get
 
   $$
-  \displaystyle
   c \cdot w \cdot x + c \cdot b \rArr c \cdot (w \cdot x + b) \\
   w \cdot x + b \le 0 \rArr c \cdot (w \cdot x + b) \le 0 \\
   w \cdot x + b > 0 \rArr c \cdot (w \cdot x + b) > 0
@@ -66,7 +64,6 @@ POSSIBILITY OF SUCH DAMAGE.
   Let us have a perceptron neural network with a given input, where all neurons
 
   $$
-  \displaystyle
   w \cdot x + b \ne 0
   $$
 
@@ -77,14 +74,12 @@ POSSIBILITY OF SUCH DAMAGE.
   The sigmoid function
 
   $$
-  \displaystyle
   \sigma(w \cdot x + b) = \frac{1}{1 + \epsilon ^ {(-w \cdot x - b)}}
   $$
 
   The sigmoid function where w and b are multiplied by c
 
   $$
-  \displaystyle
   \sigma(c \cdot (w \cdot x + b)) =
     \frac{1}{1 + \epsilon ^ {(c \cdot (-w \cdot x - b))}} \\
   $$
@@ -92,7 +87,6 @@ POSSIBILITY OF SUCH DAMAGE.
   when $c \rarr \infin$
 
   $$
-  \displaystyle
   c \rarr \infin \\
   \dArr \\
   \begin{equation}
@@ -111,3 +105,55 @@ POSSIBILITY OF SUCH DAMAGE.
   $$
 
 ## The Architecture of Neural Networks
+
+- Generate bitwise representation from digit neurons
+
+  Let the last layer neuorons be [d0 - d9].<br/>
+  Let the bitwise representation output neurons be [o0 - o3].
+
+  Bitwise represntation of each digit:
+
+  ```
+  0 = 0000
+  1 = 0001
+  2 = 0010
+  3 = 0011
+  4 = 0100
+  5 = 0101
+  6 = 0110
+  7 = 0111
+  8 = 1000
+  9 = 1001
+  ```
+
+  We will show for $o_0$, simliar logic can be applied to [$o_1$ - $o_3$].
+
+  $b_0$ is lit by [$d_1$, $d_3$, $d_5$, $d_7$, $d_9$].
+
+  if $d_i$ is lit, it means that its $output > 0.99$, if it's not lit its
+  $output < 0.01$. We assume simliar outputs are required for $o_x$.
+
+  Let
+  $$
+  o_i = \sum_{j=0}^9 w_j * d_j + b_j
+  $$
+
+  That means that for b0 the following weights and biases can to be used
+
+  $w_0 = 0, b_0 = 0$<br/>
+  $w_1 = 1, b_1 = 0$<br/>
+  $w_2 = 0, b_2 = 0$<br/>
+  $w_3 = 1, b_3 = 0$<br/>
+  $w_4 = 0, b_4 = 0$<br/>
+  $w_5 = 1, b_5 = 0$<br/>
+  $w_6 = 0, b_6 = 0$<br/>
+  $w_7 = 1, b_7 = 0$<br/>
+  $w_8 = 0, b_8 = 0$<br/>
+  $w_9 = 1, b_9 = 0$<br/>
+
+  This will cause $o_0$ to have a $output > 0.99$ if the digits neurons 1, 3,
+  5, 7, 9 are lit, and an $output < 0.01$ if these same digits are not lit.
+
+  As stated above, a simliar process can be applied to other bit outputs, each
+  with the set of digits in which it is lit.
+
