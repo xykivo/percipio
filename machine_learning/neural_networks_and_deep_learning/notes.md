@@ -86,3 +86,60 @@ https://en.wikipedia.org/wiki/Recurrent_neural_network
 Apply the same set of weights recursively over a structured input.
 
 https://en.wikipedia.org/wiki/Recursive_neural_network
+
+## Learning with Gradient Descent
+
+Cost function (sometimes called loss or objective function). In many cases it
+is the quadratice cost function = mean squared error (MSE) function.
+
+```math
+C(w, b) \equiv \frac{1}{2n} \sum{\vert \vert y(x) - (w \cdot x + b)} \vert \vert
+```
+
+Where $x$ is the input vector, $y(x)$ is the expected output, and n is the
+number of input samples.
+
+$C(w, b) > 0$ and $C(w, b) \approx 0$ when $y(x) \approx w \cdot x + b$. This
+means the goal of the training algorithm is to minimize $C(w, b)$.
+
+> _Note:_ There are other types of cost functions, including variants of MSE.
+
+The minimization of $C(w, b)$ uses the gradient descent algorithm.
+
+The gradient vector:
+
+```math
+\nabla C \equiv (\frac{\delta C}{\delta v_0}, \frac{\delta C}{\delta v_1}, ...,
+\frac{\delta C}{\delta v_n})^T
+```
+
+The descent vector:
+
+```math
+v = (v_0, v_1, ..., v_n)^T
+```
+
+```math
+\Delta v = (\Delta v_0, \Delta v_1, ..., \Delta v_n)^T
+```
+
+The change in the cost function is
+
+```math
+\Delta C \approx \nabla C \cdot \Delta v
+```
+
+If we choose $\Delta v = -n \cdot \nabla C$ we get
+
+```math
+\Delta C \approx -n \cdot \nabla C \cdot \nabla C =
+  -n \cdot \vert \vert \nabla C \vert \vert ^2
+```
+
+
+
+# Data Sets
+
+[MNIST data set](http://yann.lecun.com/exdb/mnist/)
+
+Contains images of classified handwritten digits.

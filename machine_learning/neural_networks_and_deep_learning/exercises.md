@@ -200,3 +200,95 @@ This will cause $o_0$ to have a $output > 0.99$ if the digits neurons 1, 3,
 
 As stated above, a simliar process can be applied to other bit outputs, each
 with the set of digits in which it is lit.
+
+## Learning with Gradient Descent
+
+### Show that $\vert \vert v \vert \vert$ is constrained by $\epsilon$
+
+Proof that the choice for $\Delta v$, which minimizes
+$\Delta C = \nabla C \cdot \Delta v$ is $\Delta v = -n \cdot \nabla C$, where
+$n = \frac{\epsilon}{\vert \vert \nabla C \vert \vert}$ is determined by the
+size constraint of $\vert \vert \Delta v \vert \vert = \epsilon$.
+
+```math
+\Delta v =
+  - n \cdot \nabla C =
+  - \frac{\epsilon}{\vert \vert \nabla C \vert \vert} \nabla C
+```
+
+```math
+\Downarrow
+```
+
+```
+\Delta C \approx \nabla C \cdot \Delta v =
+```
+
+```math
+- \frac{\epsilon}{\vert \vert \nabla C \vert \vert} \nabla C \cdot \nabla C =
+```
+
+```math
+- \frac{\epsilon}{\vert \vert \nabla C \vert \vert} \nabla C ^ 2 =
+```
+
+```math
+- \frac{\epsilon}{\vert \vert \nabla C \vert \vert} \vert \vert \nabla C \vert \vert ^ 2 =
+```
+
+```math
+- \epsilon \cdot \vert \vert \nabla C \vert \vert
+```
+
+```math
+\Downarrow
+```
+
+```math
+\nabla C \cdot \Delta v = - \epsilon \cdot \vert \vert \nabla C \vert \vert
+```
+
+From Cauchy–Schwarz inequality we get
+
+```math
+\nabla C \cdot \Delta v
+\leq
+\vert \vert \nabla C \vert \vert \cdot
+\vert \vert \Delta v \vert \vert
+```
+
+```math
+\Downarrow
+```
+
+```math
+- \epsilon \cdot \vert \vert \nabla C \vert \vert
+\leq
+\vert \vert \nabla C \vert \vert \cdot
+\vert \vert \Delta v \vert \vert
+```
+
+```math
+\Downarrow
+```
+
+```math
+\epsilon \cdot \vert \vert \nabla C \vert \vert
+\geq
+\vert \vert \nabla C \vert \vert \cdot
+\vert \vert \Delta v \vert \vert
+```
+
+```math
+\Downarrow
+```
+
+```math
+\epsilon \geq \vert \vert \Delta v \vert \vert
+```
+
+### What happens when $C$ is a 1 dimension function?
+
+The geometric representation of gradient descent in the 1 dimensional case is
+finding the minimum of a function.
+
