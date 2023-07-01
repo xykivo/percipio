@@ -292,3 +292,14 @@ From Cauchy–Schwarz inequality we get
 The geometric representation of gradient descent in the 1 dimensional case is
 finding the minimum of a function.
 
+### Advantage and disadvantage of mini batch size is 1 in stochastic learning?
+
+The main advantage of using a mini batch size of 1 (online learning), is that
+the learning can be performed on data that is not known in advance. Each time
+new input data is provided learning can be done, as long as there is a data
+label. This is useful for using machine learning in systems that get continous
+input, such as spam filter.
+
+The disadvantage of online learning is that each incoming input has a larger
+impact, and can cause the gradient descent to have greater variation, causing
+the learning to take more time.

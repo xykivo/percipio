@@ -136,7 +136,64 @@ If we choose $\Delta v = -n \cdot \nabla C$ we get
   -n \cdot \vert \vert \nabla C \vert \vert ^2
 ```
 
+For gradient descent for $C(w, b)$ we need substitute $v$ with weights $w$ and
+biases $b$.
 
+This means that $\nabla C$ has the components $\frac{\delta C}{\delta w_k}$
+and $\frac{\delta C}{\delta b_l}$.
+
+$w_k \rightarrow w'_k = w_k - n \frac{\delta C}{\delta w_k}$
+
+$b_l \rightarrow b'_l = b_l - n \frac{\delta C}{\delta b_l}$
+
+The cost equation (below), requires calculating the average cost of all inputs.
+Thie mean calculating a quadratic equatino for each input.
+
+```math
+C(w, b) \equiv \frac{1}{2n} \sum{\vert \vert y(x) - (w \cdot x + b)} \vert \vert
+```
+
+One solution is to use stochastic gradient descent. The idea is to estimate
+$\nabla C$ by computing $\nabla C_x$ for a small subset of the input chosen
+randomally. By averaging a small sample (size = $m$) we can get a good estimate
+of the true $\nabla C$.
+
+```math
+\frac{\sum_{j=1}^m \nabla C_{X_j}}{m} \approx \frac{\sum_X \nabla C_X}{m} = \nabla C,
+```
+
+```math
+\Downarrow
+```
+
+```math
+\nabla C \approx \frac{1}{m} \sum_{j=1}^m \nabla C_{X_j},
+```
+
+When we apply this to learning in neural networks we get
+
+```math
+w_k \rightarrow w'_k =
+w_k - \frac{n}{m} \sum_j \frac{\delta C_{X_j}}{\delta w_k}
+```
+
+```math
+b_l \rightarrow b'_l =
+b_l - \frac{n}{m} \sum_j \frac{\delta C_{X_j}}{\delta b_l}
+```
+
+> _Note_
+>
+> There are various convention on how to scale the cost function. In the
+> equations above the cost function is scaled by a factor of 1/n, where n is the
+> number of samples. However in some cases the the factor of 1/n is omitted.
+> This is useful when the total number of training examples isn't known in
+> advance.
+>
+> Conceptually this makes little difference, since all it means is scaling the
+> cost function by n.
+
+Online learning is when the mini batch size equals 1.
 
 # Data Sets
 
