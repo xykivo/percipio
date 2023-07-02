@@ -303,3 +303,9 @@ input, such as spam filter.
 The disadvantage of online learning is that each incoming input has a larger
 impact, and can cause the gradient descent to have greater variation, causing
 the learning to take more time.
+
+### Write the equation $a_{i+1} = \sigma(a_i \cdot w_i + b_i)$ in component form
+
+$$ \newline
+\sigma(a_{i+1}) = \frac{1}{1 + \sum_j w_{ij}a_{ij} + b_{ij}}
+$$

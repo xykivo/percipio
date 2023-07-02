@@ -36,6 +36,8 @@ POSSIBILITY OF SUCH DAMAGE.
 Notes and references for the book -
 [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/)
 
+Book source code and data [repository](https://github.com/mnielsen/neural-networks-and-deep-learning.git).
+
 # Chapter 1
 
 ## Activation Functions
@@ -194,6 +196,24 @@ b_l - \frac{n}{m} \sum_j \frac{\delta C_{X_j}}{\delta b_l}
 > cost function by n.
 
 Online learning is when the mini batch size equals 1.
+
+# Implementing Digit Classification Network
+
+When implementing a neural network to claisify digit images, we will use part of
+training data as validation data.
+
+In the implementation layer 0, is the input layer, and has no inputs.
+
+For each layer the weights and biarses are stored in a matrices. Matrix w\[i\],
+stores weights that connect layer i to layer i+1. $w[i]_{jk}$ is the weight for
+the connection between the $k^{th}$ neuron in layer i, and the $j^{th}$ neuron
+in layer i+1.
+
+This means that vector of activations for layer i+1 is</br>
+$a_{i+1} = \sigma(a_i \cdot w_i + b_i)$
+
+Where w[i] is the weights matrix for layer i to layer i+1, and b is the vector
+of biases for layers i to layer i+1.
 
 # Data Sets
 
