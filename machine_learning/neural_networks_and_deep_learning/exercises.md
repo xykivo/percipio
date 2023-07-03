@@ -206,13 +206,13 @@ with the set of digits in which it is lit.
 ### Show that $\vert \vert v \vert \vert$ is constrained by $\epsilon$
 
 Proof that the choice for $\Delta v$, which minimizes
-$\Delta C = \nabla C \cdot \Delta v$ is $\Delta v = -n \cdot \nabla C$, where
+$\Delta C = \nabla C \cdot \Delta v$ is $\Delta v = -\eta \cdot \nabla C$, where
 $n = \frac{\epsilon}{\vert \vert \nabla C \vert \vert}$ is determined by the
 size constraint of $\vert \vert \Delta v \vert \vert = \epsilon$.
 
 ```math
 \Delta v =
-  - n \cdot \nabla C =
+  - \eta \cdot \nabla C =
   - \frac{\epsilon}{\vert \vert \nabla C \vert \vert} \nabla C
 ```
 

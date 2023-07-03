@@ -131,11 +131,11 @@ The change in the cost function is
 \Delta C \approx \nabla C \cdot \Delta v
 ```
 
-If we choose $\Delta v = -n \cdot \nabla C$ we get
+If we choose $\Delta v = - \eta \cdot \nabla C$ we get
 
 ```math
-\Delta C \approx -n \cdot \nabla C \cdot \nabla C =
-  -n \cdot \vert \vert \nabla C \vert \vert ^2
+\Delta C \approx - \eta \cdot \nabla C \cdot \nabla C =
+  - \eta \cdot \vert \vert \nabla C \vert \vert ^2
 ```
 
 For gradient descent for $C(w, b)$ we need substitute $v$ with weights $w$ and
@@ -144,9 +144,9 @@ biases $b$.
 This means that $\nabla C$ has the components $\frac{\delta C}{\delta w_k}$
 and $\frac{\delta C}{\delta b_l}$.
 
-$w_k \rightarrow w'_k = w_k - n \frac{\delta C}{\delta w_k}$
+$w_k \rightarrow w'_k = w_k - \eta \frac{\delta C}{\delta w_k}$
 
-$b_l \rightarrow b'_l = b_l - n \frac{\delta C}{\delta b_l}$
+$b_l \rightarrow b'_l = b_l - \eta \frac{\delta C}{\delta b_l}$
 
 The cost equation (below), requires calculating the average cost of all inputs.
 Thie mean calculating a quadratic equatino for each input.
@@ -195,7 +195,11 @@ b_l - \frac{n}{m} \sum_j \frac{\delta C_{X_j}}{\delta b_l}
 > Conceptually this makes little difference, since all it means is scaling the
 > cost function by n.
 
-Online learning is when the mini batch size equals 1.
+An [epoch](https://deepai.org/machine-learning-glossary-and-terms/epoch) is 1
+cycle of training - going through the full training dataset.
+An epoch is diviided into batches. In each batch a differet subset of the
+training data is fed to the network. Iterations is the number of batches needed
+to complte one epoch.
 
 # Implementing Digit Classification Network
 
