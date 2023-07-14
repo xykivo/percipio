@@ -35,5 +35,14 @@ Currently this example supports the following machine learning problems:
 - Digit image classification
 '''
 
+import argparse
+
+PROBLEM_LIST = ['digit_classification']
+PROBLEM_HELP_MSG = 'The problem solved, must be one of [{0}]'.format(
+    ', '.join(PROBLEM_LIST))
+
 if '__main__' == __name__:
-    print(__doc__)
+    arg_parser = argparse.ArgumentParser(description=__doc__)
+    arg_parser.add_argument('problem', metavar='PROBLEM', choices=PROBLEM_LIST,
+                            help=PROBLEM_HELP_MSG)
+    arg_parser.parse_args()
