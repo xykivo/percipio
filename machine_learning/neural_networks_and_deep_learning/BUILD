@@ -44,5 +44,6 @@ py_binary(
     name = "neuralnetwork",
     srcs = glob(["src/**/*.py"]),
     main = "src/main.py",
+    imports = ["src"],
     python_version = "PY3",
 )
