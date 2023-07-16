@@ -35,6 +35,16 @@ Currently this example supports the following machine learning problems:
 - Digit image classification
 '''
 
+import pkg_resources
+
+INSTALLED_PACKAGES = set(package.key for package in pkg_resources.working_set)
+REQUIRED_PACKAGES = set(['numpy', 'python-mnist'])
+missing_packages = REQUIRED_PACKAGES - INSTALLED_PACKAGES
+if 0 < len(missing_packages):
+    print('Error: missing the follwing Python pakcages', missing_packages)
+    print('  Can be installed via pip3: pip3 install', ' '.join(missing_packages))
+    exit(1)
+
 import argparse
 
 PROBLEM_LIST = ['digit_classification']
@@ -42,7 +52,10 @@ PROBLEM_HELP_MSG = 'The problem solved, must be one of [{0}]'.format(
     ', '.join(PROBLEM_LIST))
 
 if '__main__' == __name__:
-    arg_parser = argparse.ArgumentParser(description=__doc__)
+    arg_parser = argparse.ArgumentParser(
+            description=__doc__,
+            formatter_class=argparse.RawDescriptionHelpFormatter)
     arg_parser.add_argument('problem', metavar='PROBLEM', choices=PROBLEM_LIST,
                             help=PROBLEM_HELP_MSG)
     arg_parser.parse_args()
+    exit(0)
