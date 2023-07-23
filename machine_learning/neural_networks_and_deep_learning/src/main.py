@@ -38,24 +38,82 @@ Currently this example supports the following machine learning problems:
 import pkg_resources
 
 INSTALLED_PACKAGES = set(package.key for package in pkg_resources.working_set)
-REQUIRED_PACKAGES = set(['numpy', 'python-mnist'])
+REQUIRED_PACKAGES = set(['numpy', 'emnist'])
 missing_packages = REQUIRED_PACKAGES - INSTALLED_PACKAGES
 if 0 < len(missing_packages):
-    print('Error: missing the follwing Python pakcages', missing_packages)
+    print('Error: missing the follwing Python pakcages:',
+          ', '.join(missing_packages))
     print('  Can be installed via pip3: pip3 install', ' '.join(missing_packages))
     exit(1)
 
 import argparse
+import emnist
+import os
 
-PROBLEM_LIST = ['digit_classification']
+PROBLEM_DATA_MAP = {'digit_classification' : 'digits'}
+PROBLEM_LIST = PROBLEM_DATA_MAP.keys()
 PROBLEM_HELP_MSG = 'The problem solved, must be one of [{0}]'.format(
     ', '.join(PROBLEM_LIST))
+
+def add_data_subparser(arg_subparsers):
+    '''Add an argument sub parser for data management command
+
+    :param arg_subparsers: The subparser list the data command sub parwer is
+                           added to
+    '''
+    data_subparser = arg_subparsers.add_parser(
+            'data', help='Manage training and test data')
+    data_subparser.add_argument('-d', '--download',
+                                action='store_true',
+                                help='Download data and cache it')
+    data_subparser.add_argument( '-r', '--delete',
+                                action='store_true',
+                                help='Delete data cache')
+
+def data(args):
+    '''Manage training and test data
+    '''
+    print_data_cache_path = lambda: print(
+            'data is cached in:', emnist.get_cached_data_path())
+    if args.download:
+        emnist.ensure_cached_data()
+        print_data_cache_path()
+    elif args.delete:
+        print('clearing data cache', emnist.get_cached_data_path())
+        emnist.clear_cached_data()
+    else:
+        if os.path.isfile(emnist.get_cached_data_path()):
+            print_data_cache_path()
+        else:
+            print('data not cached')
+
+def add_train_subparser(arg_subparsers):
+    '''Add an argument sub parser for the train command
+
+    :param arg_subparsers: The subparser list the train command sub parwer is
+                           added to
+    '''
+    train_sbuparser = arg_subparsers.add_parser(
+            'train', help='Train a neural network to solve the given problem')
+    train_sbuparser.add_argument('problem', metavar='PROBLEM', choices=PROBLEM_LIST,
+                            help=PROBLEM_HELP_MSG)
+
+def train(problem):
+    '''Train a network to solve a given problem
+    '''
+    training_data, training_labels = emnist.extract_training_samples(PROBLEM_DATA_MAP[problem])
+    print(len(training_data), len(training_labels))
 
 if '__main__' == __name__:
     arg_parser = argparse.ArgumentParser(
             description=__doc__,
             formatter_class=argparse.RawDescriptionHelpFormatter)
-    arg_parser.add_argument('problem', metavar='PROBLEM', choices=PROBLEM_LIST,
-                            help=PROBLEM_HELP_MSG)
-    arg_parser.parse_args()
+    arg_subparsers = arg_parser.add_subparsers(dest='command')
+    add_data_subparser(arg_subparsers)
+    add_train_subparser(arg_subparsers)
+    args = arg_parser.parse_args()
+    if 'data' == args.command:
+        data(args)
+    elif 'train' == args.command:
+        train(args.problem)
     exit(0)
