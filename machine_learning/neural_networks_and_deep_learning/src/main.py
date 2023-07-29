@@ -45,10 +45,16 @@ if 0 < len(missing_packages):
           ', '.join(missing_packages))
     print('  Can be installed via pip3: pip3 install', ' '.join(missing_packages))
     exit(1)
+DIGIT_IMAGE_SIZE = 28 * 28
+NETWORK_SIZES = {
+    'digit_classification': [DIGIT_IMAGE_SIZE, 10]
+}
 
 import argparse
 import emnist
 import os
+
+import neural_network
 
 PROBLEM_DATA_MAP = {'digit_classification' : 'digits'}
 PROBLEM_LIST = PROBLEM_DATA_MAP.keys()
@@ -95,14 +101,41 @@ def add_train_subparser(arg_subparsers):
     '''
     train_sbuparser = arg_subparsers.add_parser(
             'train', help='Train a neural network to solve the given problem')
-    train_sbuparser.add_argument('problem', metavar='PROBLEM', choices=PROBLEM_LIST,
-                            help=PROBLEM_HELP_MSG)
+    train_sbuparser.add_argument('problem', metavar='PROBLEM',
+                                 choices=PROBLEM_LIST,
+                                 help=PROBLEM_HELP_MSG)
+    train_sbuparser.add_argument(
+            '--epochs', metavar='EPOCHS', default=32, type=int,
+            help='The number of epochs to run during training (int).')
+    train_sbuparser.add_argument(
+            '--mini-batch-size',
+            metavar='MINI_BATCH_SIZE', dest='mini_batch_size',
+            default=8, type=int,
+            help='The size of a mini batch in training (int).')
+    train_sbuparser.add_argument(
+            '--training-rate',
+            metavar='TRAINING_RATE', dest='learning_rate',
+            default=3.0, type=float,
+            help='The learning rate multiplier - eta (float).')
 
-def train(problem):
+def train(args):
     '''Train a network to solve a given problem
     '''
-    training_data, training_labels = emnist.extract_training_samples(PROBLEM_DATA_MAP[problem])
-    print(len(training_data), len(training_labels))
+    training_data, training_labels = emnist.extract_training_samples(
+            PROBLEM_DATA_MAP[args.problem])
+    neural_net = neural_network.FeedforwardNeuralNetwork(
+            NETWORK_SIZES[args.problem])
+    labeled_training_data = [(data, label) for data, label in zip(
+            training_data, training_labels)]
+    print('Training to solve', args.problem)
+    print('  epocs =', args.epochs)
+    print('  mini batch size =', args.mini_batch_size)
+    print('  learning rate (eta) =', args.learning_rate)
+    neural_net.train(
+            labeled_training_data,
+            args.epochs,
+            args.mini_batch_size,
+            args.learning_rate)
 
 if '__main__' == __name__:
     arg_parser = argparse.ArgumentParser(
@@ -115,5 +148,5 @@ if '__main__' == __name__:
     if 'data' == args.command:
         data(args)
     elif 'train' == args.command:
-        train(args.problem)
+        train(args)
     exit(0)

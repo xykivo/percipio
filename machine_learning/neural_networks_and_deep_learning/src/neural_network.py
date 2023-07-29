@@ -32,6 +32,8 @@
 '''Various neutal networks
 '''
 
+import numpy
+
 class FeedforwardNeuralNetwork:
     '''Feedforward neutal network that implements the stochastic gradient
     descent machine learning algorithm.
@@ -42,13 +44,33 @@ class FeedforwardNeuralNetwork:
     def __init__(self, layers_sizes):
         '''Initialize the neural network
 
-        :param layers_sizes: The sizes of the of network layers. The 0'th layer
+        :param layers_sizes: The sizes of the of network layers. The 0th layer
                              is the input layer, and [-1] layers is the outpu
                              layer.
+                             E.g. if the layers_sizes = [4, 3, 2], then the
+                             - 0th (input) layer has 4 inputs/neurons
+                             - 1st layer has 3 neurons
+                             - 2nd layer has 2 outputs/neurons
         '''
         self._layers_sizes = layers_sizes
+        self._weights = [numpy.random.randn(out_neuron, in_neuron) for
+                         out_neuron, in_neuron in
+                         zip(layers_sizes[:-1], layers_sizes[1:])]
+        self._biases = [numpy.random.randn(neuron, 1)for neuron in layers_sizes]
 
-    def infer(self, input):
+    @property
+    def layers_sizes(self):
+        ''':return: A list that contains the number of neurons in each layer
+        '''
+        return self._layers_sizes
+
+    @property
+    def layers_count(self):
+        ''':return: The number of layers in the network
+        '''
+        return len(self._layers_sizes)
+
+    def infer(self, inpput):
         '''Return the network output for a given input
 
         :param input: The input data vector. The size (length) of this vector
@@ -56,8 +78,10 @@ class FeedforwardNeuralNetwork:
         '''
         if len(self._layers_sizes) != len(input):
             raise Exception("Input vector size does not equal input layer size")
-        # TODO(xykivo@gmail.com) implement
-        pass
+        data = input
+        for weight, bias in zip(self._weights, self._biases):
+             data = self._activation_function(numpy.dot(weight, input))
+        return data
 
     def train(
             self,
@@ -69,11 +93,19 @@ class FeedforwardNeuralNetwork:
         '''Use the given training data to train the network using stochastic
         gradient descent.
 
-        :param training_data: List of tuples (input, output), where input is
-                              a vector whose size is equal to the input layer
+        :param training_data: List of tuples (input, output/label), where input
+                              is a vector whose size is equal to the input layer
                               size, and output is the value (scalar or vector)
                               of the expected output.
-        :param epocs:
+                              This data is used to train the network.
+        :param epocs: The number of epocs to run during training
+        :param mini_batch_size: The size of each mini batch (= number of labeld
+                                inputs) used in a mini batch
+        :param learning_rate: The learning rate multiplier (= eta)
+        :param test_data: List of tuples (input, output/label) where input is a
+                          vector whose is the size is equal to the input layer
+                          size, and output is the value of the expected output.
+                          This data is used to test the quality of training.
         '''
         # TODO(xykivo@gmail.com) implement
         pass
