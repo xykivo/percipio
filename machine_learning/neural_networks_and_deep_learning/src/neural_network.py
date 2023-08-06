@@ -32,7 +32,11 @@
 '''Various neutal networks
 '''
 
+import datetime
 import numpy
+import random
+
+import activation_functions
 
 class FeedforwardNeuralNetwork:
     '''Feedforward neutal network that implements the stochastic gradient
@@ -95,8 +99,8 @@ class FeedforwardNeuralNetwork:
 
         :param training_data: List of tuples (input, output/label), where input
                               is a vector whose size is equal to the input layer
-                              size, and output is the value (scalar or vector)
-                              of the expected output.
+                              size, and output (label) size equals the network
+                              ouutput layer.
                               This data is used to train the network.
         :param epocs: The number of epocs to run during training
         :param mini_batch_size: The size of each mini batch (= number of labeld
@@ -107,5 +111,103 @@ class FeedforwardNeuralNetwork:
                           size, and output is the value of the expected output.
                           This data is used to test the quality of training.
         '''
-        # TODO(xykivo@gmail.com) implement
-        pass
+        # if len(training_data[0][0]) != self.layers_sizes[0]:
+        #     raise Exception('Training data input size is not equal to network input size')
+        # if len(training_data[0][1]) != self.layers_sizes[-1]:
+        #     raise Exception('Training data output size is not equal to network output size')
+        for epoch in range(epochs):
+            random.shuffle(training_data)
+            mini_batches_list = [
+                    training_data[i : i + mini_batch_size]
+                    for i in range(0, len(training_data), mini_batch_size)]
+            for mini_batch in mini_batches_list:
+                # TODO(xykivo@gmail.com) implement mini batch update
+                pass
+            if test_data is None:
+                self._log(f'epoch {epoch} complete - {self._evaluate(test_data)}/{len(test_data)}')
+
+    def _train_on_mini_batch(self, mini_batch, learning_rate):
+        '''Train the network on the labeld data in the given mini batch
+
+        Update the network weights and biases using back propogation to a single
+        mini batch.
+        Note that the network weights and biases are updated once per mini
+        batch.
+
+        :param mini_batch: List of tuples (input, output). where input is a
+                           vector whose size is equal to the input layer size,
+                           and output (label) size equal the network output
+                           layer.
+        :param learning rate: The learning rate multiplier (= eta)
+        '''
+        gradient_weights = [numpy.zeros(w.shape) for w in self._weights]
+        gradient_biases = [numpy.zeros(b.shape) for b in self._biases]
+        for input, output in mini_batch:
+            gradient_descent = lambda nablas, delta_nablas:\
+                    [n + dn for n, dn in zip(nablas, delta_nablas)]
+            delta_gradient_weights, delta_gradient_biases =\
+                    self._back_propagation(input, output)
+            gradient_weights = gradient_descent(
+                    gradient_weights, delta_gradient_weights)
+            gradient_biases = gradient_descent(
+                    gradient_biases, delta_gradient_biases)
+        update_network = lambda values, gradients:\
+            [v - (learning_rate / len(mini_batch) * c)
+             for v, c in zip(values, gradients)]
+        self._weights = update_network(self._weights, gradient_weights)
+        self._biases = update_network(self._biases, gradient_biases)
+
+    def _back_propagation(self, input, output):
+        '''Calculate the gradient descent for the cost function for the input,
+        for all layers in the network for the given input and output
+
+        :return: Tuple (delta_gradient_weights, delta_gradient_biases) where
+                 gradient weights and gradient biases are lists of layers with
+                 the same dimensions as the network weights and biases layers lists.
+        '''
+        # Calculate activated layers values
+        activations = [input] # list of activation values stored layer by layer
+        layers = [] # list of network values stored layer by layer
+        for weights, biases in zip(self._weights, self._biases):
+            layers.append(numpy.dot(weights, activations[-1]) + biases)
+            activations.append(activation_functions.sigmoid(layers[-1]))
+
+        # Update the network using gradient descent.
+        # The update happens from the last layer to the first layer.
+        delta_gradient_weights = [numpy.zeros(w.shape) for w in self._weights]
+        delta_gradient_biases = [numpy.zeros(b.shape) for b in self._biases]
+        delta = self._cost_derivative(activations[-1], output) * \
+                activation_functions.sigmoid_derivative(layers[-1])
+        delta_gradient_weights[-1] = numpy.dot(delta, activations[-2].transpose)
+        delta_gradient_biases[-1] = delta
+        for layer_index in range(-2, -self.layers_count, step=-1):
+            delta = numpy.dot(self._weights[layer_index + 1].transpose, delta) * \
+                    activation_functions.sigmoid_derivative(layers[layer_index])
+            delta_gradient_weights =\
+                    numpy.dot(delta, activations[layer_index - 1].transpose)
+            delta_gradient_biases = delta
+
+        return delta_gradient_weights, delta_gradient_biases
+
+    def _evaluate(self, test_data):
+        '''Evaluate the quality of the network
+
+        :return: The number of test inputs for which the network outputs the
+                 correct result. The network output is the assumed to be the
+                 index of the neuron with the highest activation value in the
+                 output (final) layer.
+        '''
+        test_result = [(numpy.argmax(self.infer(input), output)
+                        for (input, output) in test_data)]
+        return sum(int(output == label) for (output, label) in test_result)
+
+    def _log(self, msg):
+        '''Log a message to standard output
+
+        :param meg: The message/text logged
+        '''
+        # TODO(xykivo@gmail.com) check verbosity
+        # TODO(xykivo@gmail.com) log to file and/or standard output based on
+        #                        options passed from command line
+        print(f'FeedforwardNeuralNetwork [{datetime.datetime.now()}]', msg)
+

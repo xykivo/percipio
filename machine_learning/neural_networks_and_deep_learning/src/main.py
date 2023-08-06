@@ -47,7 +47,7 @@ if 0 < len(missing_packages):
     exit(1)
 DIGIT_IMAGE_SIZE = 28 * 28
 NETWORK_SIZES = {
-    'digit_classification': [DIGIT_IMAGE_SIZE, 10]
+    'digit_classification': [DIGIT_IMAGE_SIZE, 32, 10]
 }
 
 import argparse
@@ -123,10 +123,14 @@ def train(args):
     '''
     training_data, training_labels = emnist.extract_training_samples(
             PROBLEM_DATA_MAP[args.problem])
-    neural_net = neural_network.FeedforwardNeuralNetwork(
-            NETWORK_SIZES[args.problem])
     labeled_training_data = [(data, label) for data, label in zip(
             training_data, training_labels)]
+    test_data, test_labels = emnist.extract_test_samples(
+            PROBLEM_DATA_MAP[args.problem])
+    labeled_test_data = [(data, label) for data, label in zip(
+            test_data, test_labels)]
+    neural_net = neural_network.FeedforwardNeuralNetwork(
+            NETWORK_SIZES[args.problem])
     print('Training to solve', args.problem)
     print('  epocs =', args.epochs)
     print('  mini batch size =', args.mini_batch_size)
@@ -135,7 +139,8 @@ def train(args):
             labeled_training_data,
             args.epochs,
             args.mini_batch_size,
-            args.learning_rate)
+            args.learning_rate,
+            labeled_test_data)
 
 if '__main__' == __name__:
     arg_parser = argparse.ArgumentParser(
