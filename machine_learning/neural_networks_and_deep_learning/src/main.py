@@ -51,9 +51,8 @@ NETWORK_SIZES = {
 }
 
 import argparse
-import emnist
-import os
 
+import data
 import neural_network
 
 PROBLEM_DATA_MAP = {'digit_classification' : 'digits'}
@@ -76,22 +75,15 @@ def add_data_subparser(arg_subparsers):
                                 action='store_true',
                                 help='Delete data cache')
 
-def data(args):
+def data_cmd_handler(args):
     '''Manage training and test data
     '''
-    print_data_cache_path = lambda: print(
-            'data is cached in:', emnist.get_cached_data_path())
     if args.download:
-        emnist.ensure_cached_data()
-        print_data_cache_path()
+        data.download()
     elif args.delete:
-        print('clearing data cache', emnist.get_cached_data_path())
-        emnist.clear_cached_data()
+        data.delete()
     else:
-        if os.path.isfile(emnist.get_cached_data_path()):
-            print_data_cache_path()
-        else:
-            print('data not cached')
+        data.info()
 
 def add_train_subparser(arg_subparsers):
     '''Add an argument sub parser for the train command
@@ -118,17 +110,9 @@ def add_train_subparser(arg_subparsers):
             default=3.0, type=float,
             help='The learning rate multiplier - eta (float).')
 
-def train(args):
+def train_cmd_handler(args):
     '''Train a network to solve a given problem
     '''
-    training_data, training_labels = emnist.extract_training_samples(
-            PROBLEM_DATA_MAP[args.problem])
-    labeled_training_data = [(data, label) for data, label in zip(
-            training_data, training_labels)]
-    test_data, test_labels = emnist.extract_test_samples(
-            PROBLEM_DATA_MAP[args.problem])
-    labeled_test_data = [(data, label) for data, label in zip(
-            test_data, test_labels)]
     neural_net = neural_network.FeedforwardNeuralNetwork(
             NETWORK_SIZES[args.problem])
     print('Training to solve', args.problem)
@@ -136,11 +120,11 @@ def train(args):
     print('  mini batch size =', args.mini_batch_size)
     print('  learning rate (eta) =', args.learning_rate)
     neural_net.train(
-            labeled_training_data,
+            data.get_labeled_training_data(PROBLEM_DATA_MAP[args.problem]),
             args.epochs,
             args.mini_batch_size,
             args.learning_rate,
-            labeled_test_data)
+            data.get_labeled_test_data(PROBLEM_DATA_MAP[args.problem]))
 
 if '__main__' == __name__:
     arg_parser = argparse.ArgumentParser(
@@ -151,7 +135,7 @@ if '__main__' == __name__:
     add_train_subparser(arg_subparsers)
     args = arg_parser.parse_args()
     if 'data' == args.command:
-        data(args)
+        data_cmd_handler(args)
     elif 'train' == args.command:
-        train(args)
+        train_cmd_handler(args)
     exit(0)
