@@ -36,12 +36,85 @@ inference.
 import emnist
 import numpy
 import os
+import random
+
+class _Debug:
+    '''Manage training/test/inference data used for debug
+    '''
+
+    def __init__(self, input_size=4, data_size=64):
+        '''Initialize debug data
+        '''
+        self._input_size = input_size
+        self._data_size = data_size
+        self._null_data()
+
+    def into(self):
+        '''Print information about debug data
+        '''
+        if self._labeled_training_data is None:
+            print('Debug data is not initialized')
+        else:
+            print('Debug daa')
+
+    def download(self):
+        '''Initialize the debug data
+        '''
+        if self._labeled_training_data is None:
+            self._labeled_training_data = self._init_data(self._data_size)
+        if self._labeled_test_data is None:
+            self._labeled_test_data = self._init_data(int(self._data_size / 4))
+
+    def delete(self):
+        '''Delete the debug data from memory
+        '''
+        self._null_data()
+
+
+    def get_labeled_training_data(self, name):
+        '''Get a list of debug training data
+
+        :return: List of training data tuples (data, label)
+        :param name: Not used
+        '''
+        self.download()
+        return self._labeled_training_data
+
+    def get_labeled_test_data(self, name):
+        '''Get a list of debug test data
+
+        :return: List of testing data tuples (data, label)
+        :param name: Not used
+        '''
+        self.download()
+        return self._labeled_test_data
+
+    def _null_data(self):
+        '''Reset the debug data
+        '''
+        self._labeled_training_data = None
+        self._labeled_test_data = None
+
+    def _init_data(self, data_size):
+        '''Initialize data and label it
+
+        :return: A list of tuples (data, label)
+        :param data_size: The size of the data returned (number of labeled data
+                     tuples)
+        '''
+        data_list = []
+        for _ in range(0, data_size):
+            data = numpy.random.rand(1, self._input_size)
+            label = random.random()
+            data_list.append((data, label))
+        return data_list
 
 class _Emnist:
     '''Manage EMNIST training/test/inference data
     '''
+
     def info(self):
-        '''
+        '''Print information about EMNIST data
         '''
         if os.path.isfile(emnist.get_cached_data_path()):
             self._print_data_cache_path()
@@ -93,7 +166,13 @@ class _Data:
     def __init__(self):
         '''Initialize the data object
         '''
-        self._backend_map = {'digits': _Emnist()}
+        self._backend_map = {'debug': _Debug(), 'digits': _Emnist()}
+
+    @property
+    def backends(self):
+        '''Access the backends map
+        '''
+        return self._backend_map
 
     def info(self):
         '''Print information about training/test/inference data
@@ -186,3 +265,12 @@ def get_labeled_test_data(name):
     :return: List of test data tuples (data, label)
     '''
     return _data.get_labeled_test_data(name)
+
+def init_debug(input_size, data_size):
+    '''Initialize debug data
+
+    :param input_size: The size of the debug data input (width)
+    :param data_size: The debug training data size - also impacts test and
+                      inference data size
+    '''
+    _data.backends['debug'] = _Debug(input_size, data_size)
