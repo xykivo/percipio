@@ -47,7 +47,7 @@ if 0 < len(missing_packages):
     exit(1)
 DIGIT_IMAGE_SIZE = 28 * 28
 NETWORK_SIZES = {
-    'debug' : [4, 4, 2],
+    'debug' : [4, 3, 2],
     'digit_classification': [DIGIT_IMAGE_SIZE, 32, 10]
 }
 
@@ -142,6 +142,10 @@ def add_debug_subparser(arg_subparsers):
             '-i', '--input-size', metavar='INPUT_SIZE',
             default=4, type=int, dest='input_size',
             help='The size (width) of the input used in debug training/inference')
+    debug_subparser.add_argument(
+            '-o', '--output-size', metavar='OUTPUT_SIZE',
+            default=2, type=int, dest='output_size',
+            help='The size (width) of the output used in debug training/inference')
     DATA_SIZE_HELP =\
             'The number of training inputs, test and inference inputs size ' +\
             'is also derived from this value'
@@ -156,9 +160,10 @@ def debug_cmd_handler(args):
 
     Load random debug data and labels and train a netowrk to classify it.
     '''
-    data.init_debug(args.input_size, args.data_size)
+    data.init_debug(args.input_size, args.output_size, args.data_size)
     network = NETWORK_SIZES['debug']
     network[0] = args.input_size
+    network[-1] = args.output_size
     _train(
         'debug',
         network,
@@ -183,7 +188,7 @@ def train_cmd_handler(args):
     '''Train a network to solve a given problem
     '''
     _train(
-        args.problem,
+        PROBLEM_DATA_MAP[args.problem],
         NETWORK_SIZES[args.problem],
         args.epochs,
         args.mini_batch_size,
