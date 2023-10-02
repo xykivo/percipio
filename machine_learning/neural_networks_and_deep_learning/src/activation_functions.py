@@ -40,16 +40,20 @@ the activation function).
 
 import numpy
 
-def sigmoid(value):
+class Sigmoid:
     '''Sigmoid activation function
 
-    :return: 1 / (1 + e ^ (-value))
+    Represents the sigmoid function 1 / (1 + e ^ (-x))
     '''
-    return 1.0 / (1.0 + numpy.exp(-value))
 
-def sigmoid_derivative(value):
-    '''Derivative of the sigmoid activation functiosn
+    def __call__(self, value):
+        ''':return: 1 / (1 + e ^ (-value))
+        '''
+        return 1.0 / (1.0 + numpy.exp(-value))
 
-    :retuen: The derivative of the sigmooif function for the given value
-    '''
-    return (sigmoid(value) * (1-sigmoid(value)))
+    def derivative(self, value):
+        '''Derivative of the sigmoid function
+
+        :return: The derivative of the sigmooif function for the given value
+        '''
+        return (self(value) * (1 - self(value)))

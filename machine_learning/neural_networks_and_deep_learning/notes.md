@@ -219,6 +219,10 @@ $a_{i+1} = \sigma(a_i \cdot w_i + b_i)$
 Where w[i] is the weights matrix for layer i to layer i+1, and b is the vector
 of biases for layers i to layer i+1.
 
+The implementation uses backpropagation, which uses the cost derivative to
+correct the network weights and biases.
+[Good explanation of backpropagation](https://towardsdatascience.com/understanding-backpropagation-algorithm-7bb3aa2f95fd)
+
 # Data Sets
 
 [MNIST data set](http://yann.lecun.com/exdb/mnist/)
