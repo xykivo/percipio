@@ -111,8 +111,8 @@ The minimization of $C(w, b)$ uses the gradient descent algorithm.
 The gradient vector:
 
 ```math
-\nabla C \equiv (\frac{\delta C}{\delta v_0}, \frac{\delta C}{\delta v_1}, ...,
-\frac{\delta C}{\delta v_n})^T
+\nabla C \equiv (\frac{\partial C}{\partial v_0}, \frac{\partial C}{\partial v_1}, ...,
+\frac{\partial C}{\partial v_n})^T
 ```
 
 The descent vector:
@@ -141,12 +141,12 @@ If we choose $\Delta v = - \eta \cdot \nabla C$ we get
 For gradient descent for $C(w, b)$ we need substitute $v$ with weights $w$ and
 biases $b$.
 
-This means that $\nabla C$ has the components $\frac{\delta C}{\delta w_k}$
-and $\frac{\delta C}{\delta b_l}$.
+This means that $\nabla C$ has the components $\frac{\partial C}{\partial w_k}$
+and $\frac{\partial C}{\partial b_l}$.
 
-$w_k \rightarrow w'_k = w_k - \eta \frac{\delta C}{\delta w_k}$
+$w_k \rightarrow w'_k = w_k - \eta \frac{\partial C}{\partial w_k}$
 
-$b_l \rightarrow b'_l = b_l - \eta \frac{\delta C}{\delta b_l}$
+$b_l \rightarrow b'_l = b_l - \eta \frac{\partial C}{\partial b_l}$
 
 The cost equation (below), requires calculating the average cost of all inputs.
 Thie mean calculating a quadratic equatino for each input.
@@ -201,6 +201,170 @@ An epoch is diviided into batches. In each batch a differet subset of the
 training data is fed to the network. Iterations is the number of batches needed
 to complte one epoch.
 
+# Chapter 2 - Backpropagation
+
+## Fast Matrix Based Math
+
+This chapter describes the math behind back propagation.
+
+$w^l_{jk}$ denotes the weight for the connection between the $k^{th}$ neuron in
+the $(l-1)^{th}$ layer to $j^{th}$ neuron in the $l^{th}$ layer.
+
+$b^l_j$ denotes the bias for the $j^{th}$ neuron in the $l^{th}$ layer.
+
+The activation of $a^l_j$ neuron ($j^{th}$ neuron in the $l^{th}$ layer) is:
+
+$a^l_j = \sigma(\sum{w^l_{jk} a^{l-1}_k + b^l_j})$
+
+The weight matrix $w^l$ is the input weights for the $l^{th}$ layer. The value
+in the $j^{th}$ row and $k^{th}$ column is $w^l_{jk}$.
+
+The bias vector $b^l$ is the input biases for the $l^{th}$ layer. The $j^{th}$
+value in the vector is $b^l_j$.
+
+The weighted input to the $l^{th}$ layer, $z^l$ is: $z^l = w^l a^{l-1} + b^l$.
+Note that $z^l_j = \sum{w^l_{jk} a^{l-1}_k + b^l_j}$.
+
+The activation vetor $a^l$ is the activation values in the $l^{th}$ layer. The
+$j^{th}$ value in the vector is $a^l_j$.
+
+The vector form of $\sigma$ (the activation functions) is
+$\sigma([x, y]) = [\sigma(x), \sigma(y)]$
+
+The vectorized form of the activation function above is:
+$a^l = \sigma(z^l) = \sigma(w^l a^{l-1} + b^l)$
+
+## Cost Function Assumptions
+
+The cost function can be written as an average over individual training examples
+$C = \frac{1}{n} \sum_x{C_x}$. For the quadratic cost function the cost for a
+single training sample is $C_x = \frac{1}{2} ||y - a^L||$ ($y$ is the desired
+output, and $a^L$ is the vector of activation outputs from the network).
+
+The cost function can be written as a function of the (activation) outputs of
+the neural network.
+E.g. the quadratic cost function can be written as
+$C = \frac{1}{2} ||y - a^L||$.
+
+## The Hadamard Product
+
+The Hadamard product (aka Schur product) is elementwise multiplication:
+
+```math
+\begin{bmatrix}
+a \\
+b
+\end{bmatrix}
+\odot
+\begin{bmatrix}
+c \\
+d
+\end{bmatrix}
+=
+\begin{bmatrix}
+a \cdot b \\
+c \cdot d
+\end{bmatrix}
+```
+
+## The 4 Fundamental Backpropagation Equations
+
+### The Error
+
+The error is an intermediate value that is calculated during backpropagation.
+
+$\delta^l_j$ is the error in the $j^{th}$ neuron in the $l^{th}$.
+
+$\delta^l_j$ is used to calculate $\frac{\partial C}{\partial w}$ and
+$\frac{\partial C}{\partial b}$
+
+The error in the $j^{th}$ neuron in the $l^{th}$ can be defined as a derivative
+of the intermediate value: $\delta^l_j = \frac{\partial C}{\partial z^l_j}$.
+
+Note that a similar (better?) back propagation result can be achived by changing
+the error in the activated value, so that
+$\delta^l_j = \frac{\partial C}{\partial a^l_j}$
+
+### Equations
+
+__(BP1) Error in the output layer equation__
+
+$\delta^L_j = \frac{\partial C}{\partial a^L_j} \sigma'(z^L_j)$
+
+$\frac{\partial C}{\partial a^L_j}$ measures how fast the cost is changing as a
+function of the $j^{th}$ output activation.
+E.g. for the quadratic cost function
+```math
+C = \frac{1}{2}\sum_j({y_j - a^L_j})^2 \rightarrow
+\frac{\partial C}{\partial a^L_j} = (a^L_j - y_j)
+```
+.
+
+$\sigma'(z^L_j)$ measures how fast the activation function changes at $z^L_j$.
+
+The matrix based form of the error in output equation is
+$\delta^L = \nabla_a C \odot \sigma'(z^L)$, where $\nabla_a$ is a vector of the
+partial derivatives $\frac{\partial C}{\partial a^L_j}$.
+For the quadratic cost function the matrix based error in output function is
+$\delta^L = (a^L - y) \odot \sigma'(z^L)$.
+
+__(BP2) Error $\delta^l$ in terms of error $\delta^{l-1}$__
+
+This equation moves the error from the $l + 1$ layer to $l$ layer. Called
+repeately it propagates the error from the last layer to the first layer.
+
+$\delta^l = ((w^{l+1})^T \delta^{l+1} \odot \sigma'(z^l))$
+
+$(w^{l+1})^T$ is the transpose matrix weight matrix $w^{l+1}$ for the $l+1$
+layer. The use of the transpose matrix can be thought as moving backwords from
+the $l +1$ layer ot the $l$ layer.
+
+The use of $\odot \sigma'(z^l)$ can be though of as moving the error through the
+actication function.
+
+By combining BP1 and BP2 we can calculate the error $\delta^l$ in any layer $l$
+in the network. Use BP1 to calculate the error $\delta^L$ in the last layer,
+then use BP2 repeatedly until we get to the layer we are interested in.
+
+__(BP3) Equation for the rate of change in the cost as a function of change in
+the biases__
+
+$\frac{\partial C}{\partial b^l_j} = \delta^l_j$
+
+This means that the error $\delta^l_j$ is equal to the rate of change
+$\frac{\partial C}{\partial b^l_j}$.
+
+In vector form this equation can be written as
+$\frac{\partial C}{\partial b} = \delta$.
+
+__(BP4) Equation for the rate of change in the cost as a function of change in
+the weights__
+
+$\frac{\partial C}{\partial w^l_{jk}} = a^{l-1}_k \cdot \delta^l_j$
+
+The matrix form of this equation is
+$\frac{\partial C}{\partial w} = a_{in} \cdot \delta_{out}$. Where $a_{in}$ is
+the activation input to the weight $w$, and $\delta_{out}$ is the error of the
+neuron output from the weight $w$.
+
+__Insights from BP1-BP4__
+
+Note that a consequence of BP4 is that if $a_{in}$ is small then the gradient
+$\frac{\partial C}{\partial w}$ will also be small This makes the weight learn
+slowly, since it won't change much during gradient descent.
+
+When $\sigma(z^l_j)$ is close to 0 or 1, then $\sigma'(z^l_j) \rightarrow 0$,
+which means that the neuron learns slowly if the activation is close to 0 or 1.
+In this case it is said that the neuron is saturated, and as a result the weight
+is learning slowly.
+
+In summary if the input neuron has low activation value, or the output neuron is
+saturated then the weight will learn slowly.
+
+Note that if we use another activation function, e.g. one that whose derivative
+is always positive: $\sigma' > 0$, and is never close to 0, the behvaiour would
+be different. There would not be no slow down when the neuron is saturated.
+
 # Implementing Digit Classification Network
 
 When implementing a neural network to claisify digit images, we will use part of
@@ -222,6 +386,7 @@ of biases for layers i to layer i+1.
 The implementation uses backpropagation, which uses the cost derivative to
 correct the network weights and biases.
 [Good explanation of backpropagation](https://towardsdatascience.com/understanding-backpropagation-algorithm-7bb3aa2f95fd)
+[Wikipedia backpropagation explanation](https://en.wikipedia.org/wiki/Backpropagation)
 
 # Data Sets
 
