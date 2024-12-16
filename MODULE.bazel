@@ -1,6 +1,6 @@
 # BSD 3-Clause License
 #
-# Copyright (c) 2022, Dror Smolarsky
+# Copyright (c) 2020-2021, Dror Smolarsky
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -29,16 +29,28 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-"""Classes Swift tutorial samples.
-"""
+# Xykivo repo top level Bazel module
 
-load("@rules_swift//swift:swift_binary.bzl", "swift_binary")
+module(name = "xykivo-percipio", version = "0.0")
 
-swift_binary(
-    name = "swiftclasses",
-    srcs = glob(["src/*.swift"]),
-    target_compatible_with = select({
-            "@platforms//os:osx": [],
-            "//conditions:default": ["@platforms//:incompatible"],
-    }),
-)
+# General
+bazel_dep(name = "platforms", version = "0.0.10")
+
+# Android
+bazel_dep(name = "rules_android", version = "0.6.0-alpha1.bcr.1")
+
+# Apple
+bazel_dep(name = "rules_apple", version = "3.16.1")
+
+# Go
+bazel_dep(name = "rules_go", version = "0.51.0-rc2")
+bazel_dep(name = "gazelle", version = "0.40.0")
+
+# Java
+bazel_dep(name = "rules_java", version = "8.6.2")
+
+# Python
+bazel_dep(name = "rules_python", version = "1.0.0")
+
+# Swift
+bazel_dep(name = "rules_swift", version = "2.3.0")
