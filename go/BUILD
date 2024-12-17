@@ -32,7 +32,7 @@
 """Go samples, tutorials, and experiments
 """
 
-load("@bazel_gazelle//:def.bzl", "gazelle")
+load("@gazelle//:def.bzl", "gazelle")
 
 # gazelle:prefix github.com/xykivo/percipio
 gazelle(name = "gazelle")
