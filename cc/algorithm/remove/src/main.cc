@@ -40,9 +40,12 @@ int main() {
   static constexpr int kRemovedElement{-1};
   std::cout << "remove " << kRemovedElement << " from [";
   auto print_int = [](int integer) { std::cout << integer << ' '; };
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(array.begin(), array.end(), print_int);
   std::cout << "] = [";
+  // NOLINTNEXTLINE(modernize-use-ranges)
   auto* iter = std::remove(array.begin(), array.end(), kRemovedElement);
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(array.begin(), array.end(), print_int);
   std::cout << "]\n";
   std::cout << "past the end iterator points to " << *iter << "\n";

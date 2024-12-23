@@ -36,10 +36,6 @@ load("//bazel:cc.bzl", "xkv_cc_library")
 
 xkv_cc_library(
     name = "util",
-    srcs = glob([
-        "src/*.cc",
-        "src/*.h",
-    ]),
     hdrs = glob(["include/**/*.h"]),
     version = "0.0.0",
     visibility = ["//visibility:public"],

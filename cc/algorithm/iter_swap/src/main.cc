@@ -29,6 +29,8 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <cstddef>
+
 #include <algorithm>
 #include <array>
 #include <iostream>
@@ -41,14 +43,18 @@ int main() {
   std::array<int, kArraySize> array_1{-1, -2, -3, -4};
   std::cout << "swapping begin iterator of array_0=[";
   auto print_int = [](int integer) { std::cout << integer << ' '; };
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(array_0.begin(), array_0.end(), print_int);
   std::cout << "] with begin iterator of array_1=[";
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(array_1.begin(), array_1.end(), print_int);
   std::cout << "] -> ";
   std::iter_swap(array_0.begin(), array_1.begin());
   std::cout << " array_0=[";
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(array_0.begin(), array_0.end(), print_int);
   std::cout << "] array_1=[";
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(array_1.begin(), array_1.end(), print_int);
   std::cout << "]\n";
   return 0;

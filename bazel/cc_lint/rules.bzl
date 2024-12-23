@@ -32,7 +32,7 @@
 """Rules to run lint tools on C++ targets
 """
 
-load("@rules_cc//cc:toolchain_utils.bzl", "find_cpp_toolchain")
+load("@rules_cc//cc:find_cc_toolchain.bzl", "find_cpp_toolchain", "use_cc_toolchain")
 
 CcLintInfo = provider(
     doc = "Information for linting C++ files",
@@ -56,9 +56,15 @@ def _cc_compiler_opts(cc_toolchain, cc_info, copts):
         cc_compilation_context.quote_includes.to_list() + \
         cc_compilation_context.system_includes.to_list()
     compiler_options = []
-    compiler_options.extend(
-        ["-I" + inc_dir for inc_dir in cc_include_dirs],
-    )
+    for inc_dir in cc_include_dirs:
+        # Xcode include paths should not be added to the clang-tidy command
+        # because it causes clang-tidy to emit errors/warnings on Xcode related
+        # headers when compiling on MacOS when using Xcode toolchain.
+        if inc_dir.startswith("/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk") or \
+           inc_dir.startswith("/Applications/Xcode.app/Contents/Developer"):
+            pass
+        else:
+            compiler_options.append("-I" + inc_dir)
     compiler_options.extend(
         ["-D" + cc_def for cc_def in cc_compilation_context.defines.to_list()],
     )
@@ -135,5 +141,5 @@ cc_lint = rule(
             default = Label("@bazel_tools//tools/cpp:current_cc_toolchain"),
         ),
     },
-    toolchains = ["//bazel/cc_lint:toolchain_type"],
+    toolchains = ["//bazel/cc_lint:toolchain_type"] + use_cc_toolchain(),
 )

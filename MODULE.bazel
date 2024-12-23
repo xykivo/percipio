@@ -42,6 +42,13 @@ bazel_dep(name = "rules_android", version = "0.6.0-alpha1.bcr.1")
 # Apple
 bazel_dep(name = "rules_apple", version = "3.16.1")
 
+# C/C++
+bazel_dep(name = "rules_cc", version = "0.1.0")
+register_toolchains(
+    "//bazel/cc_lint:clang-tidy-toolchain",
+    "//bazel/cc_code_style_check:clang-format-toolchain",
+)
+
 # Go
 bazel_dep(name = "rules_go", version = "0.51.0-rc2")
 bazel_dep(name = "gazelle", version = "0.40.0")

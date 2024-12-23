@@ -29,6 +29,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <format>
 #include <iostream>
 #include <mutex>
 #include <string_view>
@@ -44,15 +45,15 @@ void WorkerFunction(std::string_view name, int count, int skip) {
   const std::scoped_lock lock(mtx);
   for (int i = 0; i < count; ++i) {
     counter += skip;
-    std::cout << name << " counting - " << i << " counter=" << counter
-              << std::endl;
+    std::cout << std::format("{0} counting - {1} counter={2}\n", name, i,
+                             counter);
   }
 }
 
 }  // namespace
 
 int main() {
-  std::cout << "STL std::mutex sample" << std::endl;
+  std::cout << "STL std::mutex sample\n";
   static constexpr int kThread0Count{16};
   static constexpr int kThread0Skip{2};
   std::thread thread_0{WorkerFunction, "thread_0", kThread0Count, kThread0Skip};

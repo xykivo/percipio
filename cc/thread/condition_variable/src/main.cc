@@ -30,6 +30,7 @@
 // POSSIBILITY OF SUCH DAMAGE.
 
 #include <condition_variable>
+#include <format>
 #include <iostream>
 #include <mutex>
 #include <string_view>
@@ -44,14 +45,14 @@ void WorkerFunction(std::string_view name, bool* start, int count) {
   std::unique_lock lock(mtx);
   cond_var.wait(lock, [&start]() { return start; });
   for (int i = 0; i < count; ++i) {
-    std::cout << name << " counting - " << i << std::endl;
+    std::cout << std::format("{0} counting - {1}\n", name, i);
   }
 }
 
 }  // namespace
 
 int main() {
-  std::cout << "STL std::condition_variable sample" << std::endl;
+  std::cout << "STL std::condition_variable sample\n";
   bool start{false};
   static constexpr int kCount{8};
   std::thread thread_0{WorkerFunction, "thread_0", &start, kCount};
