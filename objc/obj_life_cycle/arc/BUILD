@@ -36,12 +36,11 @@ Experiments to check object life cycle in
 2. Manual Retain Release (MRR)
 """
 
-load("@build_bazel_rules_apple//apple:macos.bzl", "macos_application")
-load("@build_bazel_rules_apple//apple:versioning.bzl", "apple_bundle_version")
+load("@rules_apple//apple:macos.bzl", "macos_application")
+load("@rules_apple//apple:versioning.bzl", "apple_bundle_version")
 
 objc_library(
     name = "objcarclife",
-    hdrs = glob(["include/**/*.h"]),
     srcs = glob([
         "src/**/*.h",
         "src/**/*.m",

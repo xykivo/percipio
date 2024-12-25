@@ -35,7 +35,7 @@ This example uses a Swift binary linked with an Objective-C library to run
 the Object-C code.
 """
 
-load("@build_bazel_rules_swift//swift:swift.bzl", "swift_binary")
+load("@rules_swift//swift:swift.bzl", "swift_binary")
 
 objc_library(
     name = "ObjCHelloWorld",

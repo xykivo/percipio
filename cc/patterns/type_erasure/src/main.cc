@@ -83,10 +83,10 @@ int main(int argc, char* argv[]) {
   (void)argv;
   std::cout << "Sample implementation of the type erasure design pattern\n";
   CallFunc([]() {
-    std::cout << "Call function with no arguments " << count << std::endl;
+    std::cout << "Call function with no arguments " << count << '\n';
   });
   CallFunc([=]() {
     std::cout << "Call function with captured (by value) arguments " << count
-              << std::endl;
+              << '\n';
   });
 }

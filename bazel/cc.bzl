@@ -55,7 +55,6 @@ def _add_common_cc_options(version, **kwargs):
         "-Wall",
         "-Werror",
         "-fno-rtti",
-        "-fno-exceptions",
     ] + copts
     cc_args["copts"] = copts
     linkopts = cc_args.pop("linkopts", [])

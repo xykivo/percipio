@@ -40,10 +40,13 @@ int main() {
   static constexpr int kReplaced{-1};
   std::cout << "replace " << kReplaced << " in [";
   auto print_int = [](int integer) { std::cout << integer << ' '; };
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(array.begin(), array.end(), print_int);
   static constexpr int kReplacement{0};
   std::cout << "] with " << kReplacement << " = [";
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::replace(array.begin(), array.end(), kReplaced, kReplacement);
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(array.begin(), array.end(), print_int);
   std::cout << "]\n";
 }

@@ -44,8 +44,10 @@ int main() {
     return next;
   };
   std::cout << "generating fibonachi " << array.size() << " numbers\n";
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::generate(array.begin(), array.end(), fibonachi_generator);
   auto print_int = [](int integer) { std::cout << integer << ' '; };
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(array.begin(), array.end(), print_int);
   std::cout << '\n';
 }

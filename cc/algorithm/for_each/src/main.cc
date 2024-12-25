@@ -29,8 +29,11 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <cstddef>
+
 #include <algorithm>
 #include <array>
+#include <exception>
 #include <iostream>
 #include <vector>
 
@@ -75,8 +78,13 @@ void ForEachSum(const std::array<int, ArraySize>& array) {
 
 /// C++ for_each main entry point
 int main() {
-  std::cout << "STL std::for_each samples\n";
-  ForEachNegate(kPositiveIntegers);
-  ForEachSum(kPositiveIntegers);
+  try {
+    std::cout << "STL std::for_each samples\n";
+    ForEachNegate(kPositiveIntegers);
+    ForEachSum(kPositiveIntegers);
+  } catch (const std::exception& error) {
+    std::cerr << error.what() << '\n';
+    return 1;
+  }
   return 0;
 }

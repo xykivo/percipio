@@ -36,6 +36,7 @@
 
 # Bazel
 .bazelrc
+MODULE.bazel.lock
 bazel-bin
 bazel-bin/
 bazel-out

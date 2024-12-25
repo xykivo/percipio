@@ -39,10 +39,13 @@ int main() {
   std::array<int, kArraySize> array{-1, 1, -2, 2, -3, 3, -4, 4};
   std::cout << "remove negative numbers from [";
   auto print_int = [](int integer) { std::cout << integer << ' '; };
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(array.begin(), array.end(), print_int);
   std::cout << "] = [";
   auto is_negative = [](int integer) { return (0 > integer); };
+  // NOLINTNEXTLINE(modernize-use-ranges)
   auto* iter = std::remove_if(array.begin(), array.end(), is_negative);
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(array.begin(), array.end(), print_int);
   std::cout << "]\n";
   std::cout << "past the end iterator points to " << *iter << "\n";

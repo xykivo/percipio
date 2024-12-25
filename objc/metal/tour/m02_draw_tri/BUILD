@@ -34,14 +34,13 @@
 See: https://developer.apple.com/documentation/metal/using_a_render_pipeline_to_render_primitives?language=objc
 """
 
-load("@build_bazel_rules_apple//apple:macos.bzl", "macos_application")
-load("@build_bazel_rules_apple//apple:versioning.bzl", "apple_bundle_version")
-load("@build_bazel_rules_metal//:metal.bzl", "metal_binary")
+load("@rules_apple//apple:macos.bzl", "macos_application")
+load("@rules_apple//apple:versioning.bzl", "apple_bundle_version")
+load("@rules_metal//:metal.bzl", "metal_binary")
 
 metal_binary(
     name = "m02drawtrishaders",
     srcs = glob([
-        "shader/**/*.h",
         "shader/**/*.metal"
     ]) + ["src/common_types.h"],
     visibility = ["//visibility:private"],
@@ -56,7 +55,6 @@ metal_binary(
 # This prevents placing this file in an include path
 objc_library(
     name = "m02drawtri",
-    hdrs = glob(["include/**/*.h"]),
     srcs = glob([
         "src/**/*.h",
         "src/**/*.m",
