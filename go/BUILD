@@ -34,5 +34,4 @@
 
 load("@gazelle//:def.bzl", "gazelle")
 
-# gazelle:prefix github.com/xykivo/percipio
 gazelle(name = "gazelle")
