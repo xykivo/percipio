@@ -29,6 +29,8 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <cstddef>
+
 #include <algorithm>
 #include <array>
 #include <iostream>
@@ -50,14 +52,19 @@ int main() {
       std::cout << *int_ptr << ' ';
     }
   };
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(src_array.begin(), src_array.end(), print_unique_int_ptr);
   std::cout << "] to [";
   std::array<std::unique_ptr<int>, src_array.size() * 2> dst_array{};
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::move(src_array.begin(), src_array.end(), dst_array.begin());
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(dst_array.begin(), dst_array.end(), print_unique_int_ptr);
   std::cout << "], src is now [";
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(src_array.begin(), src_array.end(), print_unique_int_ptr);
   std::cout << "]\n";
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(src_array.begin(), src_array.end(),
                 [](std::unique_ptr<int>& int_ptr) { int_ptr.reset(); });
   return 0;

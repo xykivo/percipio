@@ -29,6 +29,8 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <cstddef>
+
 #include <algorithm>
 #include <array>
 #include <iostream>
@@ -45,6 +47,7 @@ int main() {
   xykivo::percipio::util::OutputRange(std::cout, kSrcArray.begin(),
                                       kSrcArray.end(), " ");
   std::array<int, kSrcArray.size() * 2> dst_array{};
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::copy_backward(kSrcArray.begin(), kSrcArray.end(), dst_array.end());
   std::cout << "] to [";
   xykivo::percipio::util::OutputRange(std::cout, dst_array.begin(),

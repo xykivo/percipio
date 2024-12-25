@@ -39,11 +39,14 @@ int main() {
   std::array<int, kArraySize> array{-1, 1, -2, 2, -3, 3, -4, 4};
   std::cout << "replace negative numbers from [";
   auto print_int = [](int integer) { std::cout << integer << ' '; };
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(array.begin(), array.end(), print_int);
   static constexpr int kReplacement{0};
   std::cout << "] with " << kReplacement << " = [";
   auto is_negative = [](int integer) { return (0 > integer); };
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::replace_if(array.begin(), array.end(), is_negative, kReplacement);
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(array.begin(), array.end(), print_int);
   std::cout << "]\n";
 }

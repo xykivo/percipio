@@ -37,8 +37,7 @@ Standalone utilities used by the C++ build tools.
 cc_library(
     name = "ccbuildutils",
     srcs = glob([
-        "src/*.cc",
-        "src/*.h",
+        "src/**/*.cc",
     ]),
     hdrs = glob(["include/**/*.h"]),
     strip_include_prefix = "include",

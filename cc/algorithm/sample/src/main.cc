@@ -29,6 +29,8 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <cstddef>
+
 #include <algorithm>
 #include <array>
 #include <iostream>
@@ -44,10 +46,13 @@ int main() {
   std::array<int, src_array.size() / 3> dst_array{};
   std::cout << "Sampling " << dst_array.size() << " elements of array=[";
   auto print_int = [](int integer) { std::cout << integer << ' '; };
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(src_array.begin(), src_array.end(), print_int);
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::sample(src_array.begin(), src_array.end(), dst_array.begin(),
               dst_array.size(), std::mt19937{std::random_device{}()});
   std::cout << "] -> array=[";
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(dst_array.begin(), dst_array.end(), print_int);
   std::cout << "]\n";
   return 0;

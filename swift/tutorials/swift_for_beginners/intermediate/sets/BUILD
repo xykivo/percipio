@@ -32,7 +32,7 @@
 """Sets Swift tutorial sample.
 """
 
-load("@build_bazel_rules_swift//swift:swift.bzl", "swift_binary")
+load("@rules_swift//swift:swift_binary.bzl", "swift_binary")
 
 swift_binary(
     name = "swiftsets",

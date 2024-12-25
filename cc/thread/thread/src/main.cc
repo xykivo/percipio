@@ -29,6 +29,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <format>
 #include <iostream>
 #include <thread>
 
@@ -36,14 +37,14 @@ namespace {
 
 void WorkerFunction(int count) {
   for (int i = 0; i < count; ++i) {
-    std::cout << "worker counting - " << i << std::endl;
+    std::cout << std::format("worker counting -  {0}\n", i);
   }
 }
 
 }  // namespace
 
 int main() {
-  std::cout << "STL std::thread sample" << std::endl;
+  std::cout << "STL std::thread sample\n";
   static constexpr int kCount{16};
   std::thread thread_0{WorkerFunction, kCount};
   thread_0.join();

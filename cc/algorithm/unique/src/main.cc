@@ -29,6 +29,8 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <cstddef>
+
 #include <algorithm>
 #include <array>
 #include <iostream>
@@ -41,22 +43,29 @@ int main() {
       4, 4, 4, 5, 5, 5, 5, 5};  // NOLINT(readability-magic-numbers)
   std::cout << "Equality unique - array=[";
   auto print_int = [](int integer) { std::cout << integer << ' '; };
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(array.begin(), array.end(), print_int);
+  // NOLINTNEXTLINE(modernize-use-ranges)
   auto* unique_array_end = std::unique(array.begin(), array.end());
   std::cout << "] -> array=[";
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(array.begin(), unique_array_end, print_int);
   std::cout << "]\n";
 
   std::cout << "Predicate (equal LSB) unique - array=[";
   array = {0, 1, 3, 5, 7, 2, 4, 6,   // NOLINT(readability-magic-numbers)
            8, 1, 2, 3, 4, 5, 6, 7};  // NOLINT(readability-magic-numbers)
+
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(array.begin(), array.end(), print_int);
   auto equal_lsb = [](int int_0, int int_1) {
     static constexpr int kLsbMask{0x1};
     return ((int_0 & kLsbMask) == (int_1 & kLsbMask));
   };
+  // NOLINTNEXTLINE(modernize-use-ranges)
   unique_array_end = std::unique(array.begin(), array.end(), equal_lsb);
   std::cout << "] -> array=[";
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(array.begin(), unique_array_end, print_int);
   std::cout << "]\n";
 

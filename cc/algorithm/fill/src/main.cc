@@ -29,6 +29,8 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <cstddef>
+
 #include <algorithm>
 #include <array>
 #include <iostream>
@@ -39,11 +41,14 @@ int main() {
   std::array<int, kArraySize> array{};
   std::cout << "Initialized array [";
   auto print_int = [](int integer) { std::cout << integer << ' '; };
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(array.begin(), array.end(), print_int);
   std::cout << "]\n";
   for (size_t i = 0; kArraySize > i; ++i) {
+    // NOLINTNEXTLINE(modernize-use-ranges)
     std::fill(array.begin(), array.end(), i);
     std::cout << "Filled array with " << i << " [";
+    // NOLINTNEXTLINE(modernize-use-ranges)
     std::for_each(array.begin(), array.end(), print_int);
     std::cout << "]\n";
   }

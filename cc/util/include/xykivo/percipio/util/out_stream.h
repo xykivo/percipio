@@ -47,14 +47,24 @@ void OutputRange(std::ostream& out, OutputIter begin, OutputIter end,
                  std::string_view delimiter) {
   std::copy(begin, end,
             std::ostream_iterator<typename OutputIter::value_type>(
-                out, delimiter.data()));
+                out,
+                // TODO(xykivo@gmail.com) There is no way to pass a safe string
+                //    using char* to std::ostream_iterator constructor
+                // NOLINTNEXTLINE(bugprone-suspicious-stringview-data-usage)
+                delimiter.data()));
 }
 
 /// Output a pointer range to an output stream with the given delimiter
 template <typename T>
 void OutputRange(std::ostream& out, T* begin, T* end,
                  std::string_view delimiter) {
-  std::copy(begin, end, std::ostream_iterator<T>(out, delimiter.data()));
+  std::copy(begin, end,
+            std::ostream_iterator<T>(
+                out,
+                // TODO(xykivo@gmail.com) There is no way to pass a safe string
+                //    using char* to std::ostream_iterator constructor
+                // NOLINTNEXTLINE(bugprone-suspicious-stringview-data-usage)
+                delimiter.data()));
 }
 
 }  // namespace util

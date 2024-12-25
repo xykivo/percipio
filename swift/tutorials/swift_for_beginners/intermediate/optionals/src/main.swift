@@ -29,16 +29,23 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+func optionalIntToString(i: Int?) -> String {
+  if nil != i {
+    return "\(i!)"
+  }
+  return "nil"
+}
+
 print("Swift optionals samples")
 var i: Int?
-print("optional i=\(i)") // Causes a warning because i is optional
+print("optional i=\(optionalIntToString(i:i))") // Causes a warning because i is optional
 if i != nil {
   print("i=\(i!)")
 } else {
   print("i is nil")
 }
 i = 5
-print("optional i=\(i)") // Causes a warning because i is optional
+print("optional i=\(optionalIntToString(i:i))") // Causes a warning because i is optional
 if i != nil {
   print("i=\(i!)")
 } else {
