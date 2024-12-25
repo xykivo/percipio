@@ -1,6 +1,6 @@
 # BSD 3-Clause License
 #
-# Copyright (c) 2020-2021, Dror Smolarsky
+# Copyright (c) 2024, Dror Smolarsky
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,14 @@ bazel_dep(name = "platforms", version = "0.0.10")
 bazel_dep(name = "rules_android", version = "0.6.0-alpha1.bcr.1")
 
 # Apple
+bazel_dep(name = "apple_support", version = "1.17.1")
 bazel_dep(name = "rules_apple", version = "3.16.1")
+bazel_dep(name = "rules_metal")
+git_override(
+    module_name = "rules_metal",
+    remote = "https://github.com/xykivo/rules_metal.git",
+    commit = "a726463bb73ea77417c2b59ab7c9d5d367df43e4",
+)
 
 # C/C++
 bazel_dep(name = "rules_cc", version = "0.1.0")

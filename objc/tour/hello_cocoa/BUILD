@@ -35,12 +35,11 @@ Create a simple Cocoa window and display something in it using Objective-C.
 Use a Swift binary to run the Objective-C window code.
 """
 
-load("@build_bazel_rules_apple//apple:macos.bzl", "macos_application")
-load("@build_bazel_rules_apple//apple:versioning.bzl", "apple_bundle_version")
+load("@rules_apple//apple:macos.bzl", "macos_application")
+load("@rules_apple//apple:versioning.bzl", "apple_bundle_version")
 
 objc_library(
     name = "xkvhellococoa",
-    hdrs = glob(["include/**/*.h"]),
     srcs = glob([
         "src/**/*.h",
         "src/**/*.m",
