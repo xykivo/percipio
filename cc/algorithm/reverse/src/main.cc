@@ -29,6 +29,8 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <cstddef>
+
 #include <algorithm>
 #include <array>
 #include <iostream>
@@ -41,10 +43,13 @@ int main() {
   std::array<int, kArraySize> array{0, 1, 2, 3, 4, 5, 6, 7};
   std::cout << "Reversing array=[";
   auto print_int = [](int integer) { std::cout << integer << ' '; };
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(array.begin(), array.end(), print_int);
   std::cout << "] -> ";
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::reverse(array.begin(), array.end());
   std::cout << " array=[";
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(array.begin(), array.end(), print_int);
   std::cout << "]\n";
   return 0;

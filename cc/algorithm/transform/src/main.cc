@@ -38,23 +38,30 @@ int main() {
   static constexpr std::array<int, 8> kInputArray{0, 1, 2, 3, 4, 5, 6, 7};
   std::cout << "transforming (unary increment by 1) [";
   auto print_int = [](int integer) { std::cout << integer << ' '; };
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(kInputArray.begin(), kInputArray.end(), print_int);
   std::cout << "] to [";
   auto inc_by_1 = [](int integer) { return integer + 1; };
   std::array<int, kInputArray.size()> array{};
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::transform(kInputArray.begin(), kInputArray.end(), array.begin(),
                  inc_by_1);
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(array.begin(), array.end(), print_int);
   std::cout << "]\n";
   std::cout << "transforming (binary add) [";
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(kInputArray.begin(), kInputArray.end(), print_int);
   std::cout << "] + [";
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(array.begin(), array.end(), print_int);
   std::cout << "] = [";
   std::array<int, kInputArray.size()> sum{};
   auto add = [](int int_0, int int_1) { return int_0 + int_1; };
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::transform(kInputArray.begin(), kInputArray.end(), array.begin(),
                  sum.begin(), add);
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(sum.begin(), sum.end(), print_int);
   std::cout << "]\n";
   return 0;

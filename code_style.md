@@ -64,7 +64,8 @@ Prefer using the #pragma once pre processor directive to header guards.
 
 Rational:
 
-The #pragma once directive is safer and easier to use.
+The #pragma once directive is safer and easier to use. It is supported on most
+modern compilers that support C++20.
 
 ### Doxygen Style Comments
 Use Doxygen style comments to document classes, enums, functions and fields.
@@ -93,11 +94,13 @@ recommend using them. In addition in the future the new
 may become part of the standard. If/when this happens, exception runtime and memory
 usage may become deterministic.
 
-
 ### Pointer Alignment
 Pointer (*) and reference (&) expressions must be aligned left.
 Rational:
 * This makes it easier to see the variable type for pointers and references
+
+# Go
+[Google Go coding style](https://google.github.io/styleguide/go/)
 
 # Java
 
@@ -108,6 +111,10 @@ Follow the
 
 Follow the
 [Kotlin Style Guide](https://kotlinlang.org/docs/reference/coding-conventions.html)
+
+# Objective C
+
+Follow the [Apple Coding Guidelines for Cocoa](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CodingGuidelines/CodingGuidelines.html#//apple_ref/doc/uid/10000146-SW1)
 
 # Python
 

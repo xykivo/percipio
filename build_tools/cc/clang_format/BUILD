@@ -36,10 +36,7 @@ Wrap calls to clang-tidy installed in the system path.
 
 cc_binary(
     name = "clangformat",
-    srcs = glob([
-        "src/*.cc",
-        "src/*.h",
-    ]),
+    srcs = glob(["src/**/*.cc"]),
     visibility = ["//visibility:public"],
     copts = ["-std=c++20"],
     deps = ["//build_tools/cc/cc_build_utils:ccbuildutils"],

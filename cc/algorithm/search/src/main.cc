@@ -40,6 +40,7 @@ namespace {
 /// using the C++ std::search algorithm
 void FindSubString(const std::string_view str, const std::string_view sub_str) {
   if (str.end() ==
+      // NOLINTNEXTLINE(modernize-use-ranges)
       std::search(str.begin(), str.end(), sub_str.begin(), sub_str.end())) {
     std::cout << sub_str << " not found in " << str << '\n';
   } else {
@@ -49,6 +50,7 @@ void FindSubString(const std::string_view str, const std::string_view sub_str) {
 
 template <typename Searcher>
 void SearchString(const std::string_view str, const std::string_view sub_str) {
+  // NOLINTNEXTLINE(modernize-use-ranges)
   if (str.end() == std::search(str.begin(), str.end(),
                                Searcher(sub_str.begin(), sub_str.end()))) {
     std::cout << sub_str << " not found in " << str << '\n';

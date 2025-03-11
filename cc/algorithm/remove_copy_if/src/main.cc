@@ -41,11 +41,14 @@ int main() {
   std::array<int, kSrcArray.size()> dst_array{};
   std::cout << "copy (except negative numbers) from [";
   auto print_int = [](int integer) { std::cout << integer << ' '; };
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(kSrcArray.begin(), kSrcArray.end(), print_int);
   std::cout << "] to [";
   auto is_negative = [](int integer) { return (0 > integer); };
+  // NOLINTNEXTLINE(modernize-use-ranges)
   auto* iter = std::remove_copy_if(kSrcArray.begin(), kSrcArray.end(),
                                    dst_array.begin(), is_negative);
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(dst_array.begin(), dst_array.end(), print_int);
   std::cout << "]\n";
   std::cout << "past the end iterator points to " << *iter << "\n";

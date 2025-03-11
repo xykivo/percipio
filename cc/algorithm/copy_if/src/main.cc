@@ -29,6 +29,8 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <cstddef>
+
 #include <algorithm>
 #include <array>
 #include <iostream>
@@ -46,6 +48,7 @@ int main() {
                                       kSrcArray.end(), " ");
   std::array<int, kSrcArray.size()> dst_array{};
   auto is_negative = [](int integer) { return (0 > integer); };
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::copy_if(kSrcArray.begin(), kSrcArray.end(), dst_array.begin(),
                is_negative);
   std::cout << "] to [";

@@ -40,12 +40,14 @@ int main() {
   static constexpr int kReplaced{-1};
   std::cout << "replace " << kReplaced << " in [";
   auto print_int = [](int integer) { std::cout << integer << ' '; };
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(src_array.begin(), src_array.end(), print_int);
   static constexpr int kReplacement{0};
   std::cout << "] with " << kReplacement << " copied to [";
   std::array<int, kArraySize> dst_array{};
   std::replace_copy(src_array.begin(), src_array.end(), dst_array.begin(),
                     kReplaced, kReplacement);
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(dst_array.begin(), dst_array.end(), print_int);
   std::cout << "]\n";
 }

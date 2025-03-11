@@ -1,0 +1,70 @@
+# BSD 3-Clause License
+#
+# Copyright (c) 2024, Dror Smolarsky
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice,
+#    this list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+# POSSIBILITY OF SUCH DAMAGE.
+
+# Xykivo repo top level Bazel module
+
+module(name = "xykivo_percipio", version = "0.0.0")
+
+# General
+bazel_dep(name = "platforms", version = "0.0.10")
+
+# Android
+bazel_dep(name = "rules_android", version = "0.6.0-alpha1.bcr.1")
+
+# Apple
+bazel_dep(name = "apple_support", version = "1.17.1")
+bazel_dep(name = "rules_apple", version = "3.16.1")
+bazel_dep(name = "rules_metal")
+git_override(
+    module_name = "rules_metal",
+    remote = "https://github.com/xykivo/rules_metal.git",
+    commit = "a726463bb73ea77417c2b59ab7c9d5d367df43e4",
+)
+
+# C/C++
+bazel_dep(name = "rules_cc", version = "0.1.0")
+register_toolchains(
+    "//bazel/cc_lint:clang-tidy-toolchain",
+    "//bazel/cc_code_style_check:clang-format-toolchain",
+)
+
+# Go
+bazel_dep(name = "rules_go", version = "0.51.0-rc2")
+bazel_dep(name = "gazelle", version = "0.40.0")
+
+# Java
+bazel_dep(name = "rules_java", version = "8.6.2")
+
+# Python
+bazel_dep(name = "rules_python", version = "1.0.0")
+
+# Swift
+bazel_dep(name = "rules_swift", version = "2.3.0")

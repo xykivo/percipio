@@ -42,10 +42,13 @@ int main() {
   static constexpr int kRemovedElement{-1};
   std::cout << "copy (except " << kRemovedElement << ") from [";
   auto print_int = [](int integer) { std::cout << integer << ' '; };
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(kSrcArray.begin(), kSrcArray.end(), print_int);
   std::cout << "] to [";
+  // NOLINTNEXTLINE(modernize-use-ranges)
   auto* iter = std::remove_copy(kSrcArray.begin(), kSrcArray.end(),
                                 dst_array.begin(), kRemovedElement);
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::for_each(dst_array.begin(), dst_array.end(), print_int);
   std::cout << "]\n";
   std::cout << "past the end iterator points to " << *iter << "\n";

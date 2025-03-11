@@ -31,6 +31,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <regex>
 #include <vector>
 
 #include "xykivo/ccbuildutils/argument_parser.h"
@@ -39,7 +40,7 @@
 namespace {
 
 int RunClangTidy(std::string_view path_list, std::string_view copts) {
-  std::string command_line{"clang-tidy --header-filter=.* "};
+  std::string command_line{"clang-tidy --use-color "};
   command_line.append(path_list);
   command_line.append(" -- -x c++ ");
   command_line.append(copts);
