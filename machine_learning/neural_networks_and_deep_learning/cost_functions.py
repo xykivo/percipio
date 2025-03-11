@@ -29,31 +29,13 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-'''Various neural networks activation functions
+'''Various neural networks cost functions
 
-All activation function must have the signature:
-output_value activation_function(input_value)
+All cost function must have the signature:
+cost cost_function(value, predicted_value)
 
-Where output_value and input_value are numbers (floats or integers, depending on
-the activation function).
+Where cost, value and predicted_values (floats or integers, depending on
+the cost function).
 '''
 
 import numpy
-
-class Sigmoid:
-    '''Sigmoid activation function
-
-    Represents the sigmoid function 1 / (1 + e ^ (-x))
-    '''
-
-    def __call__(self, value):
-        ''':return: 1 / (1 + e ^ (-value))
-        '''
-        return 1.0 / (1.0 + numpy.exp(-value))
-
-    def derivative(self, value):
-        '''Derivative of the sigmoid function
-
-        :return: The derivative of the sigmooif function for the given value
-        '''
-        return (self(value) * (1 - self(value)))

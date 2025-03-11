@@ -2,7 +2,7 @@
 
 BSD 3-Clause License
 
-Copyright (c) 2020-2021, Dror Smolarsky
+Copyright (c) 2023, Dror Smolarsky
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -31,7 +31,7 @@ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 
-# Chapter 1
+# Chapter 1 - Neural Networks
 
 ## Sigmoid Neurons
 
@@ -87,7 +87,7 @@ The sigmoid function where w and b are multiplied by c
 
 ```math
 \sigma(c \cdot (w \cdot x + b)) =
-  \frac{1}{1 + \epsilon ^ {(c \cdot (-w \cdot x - b))}}$
+  \frac{1}{1 + \epsilon ^ {(c \cdot (-w \cdot x - b))}}
 ```
 
 when $c \rightarrow \infty$
@@ -101,10 +101,10 @@ c \rightarrow \infty \newline
 ```
 
 ```math
-1 + \epsilon ^ {(c \cdot (-w \cdot x - b))} \rightarrow \begin{cases}
+\epsilon ^ {(c \cdot (-w \cdot x - b))} \rightarrow \begin{cases}
   0 & \text{if} & w \cdot x + b > 0\\
   \infty & \text{if} & w \cdot x + b < 0
-\end{cases}$
+\end{cases}
 ```
 
 ```math
@@ -207,7 +207,7 @@ with the set of digits in which it is lit.
 
 Proof that the choice for $\Delta v$, which minimizes
 $\Delta C = \nabla C \cdot \Delta v$ is $\Delta v = -\eta \cdot \nabla C$, where
-$n = \frac{\epsilon}{\vert \vert \nabla C \vert \vert}$ is determined by the
+$\eta = \frac{\epsilon}{\vert \vert \nabla C \vert \vert}$ is determined by the
 size constraint of $\vert \vert \Delta v \vert \vert = \epsilon$.
 
 ```math
@@ -220,7 +220,7 @@ size constraint of $\vert \vert \Delta v \vert \vert = \epsilon$.
 \Downarrow
 ```
 
-```
+```math
 \Delta C \approx \nabla C \cdot \Delta v =
 ```
 
@@ -308,4 +308,61 @@ the learning to take more time.
 
 $$ \newline
 \sigma(a_{i+1}) = \frac{1}{1 + \sum_j w_{ij}a_{ij} + b_{ij}}
+$$
+
+# Chapter 2 - Backpropagation
+
+## The 4 Backpropagation Equations
+
+### Alternate presentation of the backpropagation equations
+
+Show that BP1 $\delta^L = \nabla_a C \odot \sigma'(z^L)$ can be written as
+$\delta^L = \sum'{(z^L)}\nabla_aC$ where $\sum{'(z^L)}$ is a square matrix whose
+diagonal values are $\sigma'(z^L_j)$, and whose non diagonal values is $0$.
+
+$\delta^L = \nabla_a C \odot \sigma'(z^L)$ is equivalent to
+$\delta^L_j = \frac{\partial C}{\partial a^L_j} \sigma'(z^L_j)$
+
+Proof:
+
+By definition (D0)
+$$
+\nabla_aC = (\frac{\partial C}{\partial a_0}, \frac{\partial C}{\partial a_1},
+..., \frac{\partial C}{\partial a_n}) \newline
+$$
+
+By definition (D1)
+$$
+\sum{'(z^L)} =
+\begin{pmatrix}
+\sigma'(z^L_0) & 0 & ... & 0 \\
+0 & \sigma'(z^L_1) & ... & 0 \\
+... & ... & ... & ... \\
+0 & 0 & ... & \sigma'(z^L_n)
+\end{pmatrix}
+$$
+
+From D0 and D1 we get (E0)
+
+$$
+\sum{'(z^L)} \cdot \nabla_aC =
+
+\begin{pmatrix}
+\sigma'(z^L_0) & 0 & ... & 0 \\
+0 & \sigma'(z^L_1) & ... & 0 \\
+... & ... & ... & ... \\
+0 & 0 & ... & \sigma'(z^L_n)
+\end{pmatrix}
+
+\cdot
+
+\begin{pmatrix}
+\frac{\partial C}{\partial a_0} \\
+\frac{\partial C}{\partial a_1} \\
+... \\
+\frac{\partial C}{\partial a_n}
+\end{pmatrix}
+
+=
+\sum_j{\sigma'(z^L_j)} \cdot \frac{\partial C}{\partial a_j}
 $$

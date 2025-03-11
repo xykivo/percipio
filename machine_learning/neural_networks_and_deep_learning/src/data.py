@@ -242,9 +242,12 @@ class _Data:
         The data returned is flattened to a single dimension.
         :return: List of training data tuples (data, label)
         '''
-        return [(self._flatten_data(data), self._label_to_vector(name, label))
+        return [(self._flatten_data(data), label)
                 for data, label
                 in self._backend_map[name].get_labeled_training_data(name)]
+        # return [(self._flatten_data(data), self._label_to_vector(name, label))
+        #         for data, label
+        #         in self._backend_map[name].get_labeled_training_data(name)]
 
     def get_labeled_test_data(self, name):
         '''Get a list of data and labeels used for testing
@@ -252,9 +255,12 @@ class _Data:
         The data returned is flattened to a single dimension.
         :return: List of test data tuples (data, label)
         '''
-        return [(self._flatten_data(data), self._label_to_vector(name, label))
+        return [(self._flatten_data(data), label)
                 for data, label
                 in self._backend_map[name].get_labeled_test_data(name)]
+        # return [(self._flatten_data(data), self._label_to_vector(name, label))
+        #         for data, label
+        #         in self._backend_map[name].get_labeled_test_data(name)]
 
     @property
     def _backend_list(self):
@@ -281,29 +287,29 @@ class _Data:
         '''
         return numpy.reshape(data, -1)
 
-    def _label_to_vector(self, name, label):
-        '''Convert a label to a Numpy 1D vector with a size equal number of
-        possible values.
+    # def _label_to_vector(self, name, label):
+    #     '''Convert a label to a Numpy 1D vector with a size equal number of
+    #     possible values.
 
-        :return: The label is converted to
-                 * If the data label size is 1, then the returned vector size is
-                   1. The value of the vector is the provided label
-                 * If the label is a discrete value in the range [b, e], then the
-                   returned vector is a 1D vector with a size (width) of (b - a).
-                   All vector values are 0, except for the value of (label-1)
-                   which is 1.
-                   Note that in this case the label value is assumed to be an
-                   integer within the range [0, b + e).
-        :param name: The name of the data
-        :param label: The label value
-        '''
-        if 1 == self._backend_map[name].get_label_size(name):
-            label_vec = numpy.zeros(1)
-            label_vec[0] = label
-        else:
-            label_vec = numpy.zeros(self._backend_map[name].get_label_size(name))
-            label_vec[label] = 1
-        return label_vec
+    #     :return: The label is converted to
+    #              * If the data label size is 1, then the returned vector size is
+    #                1. The value of the vector is the provided label
+    #              * If the label is a discrete value in the range [b, e], then the
+    #                returned vector is a 1D vector with a size (width) of (b - a).
+    #                All vector values are 0, except for the value of (label-1)
+    #                which is 1.
+    #                Note that in this case the label value is assumed to be an
+    #                integer within the range [0, b + e).
+    #     :param name: The name of the data
+    #     :param label: The label value
+    #     '''
+    #     if 1 == self._backend_map[name].get_label_size(name):
+    #         label_vec = numpy.zeros(1)
+    #         label_vec[0] = label
+    #     else:
+    #         label_vec = numpy.zeros(self._backend_map[name].get_label_size(name))
+    #         label_vec[label] = 1
+    #     return label_vec
 
 _data = _Data()
 
