@@ -2,7 +2,7 @@
 
 BSD 3-Clause License
 
-Copyright (c) 2020-2021, Dror Smolarsky
+Copyright (c) 2023, Dror Smolarsky
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -222,10 +222,11 @@ in the $j^{th}$ row and $k^{th}$ column is $w^l_{jk}$.
 The bias vector $b^l$ is the input biases for the $l^{th}$ layer. The $j^{th}$
 value in the vector is $b^l_j$.
 
-The weighted input to the $l^{th}$ layer, $z^l$ is: $z^l = w^l a^{l-1} + b^l$.
-Note that $z^l_j = \sum{w^l_{jk} a^{l-1}_k + b^l_j}$.
+The weighted input (z's) to the $l^{th}$ layer,
+$z^l$ is: $z^l = w^l a^{l-1} + b^l$. Note that
+$z^l_j = \sum{w^l_{jk} a^{l-1}_k + b^l_j}$.
 
-The activation vetor $a^l$ is the activation values in the $l^{th}$ layer. The
+The activation vector $a^l$ is the activation values in the $l^{th}$ layer. The
 $j^{th}$ value in the vector is $a^l_j$.
 
 The vector form of $\sigma$ (the activation functions) is
@@ -262,8 +263,8 @@ d
 \end{bmatrix}
 =
 \begin{bmatrix}
-a \cdot b \\
-c \cdot d
+a \cdot c \\
+b \cdot d
 \end{bmatrix}
 ```
 
