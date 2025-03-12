@@ -34,29 +34,36 @@
 #include <vector>
 
 int main() {
-  std::cout << "STL std::make_heap and std::is_heap example\n";
-  std::vector<int> heap{
-      17, 8,  19, -4, -6, 10, 2,  17, 21,  // NOLINT(readability-magic-numbers)
-      7,  -7, 6,  9,  13, 33, 25, 16};     // NOLINT(readability-magic-numbers)
-  auto print_range = [](auto begin, auto end) {
-    std::cout << "[";
-    auto print_value = [](auto val) { std::cout << val << ' '; };
-    std::for_each(begin, end, print_value);
-    std::cout << "]";
-  };
-  auto print_is_heap = [](auto begin_range, auto end_range) {
-    if (std::is_heap(begin_range, end_range)) {
-      std::cout << " is a heap";
-    } else {
-      std::cout << " is not a heap";
-    }
-  };
-  print_range(heap.begin(), heap.end());
-  print_is_heap(heap.begin(), heap.end());
-  std::cout << '\n';
-  std::make_heap(heap.begin(), heap.end());
-  print_range(heap.begin(), heap.end());
-  print_is_heap(heap.begin(), heap.end());
-  std::cout << '\n';
+  try {
+    std::cout << "STL std::make_heap and std::is_heap example\n";
+    std::vector<int> heap{
+        17, 8,  19, -4, -6,  // NOLINT(readability-magic-numbers)
+        10, 2,  17, 21,      // NOLINT(readability-magic-numbers)
+        7,  -7, 6,  9,  13,  // NOLINT(readability-magic-numbers)
+        33, 25, 16};         // NOLINT(readability-magic-numbers)
+    auto print_range = [](auto begin, auto end) {
+      std::cout << "[";
+      auto print_value = [](auto val) { std::cout << val << ' '; };
+      std::for_each(begin, end, print_value);
+      std::cout << "]";
+    };
+    auto print_is_heap = [](auto begin_range, auto end_range) {
+      if (std::is_heap(begin_range, end_range)) {
+        std::cout << " is a heap";
+      } else {
+        std::cout << " is not a heap";
+      }
+    };
+    print_range(heap.begin(), heap.end());
+    print_is_heap(heap.begin(), heap.end());
+    std::cout << '\n';
+    // NOLINTNEXTLINE(modernize-use-ranges)
+    std::make_heap(heap.begin(), heap.end());
+    print_range(heap.begin(), heap.end());
+    print_is_heap(heap.begin(), heap.end());
+    std::cout << '\n';
+  } catch (...) {
+    return 1;
+  }
   return 0;
 }

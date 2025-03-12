@@ -29,6 +29,8 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <cstddef>
+
 #include <algorithm>
 #include <array>
 #include <iostream>
@@ -47,6 +49,7 @@ int main() {
     std::cout << " sorted\n";
   };
   print_range(array.begin(), array.end());
+  // NOLINTNEXTLINE(modernize-use-ranges)
   auto* end_of_sorted_range = std::is_sorted_until(array.begin(), array.end());
   print_range(array.begin(), end_of_sorted_range);
   print_range(end_of_sorted_range, array.end());

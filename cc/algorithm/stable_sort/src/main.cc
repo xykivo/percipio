@@ -30,6 +30,7 @@
 // POSSIBILITY OF SUCH DAMAGE.
 
 #include <cmath>
+#include <cstddef>
 
 #include <algorithm>
 #include <array>
@@ -50,14 +51,17 @@ int main() {
   auto print_array = [](std::array<int, kArraySize>& array) {
     std::cout << "array=[";
     auto print_int = [](int integer) { std::cout << integer << ' '; };
+    // NOLINTNEXTLINE(modernize-use-ranges)
     std::for_each(array.begin(), array.end(), print_int);
     std::cout << "] ";
+    // NOLINTNEXTLINE(modernize-use-ranges)
     std::cout << (std::is_sorted(array.begin(), array.end(), AbsLessThan)
                       ? ""
                       : "not");
     std::cout << " sorted\n";
   };
   print_array(array);
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::stable_sort(array.begin(), array.end(), AbsLessThan);
   print_array(array);
   return 0;

@@ -29,6 +29,8 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <cstddef>
+
 #include <algorithm>
 #include <array>
 #include <iostream>
@@ -42,12 +44,14 @@ int main() {
   auto print_array = [](std::array<int, kArraySize>& array) {
     std::cout << "array=[";
     auto print_int = [](int integer) { std::cout << integer << ' '; };
+    // NOLINTNEXTLINE(modernize-use-ranges)
     std::for_each(array.begin(), array.end(), print_int);
     std::cout << "]";
   };
-  std::sort(array.begin(), array.end());
+  std::sort(array.begin(), array.end());  // NOLINT(modernize-use-ranges)
   // NOLINTNEXTLINE(readability-identifier-length)
   for (const auto& i : std::array<int, 3>{-1, 0, 1}) {
+    // NOLINTNEXTLINE(modernize-use-ranges)
     if (std::binary_search(array.begin(), array.end(), i)) {
       std::cout << "Found ";
     } else {

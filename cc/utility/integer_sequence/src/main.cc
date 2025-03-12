@@ -29,9 +29,9 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <cstddef>
+
 #include <iostream>
-#include <string_view>
-#include <tuple>
 #include <utility>
 
 namespace {
@@ -54,6 +54,7 @@ int main() {
   const std::make_integer_sequence<int, 9> int_series;
   PrintIntegerSequence(int_series);
   std::cout << "\nSize series\n";
+  // NOLINTNEXTLINE(modernize-use-ranges)
   const std::make_integer_sequence<size_t, 7> size_series;
   PrintIntegerSequence(size_series);
   std::cout << "\nIndex series\n";

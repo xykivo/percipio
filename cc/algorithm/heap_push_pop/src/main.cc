@@ -29,46 +29,54 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <cstddef>
+
 #include <algorithm>
 #include <array>
 #include <iostream>
 #include <vector>
 
 int main() {
-  std::cout << "STL std::make_heap, std::heap_push and std::heap_pop example\n";
-  std::vector<int> heap{17, 8, 19, -4, -6,  // NOLINT(readability-magic-numbers)
-                        10, 2, 17, 21};     // NOLINT(readability-magic-numbers)
-  auto print_range = [](auto begin, auto end) {
-    std::cout << "[";
-    auto print_value = [](auto val) { std::cout << val << ' '; };
-    std::for_each(begin, end, print_value);
-    std::cout << "]";
-  };
-  auto print_is_heap = [](auto begin_range, auto end_range) {
-    if (std::is_heap(begin_range, end_range)) {
-      std::cout << " is a heap";
-    } else {
-      std::cout << " is not a heap";
+  try {
+    std::cout
+        << "STL std::make_heap, std::heap_push and std::heap_pop example\n";
+    std::vector<int> heap{17, 8,  19,   // NOLINT(readability-magic-numbers)
+                          -4, -6, 10,   // NOLINT(readability-magic-numbers)
+                          2,  17, 21};  // NOLINT(readability-magic-numbers)
+    auto print_range = [](auto begin, auto end) {
+      std::cout << "[";
+      auto print_value = [](auto val) { std::cout << val << ' '; };
+      std::for_each(begin, end, print_value);
+      std::cout << "]";
+    };
+    auto print_is_heap = [](auto begin_range, auto end_range) {
+      if (std::is_heap(begin_range, end_range)) {
+        std::cout << " is a heap";
+      } else {
+        std::cout << " is not a heap";
+      }
+    };
+    std::make_heap(heap.begin(), heap.end());  // NOLINT(modernize-use-ranges)
+    print_range(heap.begin(), heap.end());
+    print_is_heap(heap.begin(), heap.end());
+    std::cout << '\n';
+    static constexpr std::array kArray{-7, 24, 14, 9};
+    for (const auto value : kArray) {
+      heap.push_back(value);
+      std::push_heap(heap.begin(), heap.end());  // NOLINT(modernize-use-ranges)
+      std::cout << "heap push " << value << " - ";
+      print_range(heap.begin(), heap.end());
+      std::cout << '\n';
     }
-  };
-  std::make_heap(heap.begin(), heap.end());
-  print_range(heap.begin(), heap.end());
-  print_is_heap(heap.begin(), heap.end());
-  std::cout << '\n';
-  static constexpr std::array kArray{-7, 24, 14, 9};
-  for (const auto value : kArray) {
-    heap.push_back(value);
-    std::push_heap(heap.begin(), heap.end());
-    std::cout << "heap push " << value << " - ";
-    print_range(heap.begin(), heap.end());
-    std::cout << '\n';
-  }
-  for (size_t i = 0; kArray.size() > i; ++i) {
-    std::pop_heap(heap.begin(), heap.end());
-    heap.pop_back();
-    std::cout << "heap pop - ";
-    print_range(heap.begin(), heap.end());
-    std::cout << '\n';
+    for (size_t i = 0; kArray.size() > i; ++i) {
+      std::pop_heap(heap.begin(), heap.end());  // NOLINT(modernize-use-ranges)
+      heap.pop_back();
+      std::cout << "heap pop - ";
+      print_range(heap.begin(), heap.end());
+      std::cout << '\n';
+    }
+  } catch (...) {
+    return 1;
   }
   return 0;
 }

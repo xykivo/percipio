@@ -48,11 +48,12 @@ int main() {
   };
   print_range(array.begin(), array.end());
   std::cout << '\n';
-  auto* middle = array.begin() + array.size() / 2;
+  auto* middle = array.begin() + (array.size() / 2);
   std::sort(array.begin(), middle);
   std::sort(middle, array.end());
   print_range(array.begin(), array.end());
   std::cout << " sorted [begin, middle], [middle + 1, end]\n";
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::inplace_merge(array.begin(), middle, array.end());
   print_range(array.begin(), array.end());
   std::cout << " merged in place\n";

@@ -29,6 +29,8 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <cstddef>
+
 #include <algorithm>
 #include <array>
 #include <iostream>
@@ -46,7 +48,7 @@ int main() {
     std::cout << "]";
   };
   static constexpr int kZero{0};
-  auto negative_range = std::equal_range(
+  auto negative_range = std::equal_range(  // NOLINT(modernize-use-ranges)
       array.begin(), array.end(), kZero,
       [](const int& lhs, const int& rhs) { return (lhs < rhs); });
   std::cout << "Zeros in range ";

@@ -48,7 +48,9 @@ int main() {
     std::cout << "]";
   };
   std::cout << '\n';
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::sort(src_0.begin(), src_0.end());
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::sort(src_1.begin(), src_1.end());
   std::cout << "the symmetric differrence between ";
   print_range(src_0.begin(), src_0.end());
@@ -56,6 +58,7 @@ int main() {
   print_range(src_1.begin(), src_1.end());
   std::cout << " is ";
   std::array<int, src_0.size() + src_1.size()> dst{};
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::set_symmetric_difference(src_0.begin(), src_0.end(), src_1.begin(),
                                 src_1.end(), dst.begin());
   print_range(dst.begin(), dst.end());

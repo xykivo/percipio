@@ -29,6 +29,8 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <cstddef>
+
 #include <algorithm>
 #include <array>
 #include <iostream>
@@ -47,8 +49,10 @@ int main() {
       [is_greater_than_pivot](std::array<int, kArraySize>& array) {
         std::cout << "array=[";
         auto print_int = [](int integer) { std::cout << integer << ' '; };
+        // NOLINTNEXTLINE(modernize-use-ranges)
         std::for_each(array.begin(), array.end(), print_int);
         std::cout << "] is ";
+        // NOLINTNEXTLINE(modernize-use-ranges)
         std::cout << (std::is_partitioned(array.begin(), array.end(),
                                           is_greater_than_pivot)
                           ? ""
@@ -56,6 +60,7 @@ int main() {
         std::cout << " partitoned\n";
       };
   print_is_array_partitioned(array);
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::stable_partition(array.begin(), array.end(), is_greater_than_pivot);
   print_is_array_partitioned(array);
   return 0;

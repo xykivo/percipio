@@ -29,6 +29,8 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <cstddef>
+
 #include <algorithm>
 #include <array>
 #include <iostream>
@@ -48,13 +50,14 @@ int main() {
     std::for_each(begin, end, print_value);
     std::cout << "]";
   };
-  std::sort(array_0.begin(), array_0.end());
-  std::sort(array_1.begin(), array_1.end());
+  std::sort(array_0.begin(), array_0.end());  // NOLINT(modernize-use-ranges)
+  std::sort(array_1.begin(), array_1.end());  // NOLINT(modernize-use-ranges)
   std::cout << "Merging ";
   print_range(array_0.begin(), array_0.end());
   std::cout << " and ";
   print_range(array_1.begin(), array_1.end());
   std::array<int, array_0.size() + array_1.size()> merged_array;
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::merge(array_0.begin(), array_0.end(), array_1.begin(), array_1.end(),
              merged_array.begin());
   std::cout << " -> ";

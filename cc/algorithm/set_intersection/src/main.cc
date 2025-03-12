@@ -47,9 +47,10 @@ int main() {
     std::cout << "]";
   };
   std::cout << '\n';
-  std::sort(array.begin(), array.end());
-  const auto* sub_array_begin = array.begin() + array.size() / 2;
-  const auto* sub_array_end = sub_array_begin + array.size() / 4;
+  // NOLINTNEXTLINE(modernize-use-ranges)
+  std::sort(array.begin(), array.end());  // NOLINTN(modernize-use-ranges)
+  const auto* sub_array_begin = array.begin() + (array.size() / 2);
+  const auto* sub_array_end = sub_array_begin + (array.size() / 4);
   std::cout << "the intersection between ";
   print_range(array.begin(), array.end());
   std::cout << " and ";

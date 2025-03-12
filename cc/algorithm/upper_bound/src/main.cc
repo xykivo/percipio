@@ -29,6 +29,8 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <cstddef>
+
 #include <algorithm>
 #include <array>
 #include <iostream>
@@ -42,12 +44,15 @@ int main() {
   auto print_array = [](std::array<int, kArraySize>& array) {
     std::cout << "array=[";
     auto print_int = [](int integer) { std::cout << integer << ' '; };
+    // NOLINTNEXTLINE(modernize-use-ranges)
     std::for_each(array.begin(), array.end(), print_int);
     std::cout << "]";
   };
   static constexpr int kZero{0};
+  // NOLINTNEXTLINE(modernize-use-ranges)
   std::partition(array.begin(), array.end(),
                  [](int integer) { return integer < kZero; });
+  // NOLINTNEXTLINE(modernize-use-ranges)
   auto* zero_upper_bound = std::upper_bound(array.begin(), array.end(), kZero);
   std::cout << "Zero upper bound in ";
   print_array(array);
