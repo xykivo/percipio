@@ -50,7 +50,7 @@ git_override(
 )
 
 # C/C++
-bazel_dep(name = "rules_cc", version = "0.1.0")
+bazel_dep(name = "rules_cc", version = "0.1.1")
 register_toolchains(
     "//bazel/cc_lint:clang-tidy-toolchain",
     "//bazel/cc_code_style_check:clang-format-toolchain",
