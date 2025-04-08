@@ -41,7 +41,10 @@ void autoReleasePool() {
     NSLog(@"-> auto_release_pool");
 
     XKVObject* obj = [[XKVObject alloc] initWithName:@"obj-auto_release_pool"];
-    XKVObject* holder = [[XKVObjectHolder alloc] initWithName:@"holder-auto_release_pool"];
+    (void)obj;
+    XKVObjectHolder* holder =
+        [[XKVObjectHolder alloc] initWithName:@"holder-auto_release_pool"];
+    (void)holder;
 
     NSLog(@"<- auto_release_pool");
   }
@@ -51,9 +54,15 @@ void localAutoReleasePool() {
   NSLog(@"-> local_auto_release_pool");
 
   @autoreleasepool {
-    XKVObject* created_obj = [XKVObject createWithName:@"created_obj-local_auto_release_pool"];
-    XKVObject* obj = [[XKVObject alloc] initWithName:@"obj-local_auto_release_pool"];
-    XKVObject* holder = [[XKVObjectHolder alloc] initWithName:@"holder-local_auto_release_pool"];
+    XKVObject* created_obj =
+        [XKVObject createWithName:@"created_obj-local_auto_release_pool"];
+    (void)created_obj;
+    XKVObject* obj =
+        [[XKVObject alloc] initWithName:@"obj-local_auto_release_pool"];
+    (void)obj;
+    XKVObjectHolder* holder =
+        [[XKVObjectHolder alloc] initWithName:@"holder-local_auto_release_pool"];
+    (void)holder;
   }
 
   NSLog(@"<- local_auto_release_pool");

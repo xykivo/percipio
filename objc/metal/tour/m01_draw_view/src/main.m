@@ -44,6 +44,7 @@ int main() {
     Application* app =
         [[Application alloc] initWithContentRect:NSMakeRect(100.0, 100.0, 400.0, 400.0)
                                        withTitle:@"Xykvio Percipio Metal Draw on View"];
+    (void)app; // app variable is used indirectly in the call NSApp run below
     [NSApp activateIgnoringOtherApps:YES];
     [NSApp run];
   }
