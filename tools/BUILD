@@ -1,6 +1,6 @@
 # BSD 3-Clause License
 #
-# Copyright (c) 2020, Dror Smolarsky
+# Copyright (c) 2025, Dror Smolarsky
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -29,23 +29,24 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-# Editors and IDEs
-.aswb
-.aswb/
-.vscode/
+"""General tools
 
-# Bazel
-.bazelrc
-MODULE.bazel.lock
-bazel-bin
-bazel-bin/
-bazel-out
-bazel-out/
-bazel-testlogs
-bazel-testlogs/
-bazel-percipio
-bazel-percipio/
+This package contains various utilities, scripts and executable used for
+various purposes.
 
-# Python
-.python_venv/
-__pycache__/
+Tools list:
+- Name generator
+"""
+
+load("@rules_python//python:defs.bzl", "py_binary")
+
+# Wrapper to run clang-tidy lint tool for C++ targets
+py_binary(
+    name = "gen_name",
+    srcs = [
+        "src/gen_name.py",
+    ],
+    main = "src/gen_name.py",
+    python_version = "PY3",
+    visibility = ["//visibility:public"],
+)
