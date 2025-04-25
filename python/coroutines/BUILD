@@ -1,6 +1,6 @@
 # BSD 3-Clause License
 #
-# Copyright (c) 2020, Dror Smolarsky
+# Copyright (c) 2025, Dror Smolarsky
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -29,5 +29,17 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-"""Parent package to all percipio C++ samples packages
+"""Percipio Python courtine examples package
 """
+
+load("@rules_python//python:defs.bzl", "py_binary")
+
+py_binary(
+    name = "pythoncoroutines",
+    srcs = [
+        "src/coroutines.py",
+    ],
+    main = "src/coroutines.py",
+    python_version = "PY3",
+    visibility = ["//visibility:public"],
+)

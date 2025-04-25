@@ -1,6 +1,6 @@
 # BSD 3-Clause License
 #
-# Copyright (c) 2020, Dror Smolarsky
+# Copyright (c) 2025, Dror Smolarsky
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -28,6 +28,42 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
+'''Xykivo percipio Python coroutine example
+'''
 
-"""Parent package to all percipio C++ samples packages
-"""
+import asyncio
+import time
+
+
+async def delayed_print(in_text, in_wait_time):
+    '''Print text to standard output after a timed delay
+    '''
+    print(in_text, '- sleep for', in_wait_time, 'seconds')
+    await asyncio.sleep(in_wait_time)
+    print(in_text, 'complete')
+
+
+async def main():
+    '''Main async entry point
+    '''
+    print('async main ->')
+    print('await delyed print A')
+    await delayed_print('delayed text A - in 3 seconds', 3)
+
+    print('await croutine object returned from croutines')
+    task_b = delayed_print('delayed text B', 3)
+    task_c = delayed_print('delayed text C', 2)
+    await task_b
+    await task_c
+
+    print('run croutines concurrently')
+    await asyncio.gather(delayed_print('delayed text D', 3),
+                         delayed_print('delayed text E', 2),
+                         delayed_print('delayed text F', 1))
+
+    # print('async main <-')
+
+
+if '__main__' == __name__:
+    print('croutine example')
+    asyncio.run(main())
