@@ -40,7 +40,18 @@ Tools list:
 
 load("@rules_python//python:defs.bzl", "py_binary")
 
-# Wrapper to run clang-tidy lint tool for C++ targets
+# Print dice roll probabilities
+py_binary(
+    name = "dice_rolls_odds",
+    srcs = [
+        "src/dice_rolls_odds.py",
+    ],
+    main = "src/dice_rolls_odds.py",
+    python_version = "PY3",
+    visibility = ["//visibility:public"],
+)
+
+# Generate a random names
 py_binary(
     name = "gen_name",
     srcs = [
