@@ -120,7 +120,7 @@ class _Dice:
         for roll, roll_count in sorted(counted_results.items(),
                                        key=lambda item: item[0]):
             print(
-                f'{roll:<8}\t{roll_count}/{len(results):<8}\t{float(roll_count)/float(len(results)):<5.2f}\t{"*" * roll_count:<128}'
+                f'{roll:<8}\t{float(roll_count)/float(len(results)):<5.2f}\t{roll_count}/{len(results):<8}\t{"*" * roll_count:<128}'
             )
 
     def _roll_dice(self, roll_type, in_die_index, in_roll_result, io_results):
@@ -131,7 +131,12 @@ class _Dice:
             elif _RollType.ADVANTAGE == roll_type:
                 result = max(roll_result, in_roll_result)
             elif _RollType.DISADVANTAGE == roll_type:
-                result = min(roll_result, in_roll_result)
+                # The null dice must be discarded in this case otherwise it
+                # will alway be the min result (null_dice = 0)
+                if 0 != in_roll_result:
+                    result = min(roll_result, in_roll_result)
+                else:
+                    result = roll_result
             else:
                 raise _DiceError('Error: unknown roll type')
             if 0 == in_die_index:
