@@ -33,7 +33,9 @@
 
 import argparse
 import collections
+import enum
 import re
+import typing
 
 _DICE_STRING_RE = re.compile(r'(?P<count>\d+)d(?P<die>\d+)')
 _MAX_COUNT = 5
@@ -48,10 +50,31 @@ The dice die must be in the range [{_MIN_SIDES}, {_MAX_SIDES}].
 '''
 
 
+class _DiceError(Exception):
+    '''Raised when there is an error in rolling dice
+    '''
+
+
+class _RollType(enum.Enum):
+    ADD = 0,
+    ADVANTAGE = 1,
+    DISADVANTAGE = 2,
+
+    @staticmethod
+    def from_flags(advantage: bool, disadvantage: bool):
+        if advantage:
+            return _RollType.ADVANTAGE
+        elif disadvantage:
+            return _RollType.DISADVANTAGE
+        return _RollType.ADD
+
+
 class _Dice:
 
     @staticmethod
-    def init_from_string(in_dice_str):
+    def from_string(in_dice_str: str):
+        '''Create a dice object from a string description of a dice
+        '''
         dice_match = _DICE_STRING_RE.match(in_dice_str)
         if dice_match is None:
             raise ValueError(f'Invalid dice argument {in_dice_str}')
@@ -68,7 +91,10 @@ class _Dice:
         return _Dice([die] * count)
 
     @staticmethod
-    def combine(in_dice_list):
+    def combine(in_dice_list: typing.List[str]):
+        '''Create a dice object by combining all the dice strings in the give
+        dice list
+        '''
         combined_dice = []
         for dice in in_dice_list:
             combined_dice.extend(dice._dice)
@@ -83,39 +109,63 @@ class _Dice:
             for dice, count in collections.Counter(self._dice).items()
         ])
 
-    def print_odds(self):
+    def print_odds(self, roll_type: _RollType):
+        '''Print the odds of getting each possible result for
+        '''
         print(f'Rolling {self}')
         results = []
-        self._roll_dice(len(self._dice) - 1, 0, results)
+        # start with in_roll_result of 0 because it represents the null dice
+        self._roll_dice(roll_type, len(self._dice) - 1, 0, results)
         counted_results = collections.Counter(results)
         for roll, roll_count in sorted(counted_results.items(),
                                        key=lambda item: item[0]):
             print(
-                f'{roll:<8}\t{roll_count}/{len(results):<16}\t{"*" * roll_count:<128}'
+                f'{roll:<8}\t{roll_count}/{len(results):<8}\t{float(roll_count)/float(len(results)):<5.2f}\t{"*" * roll_count:<128}'
             )
 
-    def _roll_dice(self, in_die_index, in_roll_result, io_results):
+    def _roll_dice(self, roll_type, in_die_index, in_roll_result, io_results):
         # add 1 to end range so all die are represented in roll_result
         for roll_result in range(1, self._dice[in_die_index] + 1):
-            result = roll_result + in_roll_result
+            if _RollType.ADD == roll_type:
+                result = roll_result + in_roll_result
+            elif _RollType.ADVANTAGE == roll_type:
+                result = max(roll_result, in_roll_result)
+            elif _RollType.DISADVANTAGE == roll_type:
+                result = min(roll_result, in_roll_result)
+            else:
+                raise _DiceError('Error: unknown roll type')
             if 0 == in_die_index:
                 io_results.append(result)
             else:
-                self._roll_dice(in_die_index - 1, result, io_results)
+                self._roll_dice(roll_type, in_die_index - 1, result,
+                                io_results)
 
 
-def _is_dice_arg(in_arg_str):
-    return _Dice.init_from_string(in_arg_str)
+def _dice_arg(in_arg: str):
+    return _Dice.from_string(in_arg)
 
 
 if '__main__' == __name__:
     arg_parser = argparse.ArgumentParser(
         description='Print sice rolls probablities')
+    roll_type_group = arg_parser.add_mutually_exclusive_group()
+    arg_parser.add_argument('--advantage',
+                            '-a',
+                            dest='advantage',
+                            action='store_true',
+                            default=False,
+                            help='Use max die value instead of adding')
+    roll_type_group.add_argument('--disadvantage',
+                                 '-d',
+                                 dest='disadvantage',
+                                 action='store_true',
+                                 default=False,
+                                 help='Use min die value instead of adding')
     arg_parser.add_argument('dice',
                             metavar='DICE',
-                            type=_is_dice_arg,
+                            type=_dice_arg,
                             nargs='+',
                             help=_DICE_HELP_MSG)
     args = arg_parser.parse_args()
     dice = _Dice.combine(args.dice)
-    dice.print_odds()
+    dice.print_odds(_RollType.from_flags(args.advantage, args.disadvantage))
