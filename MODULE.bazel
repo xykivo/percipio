@@ -34,13 +34,13 @@
 module(name = "xykivo_percipio", version = "0.0.0")
 
 # General
-bazel_dep(name = "platforms", version = "0.0.10")
+bazel_dep(name = "platforms", version = "0.0.11")
 
 # Android
 bazel_dep(name = "rules_android", version = "0.6.0-alpha1.bcr.1")
 
 # Apple
-bazel_dep(name = "apple_support", version = "1.17.1")
+bazel_dep(name = "apple_support", version = "1.23.1")
 bazel_dep(name = "rules_apple", version = "3.16.1")
 bazel_dep(name = "rules_metal")
 git_override(
@@ -61,7 +61,7 @@ bazel_dep(name = "rules_go", version = "0.51.0-rc2")
 bazel_dep(name = "gazelle", version = "0.40.0")
 
 # Java
-bazel_dep(name = "rules_java", version = "8.6.2")
+bazel_dep(name = "rules_java", version = "8.14.0")
 
 # Python
 bazel_dep(name = "rules_python", version = "1.0.0")
